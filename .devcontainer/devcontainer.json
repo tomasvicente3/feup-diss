@@ -2,17 +2,14 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "dissertation-latex",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	// Use Dockerfile that configures certificate trust, then apply LaTeX feature
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"features": {
 		"ghcr.io/prulloac/devcontainer-features/latex:1": {
 			"scheme": "small",
-			"packages": "texdoc,collection-latexrecommended,collection-fontsrecommended,courier-scaled,nextpage,enumitem,epigraph,cleveref"
+			"packages": "texdoc,collection-latexrecommended,collection-fontsrecommended,courier-scaled,nextpage,enumitem,epigraph,cleveref,biblatex,multirow,acronym,bigfoot,xstring,siunitx,csquotes,biblatex-chicago,biber"
 		}
 	}
-
-	// , // Add if some latex programs are not found, probably the ones installed with the terminal with tlmgr
-	// "remoteEnv": {
-	// 	"PATH": "${containerEnv:PATH}:/usr/local/texlive/2023/bin/x86_64-linux"
-	// }
 }
