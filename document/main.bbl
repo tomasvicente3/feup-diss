@@ -46,6 +46,63 @@
       \verb http://www.lipsum.com/
       \endverb
     \endentry
+    \entry{kn:PP05}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=99ed657b1c45e5125fc32a35d2f70d50}{%
+           family={Philips},
+           familyi={P\bibinitperiod},
+           given={Estelle\bibnamedelima M.},
+           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=11957edd54d570f15012fd922d5bf848}{%
+           family={Pugh},
+           familyi={P\bibinitperiod},
+           given={Derek\bibnamedelima S.},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Open University Press}%
+      }
+      \strng{namehash}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{fullhash}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{fullhashraw}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{bibnamehash}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{authorbibnamehash}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{authornamehash}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{authorfullhash}{f6ccc500b4f61aefc243c0822107908c}
+      \strng{authorfullhashraw}{f6ccc500b4f61aefc243c0822107908c}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{{F}ourth}
+      \field{isbn}{0-335-21684-6}
+      \field{title}{How to Get a {PhD}}
+      \field{year}{2005}
+    \endentry
+    \entry{kn:Tha01}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=184271442f932ccfab4a15f638277821}{%
+           family={Tham},
+           familyi={T\bibinitperiod},
+           given={Ming},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{184271442f932ccfab4a15f638277821}
+      \strng{fullhash}{184271442f932ccfab4a15f638277821}
+      \strng{fullhashraw}{184271442f932ccfab4a15f638277821}
+      \strng{bibnamehash}{184271442f932ccfab4a15f638277821}
+      \strng{authorbibnamehash}{184271442f932ccfab4a15f638277821}
+      \strng{authornamehash}{184271442f932ccfab4a15f638277821}
+      \strng{authorfullhash}{184271442f932ccfab4a15f638277821}
+      \strng{authorfullhashraw}{184271442f932ccfab4a15f638277821}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{University of Newcastle Upon Tyne. Available at \url{http://lorien.ncl.ac.uk/ming/dept/Tips/writing/thesis/thesis-intro.htm}}
+      \field{title}{Writing Research Theses or Dissertations}
+      \field{year}{2001}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

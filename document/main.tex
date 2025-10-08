@@ -125,9 +125,9 @@
 
 % comment or remove unnecessary \include{} commands
 \begin{Prolog}
-  \include{frontmatter/abstract} % the abstract
-  \include{frontmatter/un-sdg}   % United Nations Sustainable Development Goals (SGD)
-  \include{frontmatter/acknows}  % the acknowledgments
+  % \include{frontmatter/abstract} % the abstract
+  % \include{frontmatter/un-sdg}   % United Nations Sustainable Development Goals (SGD)
+  % \include{frontmatter/acknows}  % the acknowledgments
   %\include{frontmatter/quote}    % initial quotation if needed
   \cleardoublepage
   %% PT: Uncomment next line for PT
@@ -149,11 +149,11 @@
 \StartBody
 
 %% Use a separate file for each chapter
-% \include{body/chapter1} 
+\include{body/chapter1} 
 % \include{body/chapter2}
 % \include{body/chapter3}
 %% Uncomment to see a listing example for option meic (meic.cfg loaded)
-%\include{body/chapter45-listing}
+% \include{body/chapter45-listing}
 
 %%----------------------------------------
 %% Final materials
@@ -163,7 +163,7 @@
 \PrintBib
 
 %% comment next 2 commands if numbered appendices are not used
-\appendix
-\include{backmatter/appendix1}
+% \appendix
+% \include{backmatter/appendix1}
 
 \end{document}
