@@ -8,12 +8,21 @@ passar da pequena circunstancia à grande
 - Mais barato?
 - Menos poluente
 - Mais rápido
-- Localidade
+- Localidade (segurança/privacidade) [cite TinyMl-Enabled_Fru...]
 - Menos offloading Cloud-Network
 
 ### Ver Refs do Paper sobre TinyMLaaS
+- Extrair p/ ref da minha tese
 
+### Falar de trabalhos prévios
+- NAMP
+- TinyMLaaS
 
 ### Objetivos
-- Incluir Edge devices (mais perto da cloud, mas locais na mesma, com mais potência)
-- Dar deploy a modelos mais pesados, como Transformers
+- Incluir Edge devices (mais perto da cloud, mas locais na mesma, com mais potência) (só se necessário? ver confiança na classificação antes de passar)
+- Dar deploy a modelos mais pesados, como Transformers (aka: fragmentar esses modelos)
+
+
+For the last few years, the world has been witnessing a great revolution in Machine Learning and Deep Learning.
+
+Opens the possibility to build a collaborative network between household smart-objects that aid on human daily life. Detecting etc etc

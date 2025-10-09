@@ -19,89 +19,240 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
-    \entry{kn:Lip08}{misc}{}{}
+    \entry{david::tflm}{misc}{}{}
       \name{author}{1}{}{%
-        {{hash=9ff9a7988ae890a59489bbe8d2bf962b}{%
-           family={Lipsum},
-           familyi={L\bibinitperiod}}}%
+        {{hash=4e05d7a853ab6e009f98639db91cbaf3}{%
+           family={al.},
+           familyi={a\bibinitperiod},
+           given={R.\bibnamedelimi David},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           prefix={et},
+           prefixi={e\bibinitperiod}}}%
       }
-      \strng{namehash}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{fullhash}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{fullhashraw}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{bibnamehash}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{authorbibnamehash}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{authornamehash}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{authorfullhash}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \strng{authorfullhashraw}{9ff9a7988ae890a59489bbe8d2bf962b}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \strng{namehash}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{fullhash}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{fullhashraw}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{bibnamehash}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{authorbibnamehash}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{authornamehash}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{authorfullhash}{4e05d7a853ab6e009f98639db91cbaf3}
+      \strng{authorfullhashraw}{4e05d7a853ab6e009f98639db91cbaf3}
+      \field{sortinit}{a}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Lorem Ipsum}
-      \field{year}{2008}
+      \field{note}{arXiv:2010.08678 [cs, eess]}
+      \field{title}{TensorFlow Lite Micro: Embedded Machine Learning on TinyML Systems}
+      \field{year}{2020}
       \verb{urlraw}
-      \verb http://www.lipsum.com/
+      \verb https://arxiv.org/abs/2010.08678
       \endverb
       \verb{url}
-      \verb http://www.lipsum.com/
+      \verb https://arxiv.org/abs/2010.08678
       \endverb
     \endentry
-    \entry{kn:PP05}{book}{}{}
+    \entry{rego::namp}{article}{}{}
       \name{author}{2}{}{%
-        {{hash=99ed657b1c45e5125fc32a35d2f70d50}{%
-           family={Philips},
-           familyi={P\bibinitperiod},
-           given={Estelle\bibnamedelima M.},
-           giveni={E\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=11957edd54d570f15012fd922d5bf848}{%
-           family={Pugh},
-           familyi={P\bibinitperiod},
-           given={Derek\bibnamedelima S.},
-           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a914f7a795a660618530984faba4f61b}{%
+           family={F.\bibnamedelimi Rego},
+           familyi={F\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={F.\bibnamedelimi Sousa},
+           giveni={F\bibinitperiod\bibinitdelim S\bibinitperiod},
+           suffix={J.\bibnamedelimi Oliveira},
+           suffixi={J\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=a79f1666b3f5a8192ffd6627c4b1b262}{%
+           family={Almeida},
+           familyi={A\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
       }
       \list{publisher}{1}{%
-        {Open University Press}%
+        {Association for Computing Machinery}%
       }
-      \strng{namehash}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{fullhash}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{fullhashraw}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{bibnamehash}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{authorbibnamehash}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{authornamehash}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{authorfullhash}{f6ccc500b4f61aefc243c0822107908c}
-      \strng{authorfullhashraw}{f6ccc500b4f61aefc243c0822107908c}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \strng{namehash}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{fullhash}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{fullhashraw}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{bibnamehash}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{authorbibnamehash}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{authornamehash}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{authorfullhash}{a14b9827653d3c9dd454cd7740f24be5}
+      \strng{authorfullhashraw}{a14b9827653d3c9dd454cd7740f24be5}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{edition}{{F}ourth}
-      \field{isbn}{0-335-21684-6}
-      \field{title}{How to Get a {PhD}}
-      \field{year}{2005}
+      \field{isbn}{9798400716119}
+      \field{journaltitle}{Proceedings of the 4th International Workshop on Real-time and IntelliGent Edge computing (RAGE ’25)}
+      \field{title}{NAMP: A Network-Aware Model Partitioning Framework for Constrained Devices}
+      \field{year}{2025}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/3722567.3727844
+      \endverb
     \endentry
-    \entry{kn:Tha01}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=184271442f932ccfab4a15f638277821}{%
-           family={Tham},
-           familyi={T\bibinitperiod},
-           given={Ming},
+    \entry{doyu::tinymlaas}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a48dad15d6ea91cbffaa3554b62ada8c}{%
+           family={Hiroshi},
+           familyi={H\bibinitperiod},
+           given={Doyu},
+           giveni={D\bibinitperiod}}}%
+        {{hash=17932b08f17d8e3fa5eeb220ad497e5b}{%
+           family={Morabito},
+           familyi={M\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c7d3e77721d3ff1ff6c511274baf641c}{%
+           family={Brachmann},
+           familyi={B\bibinitperiod},
+           given={Martina},
            giveni={M\bibinitperiod}}}%
       }
-      \strng{namehash}{184271442f932ccfab4a15f638277821}
-      \strng{fullhash}{184271442f932ccfab4a15f638277821}
-      \strng{fullhashraw}{184271442f932ccfab4a15f638277821}
-      \strng{bibnamehash}{184271442f932ccfab4a15f638277821}
-      \strng{authorbibnamehash}{184271442f932ccfab4a15f638277821}
-      \strng{authornamehash}{184271442f932ccfab4a15f638277821}
-      \strng{authorfullhash}{184271442f932ccfab4a15f638277821}
-      \strng{authorfullhashraw}{184271442f932ccfab4a15f638277821}
-      \field{sortinit}{T}
-      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{7a15a5d00960312c75b2084743a32f10}
+      \strng{fullhash}{7a15a5d00960312c75b2084743a32f10}
+      \strng{fullhashraw}{7a15a5d00960312c75b2084743a32f10}
+      \strng{bibnamehash}{7a15a5d00960312c75b2084743a32f10}
+      \strng{authorbibnamehash}{7a15a5d00960312c75b2084743a32f10}
+      \strng{authornamehash}{7a15a5d00960312c75b2084743a32f10}
+      \strng{authorfullhash}{7a15a5d00960312c75b2084743a32f10}
+      \strng{authorfullhashraw}{7a15a5d00960312c75b2084743a32f10}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{note}{University of Newcastle Upon Tyne. Available at \url{http://lorien.ncl.ac.uk/ming/dept/Tips/writing/thesis/thesis-intro.htm}}
-      \field{title}{Writing Research Theses or Dissertations}
-      \field{year}{2001}
+      \field{isbn}{9781665419154}
+      \field{month}{4}
+      \field{title}{A TinyMLaaS Ecosystem for Machine Learning in IoT: Overview and Research Challenges}
+      \field{year}{2021}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/VLSIDAT52063.2021.9427352
+      \endverb
+    \endentry
+    \entry{tml-enabled-frugal-smart-objects}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=9f16c0ae3c200cc8f686ccc1a27f2f19}{%
+           family={Sanchez-Iborra},
+           familyi={S\bibinithyphendelim I\bibinitperiod},
+           given={Ramon},
+           giveni={R\bibinitperiod}}}%
+        {{hash=101d73c68f340b4965898887a6460b87}{%
+           family={Skarmeta},
+           familyi={S\bibinitperiod},
+           given={Antonio\bibnamedelima F.},
+           giveni={A\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{c52760187b81e401d64dc6d7741e014f}
+      \strng{fullhash}{c52760187b81e401d64dc6d7741e014f}
+      \strng{fullhashraw}{c52760187b81e401d64dc6d7741e014f}
+      \strng{bibnamehash}{c52760187b81e401d64dc6d7741e014f}
+      \strng{authorbibnamehash}{c52760187b81e401d64dc6d7741e014f}
+      \strng{authornamehash}{c52760187b81e401d64dc6d7741e014f}
+      \strng{authorfullhash}{c52760187b81e401d64dc6d7741e014f}
+      \strng{authorfullhashraw}{c52760187b81e401d64dc6d7741e014f}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Circuits and Systems Magazine}
+      \field{number}{3}
+      \field{title}{TinyML-Enabled Frugal Smart Objects: Challenges and Opportunities}
+      \field{volume}{20}
+      \field{year}{2020}
+      \field{pages}{4\bibrangedash 18}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/MCAS.2020.3005467
+      \endverb
+    \endentry
+    \entry{teerapittayannon::ddnn}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8f8a57a234f4c475af1d4c6987e439b1}{%
+           family={Surat\bibnamedelima Teerapittayannon},
+           familyi={S\bibinitperiod\bibinitdelim T\bibinitperiod},
+           given={Bradley\bibnamedelima McDanel},
+           giveni={B\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=3c1496ede7e76d1e27dd06d6fec3806c}{%
+           family={Kung},
+           familyi={K\bibinitperiod},
+           given={H.\bibnamedelimi T.},
+           giveni={H\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{84a215251e2e6521c71dc7f825115533}
+      \strng{fullhash}{84a215251e2e6521c71dc7f825115533}
+      \strng{fullhashraw}{84a215251e2e6521c71dc7f825115533}
+      \strng{bibnamehash}{84a215251e2e6521c71dc7f825115533}
+      \strng{authorbibnamehash}{84a215251e2e6521c71dc7f825115533}
+      \strng{authornamehash}{84a215251e2e6521c71dc7f825115533}
+      \strng{authorfullhash}{84a215251e2e6521c71dc7f825115533}
+      \strng{authorfullhashraw}{84a215251e2e6521c71dc7f825115533}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{2017 IEEE 37th International Conference on Distributed Computing Systems}
+      \field{title}{Distributed Deep Neural Networks over the Cloud, the Edge and End Devices}
+      \field{year}{2017}
+      \field{pages}{328\bibrangedash 339}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1109/ICDCS.2017.226
+      \endverb
+    \endentry
+    \entry{lenet-5}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=defbbaf4cd38822724b5af16597331c5}{%
+           family={Y.\bibnamedelimi LeCun},
+           familyi={Y\bibinitperiod\bibinitdelim L\bibinitperiod},
+           given={Y.\bibnamedelimi Bengio},
+           giveni={Y\bibinitperiod\bibinitdelim B\bibinitperiod},
+           suffix={L.\bibnamedelimi Bottou},
+           suffixi={L\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=00f962380d25c4d7f23fa6c7e926c3ed}{%
+           family={Haffner},
+           familyi={H\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{fullhash}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{fullhashraw}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{bibnamehash}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{authorbibnamehash}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{authornamehash}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{authorfullhash}{bf35fef40aaf76c34b6cead2d9277349}
+      \strng{authorfullhashraw}{bf35fef40aaf76c34b6cead2d9277349}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proc. IEEE}
+      \field{number}{11}
+      \field{title}{Gradient-based learning applied to document recognition}
+      \field{volume}{86}
+      \field{year}{1998}
+      \field{pages}{2278\bibrangedash 2324}
+      \range{pages}{47}
+      \verb{doi}
+      \verb 10.1109/5.726791
+      \endverb
     \endentry
   \enddatalist
 \endrefsection
