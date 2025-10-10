@@ -213,47 +213,6 @@
       \verb 10.1109/ICDCS.2017.226
       \endverb
     \endentry
-    \entry{lenet-5}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=defbbaf4cd38822724b5af16597331c5}{%
-           family={Y.\bibnamedelimi LeCun},
-           familyi={Y\bibinitperiod\bibinitdelim L\bibinitperiod},
-           given={Y.\bibnamedelimi Bengio},
-           giveni={Y\bibinitperiod\bibinitdelim B\bibinitperiod},
-           suffix={L.\bibnamedelimi Bottou},
-           suffixi={L\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{hash=00f962380d25c4d7f23fa6c7e926c3ed}{%
-           family={Haffner},
-           familyi={H\bibinitperiod},
-           given={P.},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {IEEE}%
-      }
-      \strng{namehash}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{fullhash}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{fullhashraw}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{bibnamehash}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{authorbibnamehash}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{authornamehash}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{authorfullhash}{bf35fef40aaf76c34b6cead2d9277349}
-      \strng{authorfullhashraw}{bf35fef40aaf76c34b6cead2d9277349}
-      \field{sortinit}{Y}
-      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Proc. IEEE}
-      \field{number}{11}
-      \field{title}{Gradient-based learning applied to document recognition}
-      \field{volume}{86}
-      \field{year}{1998}
-      \field{pages}{2278\bibrangedash 2324}
-      \range{pages}{47}
-      \verb{doi}
-      \verb 10.1109/5.726791
-      \endverb
-    \endentry
   \enddatalist
 \endrefsection
 \endinput
