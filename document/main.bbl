@@ -51,6 +51,28 @@
       \verb https://arxiv.org/abs/2010.08678
       \endverb
     \endentry
+    \entry{kn:batik}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=e9713ae04a02a810d6f33dd956f42794}{%
+           family={Apache},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{fullhash}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{fullhashraw}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{bibnamehash}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{authorbibnamehash}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{authornamehash}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{authorfullhash}{e9713ae04a02a810d6f33dd956f42794}
+      \strng{authorfullhashraw}{e9713ae04a02a810d6f33dd956f42794}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Available at \url{http://xml.apache.org/batik/architecture.html\#coreComponents}}
+      \field{title}{Batik {SVG} {T}oolkit {A}rchitecture}
+      \field{year}{2005}
+    \endentry
     \entry{rego::namp}{article}{}{}
       \name{author}{2}{}{%
         {{hash=a914f7a795a660618530984faba4f61b}{%
@@ -137,6 +159,88 @@
       \verb 10.1109/VLSIDAT52063.2021.9427352
       \endverb
     \endentry
+    \entry{kn:svgibm}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhashraw}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhashraw}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Available at \url{http://www-128.ibm.com/developerworks/xml/library/x-matters40/}}
+      \field{title}{Program with {SVG}}
+      \field{year}{2005}
+    \endentry
+    \entry{kn:MVL06-xata}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=d3e645908515756fcdb8578e9b2f0746}{%
+           family={Marinho},
+           familyi={M\bibinitperiod},
+           given={Filipe},
+           giveni={F\bibinitperiod}}}%
+        {{hash=4945c0bce62c34582d4d1de7258219cf}{%
+           family={Viegas},
+           familyi={V\bibinitperiod},
+           given={Paulo},
+           giveni={P\bibinitperiod}}}%
+        {{hash=055799e01cf95a2b1adb28a54ebf007c}{%
+           family={Lopes},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi Correia},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \name{editor}{3}{}{%
+        {{hash=fca6da351e334ed2d6a58be5cd9f3b10}{%
+           family={Ramalho},
+           familyi={R\bibinitperiod},
+           given={José\bibnamedelima Carlos},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=055799e01cf95a2b1adb28a54ebf007c}{%
+           family={Lopes},
+           familyi={L\bibinitperiod},
+           given={J.\bibnamedelimi Correia},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=01188f57f60f4bb65f5df587c318add4}{%
+           family={Simões},
+           familyi={S\bibinitperiod},
+           given={Alberto},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Universidade do Minho}%
+      }
+      \strng{namehash}{d2e360af04fb376089900a64cb65918c}
+      \strng{fullhash}{d2e360af04fb376089900a64cb65918c}
+      \strng{fullhashraw}{d2e360af04fb376089900a64cb65918c}
+      \strng{bibnamehash}{d2e360af04fb376089900a64cb65918c}
+      \strng{authorbibnamehash}{d2e360af04fb376089900a64cb65918c}
+      \strng{authornamehash}{d2e360af04fb376089900a64cb65918c}
+      \strng{authorfullhash}{d2e360af04fb376089900a64cb65918c}
+      \strng{authorfullhashraw}{d2e360af04fb376089900a64cb65918c}
+      \strng{editorbibnamehash}{1e4be6b5aabf8490d8fd94be1515a37e}
+      \strng{editornamehash}{1e4be6b5aabf8490d8fd94be1515a37e}
+      \strng{editorfullhash}{1e4be6b5aabf8490d8fd94be1515a37e}
+      \strng{editorfullhashraw}{1e4be6b5aabf8490d8fd94be1515a37e}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{XATA2006}, XML: Aplicações e Tecnologias Associadas (Portalege, 9 e 10 de Fevereiro de 2006)}
+      \field{title}{{SVG} na Visualização de Sinópticos}
+      \field{year}{2006}
+      \field{pages}{99\bibrangedash 112}
+      \range{pages}{14}
+    \endentry
     \entry{tml-enabled-frugal-smart-objects}{article}{}{}
       \name{author}{2}{}{%
         {{hash=9f16c0ae3c200cc8f686ccc1a27f2f19}{%
@@ -212,6 +316,52 @@
       \verb{doi}
       \verb 10.1109/ICDCS.2017.226
       \endverb
+    \endentry
+    \entry{kn:svgw3c}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=bdea812935506778c291249971f80655}{%
+           family={{World Wide Web Consortium}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{bdea812935506778c291249971f80655}
+      \strng{fullhash}{bdea812935506778c291249971f80655}
+      \strng{fullhashraw}{bdea812935506778c291249971f80655}
+      \strng{bibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authorbibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authornamehash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhashraw}{bdea812935506778c291249971f80655}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{\url{http://www.w3.org/TR/SVG/intro.html/}}
+      \field{title}{{W3C} --- {About SVG}}
+      \field{year}{2005}
+    \endentry
+    \entry{kn:svgdoc}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=bdea812935506778c291249971f80655}{%
+           family={{World Wide Web Consortium}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{bdea812935506778c291249971f80655}
+      \strng{fullhash}{bdea812935506778c291249971f80655}
+      \strng{fullhashraw}{bdea812935506778c291249971f80655}
+      \strng{bibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authorbibnamehash}{bdea812935506778c291249971f80655}
+      \strng{authornamehash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhash}{bdea812935506778c291249971f80655}
+      \strng{authorfullhashraw}{bdea812935506778c291249971f80655}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Available at \url{http://www.w3.org/TR/SVG11/}}
+      \field{title}{{W3C} --- {SVG Specification}}
+      \field{year}{2005}
     \endentry
   \enddatalist
 \endrefsection
