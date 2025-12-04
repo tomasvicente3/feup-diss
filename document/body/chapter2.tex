@@ -1,107 +1,46 @@
-\chapter{Literary Revision} \label{chap:ch2}
+\chapter{Literary Review} \label{chap:ch2}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-Donec a eros. Phasellus non nulla non massa venenatis convallis. 
-In porta. Mauris quis magna. 
+\section{Introduction}\label{sec:se21}
 
-\section{Introduction}
+The Literary Review for this work followed the standard workflow of a
+Systematic Literature Review (SLR).
+% as outlined by Kitchenham and Charters (2007)~\cite{kitchenham2007guidelines}.
+The review aimed to identify and analyze existing research relevant to the
+subject matter of this thesis. Likewise, it was designed to provide
+a strong foundation on the following aspects:
 
-\textcite{kn:MVL06-xata} fusce risus mi, tristique eu, consectetuer 
-id, auctor sed, elit. Donec laoreet. Duis consectetuer interdum 
-libero.
+\begin{enumerate}
+    \item Model Partition and Split Inference
+    \item \ac{ML} Orchestration/Scheduling in Edge Computing
+    \item Computational Offloading for \ac{ML} inference
+    \item Heterogeneous Resource Management in \ac{IoT}/Edge
+\end{enumerate}
 
-In euarcu. Fusce luctus diam eget lectus. Duis interdum lacus sed
-ligula. Proin vestibulum felis eget lacus. Vivamus vestibulum, tellus
-ut congue viverra, mauris lacus tempor turpis, eu congue nisi magna at
-dolor. Ut molestie vehicula libero. Praesent in neque sed risus tempus
-ornare. Donec hendrerit, erat eu semper aliquam, pede nulla dapibus
-risus, ut pretium orci pede et neque.
-Etiam eget tortor a metus convallis viverra. Quisque eget nisi sed
-orci facilisis interdum. Aliquam non felis. 
+In addition to these topics, the proposal's bibliography was also
+included and later examined to this work's context.
 
-\section{Section Example}\label{sec:se21}
 
-\emph{Scalable Vector Graphics}\index{SVG}\index{XML!SVG} 
-Curabitur ipsum tortor, ornare vitae, dapibus pretium, 
-hendrerit sed, urna~\parencite{kn:svgdoc}.
+\section{Review Methodology}\label{sec:se22}
+\subsection{Search Strategy} \label{sec:se221}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec a eros. 
-\textcite{kn:svgibm,kn:svgw3c} phasellus non nulla non massa venenatis convallis. 
-In porta. Mauris quis magna.
+There were three digital libraries used to search for relevant articles:
+the IEEE Xplore Digital Library %insert citation
+and the ACM Digital Library %insert citation
+as the main sources of specialized literature on the subject, and
+Scopus %insert citation
+as a broader database to cover any gaps that could arise.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec a
-eros. Phasellus non nulla non massa venenatis convallis. In
-porta. Mauris quis magna. Proin mauris eros, aliquet id, eleifend
-vitae, semper quis, erat. Aliquam id lectus non odio dignissim
-blandit. Vestibulum porttitor arcu ut ligula.
+To accomplish this search, the following search strings were built,
+respectively for each topic:\footnote{It should be noted that the
+proximity operator was adapted to each digital library's syntax.}
+\begin{enumerate}
+    \item ("split inference" OR "distributed inference" OR "split computing" OR "collaborative inference" OR "layer partitioning" OR "DNN partitioning") AND ("Edge" OR "Far-Edge" OR "TinyML" OR "microcontroller" OR "resource-constrained")	
+    \item ( ("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "placement" OR "allocation") ) AND ( "inference" OR "ML model*" OR "DNN" ) AND ( "Edge" OR "Fog" OR "IoT" OR "Far-Edge" )
+    \item ( "inference" NEAR/3 ("offload*" OR "decision*") OR "inference offloading" ) AND ( "resource-aware" OR "latency-aware" OR "energy-aware" OR "adaptive" OR "resource-constrained" OR "decision model" ) AND ( "Edge" OR "Far-Edge" OR "IoT" OR "TinyML" OR "MCU" )	
+    \item ("device heterogeneity" OR "hardware heterogeneity" OR "heterogeneous computing" OR "heterogeneous resources" OR "heterogeneous cluster") AND ("schedul*" OR "orchestrat*" OR "allocation") AND ("inference" OR "DNN" OR "ML workload*") AND ("Edge" OR "IoT" OR "Far-Edge")	
+\end{enumerate}
 
-Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Phasellus bibendum, nulla eget varius
-aliquam, tortor nulla sollicitudin quam, vel vestibulum nisl magna at
-sem. Aliquam velit sapien, ultrices viverra, tempus quis, ultrices at,
-dui. Aliquam sit amet justo. Quisque tristique, metus eu iaculis
-sagittis, urna leo bibendum diam, a ultricies sem diam a augue. Mauris
-consectetuer, libero vel euismod tincidunt, nisi metus viverra ante,
-quis pretium sapien odio nec risus. Nunc semper auctor
-nulla\footnote{Example of a footnote.}. 
+\subsection{Inclusion and Exclusion Criteria} \label{sec:se222}
 
-\subsection{Subsection Example} \label{sec:se311}
+\section{Results of the Search} \label{sec:se23}
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc eu
-nulla. Pellentesque vitae nibh ultrices quam iaculis
-convallis. Aliquam purus eros, varius eget, volutpat sodales,
-imperdiet nec, lacus \textit{applets}~\parencite{kn:batik}. 
-
-Curabitur in elit sed sem rutrum posuere. Class aptent taciti 
-sociosqu ad litora torquent per conubia nostra, per
-inceptos himenaeos~\parencite{kn:svgdoc}. 
-
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc eu
-nulla. Pellentesque vitae nibh ultrices quam iaculis
-convallis. Aliquam purus eros, varius eget, volutpat sodales,
-imperdiet nec, lacus. Curabitur in elit sed sem rutrum posuere. Class
-aptent taciti sociosqu ad litora torquent per conubia nostra, per
-inceptos himenaeos. Duis sem. Praesent ultricies odio vel
-sapien. Integer faucibus malesuada libero. Cras semper, dolor id
-ullamcorper varius, magna risus volutpat felis, id pellentesque nulla
-ante at erat. Integer sodales. 
-
-Quisque sit amet odio. In at risus sit amet turpis interdum
-posuere. Maecenas iaculis vehicula sem. Ut leo arcu, malesuada vel,
-imperdiet id, dignissim a, purus. Duis eleifend, lectus non venenatis
-dignissim, risus libero imperdiet mi, nec gravida massa libero sed
-mauris. Nullam lobortis libero non sapien. Integer convallis iaculis
-erat. Morbi dictum. Ut ultrices pellentesque velit. Cras ac
-ante. Etiam in neque tincidunt lacus gravida vehicula. Proin et nisi. 
-
-Vivamus non nunc nec risus tempor varius. Quisque bibendum mi at
-dolor. Aliquam consectetuer condimentum risus. Aliquam luctus pulvinar
-sem. Duis aliquam, urna et vulputate tristique, dui elit aliquet nibh,
-vel dignissim magna turpis id sapien. Duis commodo sem id
-quam. Phasellus dolor. Class aptent taciti sociosqu ad litora torquent
-per conubia nostra, per inceptos himenaeos. 
-
-\subsection{Subsection Example} \label{sec:se312}
-
-Loren ipsum dolor sit amet, consectetuer adipiscing elit. 
-Praesent sit amet sem. Maecenas eleifend facilisis leo. Vestibulum et
-mi. Aliquam posuere, ante non tristique consectetuer, dui elit
-scelerisque augue, eu vehicula nibh nisi ac est. Suspendisse elementum
-sodales felis. Nullam laoreet fermentum urna. 
-
-Duis eget diam. In est justo, tristique in, lacinia vel, feugiat eget,
-quam. Pellentesque habitant morbi tristique senectus et netus et
-malesuada fames ac turpis egestas. Fusce feugiat, elit ac placerat
-fermentum, augue nisl ultricies eros, id fringilla enim sapien eu
-felis. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Sed dolor mi, porttitor quis,
-condimentum sed, luctus in. 
-
-\section{Summary}
-
-Aliquam erat volutpat. Nunc pede ipsum, porttitor eu, bibendum non,
-bibendum nec, nisl. Maecenas eget mauris. Nullam pulvinar. Curabitur
-rutrum commodo est. Nam sapien pede, interdum eu, accumsan ultrices,
-venenatis sit amet, tellus. Praesent ac ante bibendum enim varius
-suscipit. Donec enim. Proin nisi. Quisque libero turpis, varius ut,
-elementum vel, pulvinar sed, nunc. 
