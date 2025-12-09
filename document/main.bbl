@@ -51,6 +51,52 @@
       \verb https://arxiv.org/abs/2010.08678
       \endverb
     \endentry
+    \entry{ACMDigitalLibrary}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=849731f4f6c962ebf3a016a8b55f644f}{%
+           family={{Association for Computing Machinery}},
+           familyi={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{fullhash}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{fullhashraw}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{bibnamehash}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{authorbibnamehash}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{authornamehash}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{authorfullhash}{849731f4f6c962ebf3a016a8b55f644f}
+      \strng{authorfullhashraw}{849731f4f6c962ebf3a016a8b55f644f}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://dl.acm.org}}
+      \field{note}{Accessed: 2025-12-09}
+      \field{title}{{ACM} {Digital} {Library}}
+      \field{year}{2025}
+    \endentry
+    \entry{Scopus}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=21abe5a91c2949aba6ef77033a5f98f3}{%
+           family={{Elsevier}},
+           familyi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{fullhash}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{fullhashraw}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{bibnamehash}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{authorbibnamehash}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{authornamehash}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{authorfullhash}{21abe5a91c2949aba6ef77033a5f98f3}
+      \strng{authorfullhashraw}{21abe5a91c2949aba6ef77033a5f98f3}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.scopus.com}}
+      \field{note}{Accessed: 2025-12-09}
+      \field{title}{Scopus}
+      \field{year}{2025}
+    \endentry
     \entry{rego::namp}{article}{}{}
       \name{author}{2}{}{%
         {{hash=a914f7a795a660618530984faba4f61b}{%
@@ -135,6 +181,91 @@
       \range{pages}{5}
       \verb{doi}
       \verb 10.1109/VLSIDAT52063.2021.9427352
+      \endverb
+    \endentry
+    \entry{IEEEXplore}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=472abfae8142fdb6f39d081303e8af85}{%
+           family={{IEEE}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{fullhash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{fullhashraw}{472abfae8142fdb6f39d081303e8af85}
+      \strng{bibnamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorbibnamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authornamehash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorfullhash}{472abfae8142fdb6f39d081303e8af85}
+      \strng{authorfullhashraw}{472abfae8142fdb6f39d081303e8af85}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://ieeexplore.ieee.org}}
+      \field{note}{Accessed: 2025-12-09}
+      \field{title}{{IEEE} {Xplore}}
+      \field{year}{2025}
+    \endentry
+    \entry{Kitchenham2009}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=a6a5d6592277cbb0df47f0006e20abf5}{%
+           family={Kitchenham},
+           familyi={K\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+        {{hash=13862998729f1726e257c1b3501679d2}{%
+           family={Brereton},
+           familyi={B\bibinitperiod},
+           given={O.\bibnamedelimi P.},
+           giveni={O\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=d00f431cf6ba32dfa8eb5db1cfe169ce}{%
+           family={Budgen},
+           familyi={B\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=789294120135bd6c707cb8a088bd1635}{%
+           family={Turner},
+           familyi={T\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=21a033b714466099f87f56dd71c2825d}{%
+           family={Bailey},
+           familyi={B\bibinitperiod},
+           given={J.\bibnamedelimi W.},
+           giveni={J\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=bd8f8dc94a7281efb548adc71ded9c29}{%
+           family={Linkman},
+           familyi={L\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{8abb761ab6dfbeb35333e54b1caf08d1}
+      \strng{fullhash}{47825adb0f175443380007e109e6ba05}
+      \strng{fullhashraw}{47825adb0f175443380007e109e6ba05}
+      \strng{bibnamehash}{8abb761ab6dfbeb35333e54b1caf08d1}
+      \strng{authorbibnamehash}{8abb761ab6dfbeb35333e54b1caf08d1}
+      \strng{authornamehash}{8abb761ab6dfbeb35333e54b1caf08d1}
+      \strng{authorfullhash}{47825adb0f175443380007e109e6ba05}
+      \strng{authorfullhashraw}{47825adb0f175443380007e109e6ba05}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information \& Software Technology}
+      \field{number}{1}
+      \field{title}{Systematic Literature Reviews in Software Engineering - A Systematic Literature Review}
+      \field{volume}{51}
+      \field{year}{2009}
+      \field{pages}{7\bibrangedash 15}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/J.INFSOF.2008.09.009
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1016/J.INFSOF.2008.09.009
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1016/J.INFSOF.2008.09.009
       \endverb
     \endentry
     \entry{tml-enabled-frugal-smart-objects}{article}{}{}

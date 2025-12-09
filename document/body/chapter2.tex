@@ -1,13 +1,13 @@
-\chapter{Literary Review} \label{chap:ch2}
+\chapter{Literature Review} \label{chap:ch2}
 
 \section{Introduction}\label{sec:se21}
 
-The Literary Review for this work followed the standard workflow of a
-Systematic Literature Review (SLR).
+This literature review followed \textcite{Kitchenham2009}'s 
+Systematic Literature Review workflow.
 % as outlined by Kitchenham and Charters (2007)~\cite{kitchenham2007guidelines}.
 The review aimed to identify and analyze existing research relevant to the
 subject matter of this thesis. Likewise, it was designed to provide
-a strong foundation on the following aspects:
+a strong foundation for the following topics:
 
 \begin{enumerate}
     \item Model Partition and Split Inference
@@ -16,23 +16,22 @@ a strong foundation on the following aspects:
     \item Heterogeneous Resource Management in \ac{IoT}/Edge
 \end{enumerate}
 
-In addition to these topics, the proposal's bibliography was also
-included and later examined to this work's context.
+In addition, the proposal's bibliography was also
+included and examined in this context of this work.
 
 
 \section{Review Methodology}\label{sec:se22}
 \subsection{Search Strategy} \label{sec:se221}
 
 There were three digital libraries used to search for relevant articles:
-the IEEE Xplore Digital Library %insert citation
-and the ACM Digital Library %insert citation
-as the main sources of specialized literature on the subject, and
-Scopus %insert citation
-as a broader database to cover any gaps that could arise.
+the IEEE Xplore Digital Library \cite{IEEEXplore} and the ACM Digital
+Library \cite{ACMDigitalLibrary} as the main sources of specialized
+literature on the subject, and Scopus \cite{Scopus} as a broader database
+to cover any gaps that could arise.
 
 To accomplish this search, the following search strings were built,
 respectively for each topic:\footnote{It should be noted that the
-proximity operator was adapted to each digital library's syntax.}
+proximity and wildcard operators were adapted to each digital library's syntax.}
 \begin{enumerate}
     \item ("split inference" OR "distributed inference" OR "split computing" OR "collaborative inference" OR "layer partitioning" OR "DNN partitioning") AND ("Edge" OR "Far-Edge" OR "TinyML" OR "microcontroller" OR "resource-constrained")	
     \item ( ("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "placement" OR "allocation") ) AND ( "inference" OR "ML model*" OR "DNN" ) AND ( "Edge" OR "Fog" OR "IoT" OR "Far-Edge" )
@@ -42,11 +41,11 @@ proximity operator was adapted to each digital library's syntax.}
 
 \subsection{Inclusion and Exclusion Criteria} \label{sec:se222}
 
-In order to filter the search results, the following rules were applied to include or
+In order to filter the search results, the rules in Table \ref{tab:lr_incl} were applied to include or
 exclude the documents found:
 
-\vspace{3mm}
-\begin{center}
+\begin{table}[ht]
+\centering
 \begin{tabular}{|c|>{\raggedright\arraybackslash}p{0.5\textwidth}|}
 \hline
 1 & Results found during the search \\
@@ -61,33 +60,36 @@ exclude the documents found:
 \hline
 6 & Not duplicated \\
 \hline
+... & ... \\
+\hline
 
 \end{tabular}
-\end{center}
-\vspace{3mm}
+\vspace{2mm}
+\caption{Inclusion and exclusion criteria for the systematic literature review.}\label{tab:lr_incl}
+\end{table}
 
-Different formats were found in the indicated set of digital libraries,
-the following formats were considered adequate for this review: 
+Different formats were found in the indicated set of digital libraries.
+The following formats were considered adequate for this review: 
 \emph{Conference Paper}, \emph{Journal} and \emph{Magazine} for \emph{IEEE Xplore};
 \emph{Research-Article}, \emph{Demonstration} and \emph{Short-Paper},
 %\emph{Poster} and \emph{Survey} 
 for \emph{ACM Digital Library};
 \emph{Article}, \emph{Conference Paper} and \emph{Conference Review},
 \emph{Book Chapter}, \emph{Review} and \emph{Book} for \emph{Scopus}.
-The document type filter was enough to also exclude \emph{work-in-progress}
+The document type filter also excluded \emph{Work-in-Progress}
 documents.
 
 \section{Results of the Search} \label{sec:se23}
 
-The research revealed itself to be fruitful, returning a total of 1,577
-documents across the three digital libraries used and the four topics.
+The literature search was fruitful, returning a total of 1,577
+documents across the four topics and the three digital libraries used.
 
-Table \ref{fig:lr_lib} summarizes the number of documents found on the initial
+Table \ref{tab:lr_lib} summarizes the number of documents found on the initial
 stage per topic and digital library, yet to be filtered through the inclusion
 and exclusion criteria.
 
-\begin{figure}
-\begin{center}
+\begin{table}[ht]
+\centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline
 \textbf{Topic} & \textbf{IEEE Xplore} & \textbf{ACM DL} & \textbf{Scopus} & \textbf{Total} \\
@@ -103,9 +105,9 @@ and exclusion criteria.
 \textbf{Total} & 702 & 42 & 833 & \textbf{1577} \\
 \hline
 \end{tabular}
-\end{center}
-\caption{Number of documents found per topic and digital library.}\label{fig:lr_lib}
-\end{figure}
+\vspace{2mm}
+\caption{Number of documents found per topic and digital library.}\label{tab:lr_lib}
+\end{table}
 
 After applying the inclusion and exclusion criteria, a total of ?? documents
 were included for further analysis and serve as basis for this work.
@@ -113,8 +115,7 @@ Figure \ref{fig:lr_screening} illustrates the flow that documents went through
 during the screening process. 
 
 \begin{figure}
-\begin{center}
-\includegraphics[width=0.8\textwidth]{Literary Review Screening.png}
+\centering
+    \includegraphics[width=0.8\textwidth]{Literature_review_screening.png}
 \caption{Screening process of the systematic literature review.}\label{fig:lr_screening}
-\end{center}
 \end{figure}
