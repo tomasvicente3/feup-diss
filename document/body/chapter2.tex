@@ -13,7 +13,6 @@ a strong foundation for the following topics:
     \item Model Partition and Split Inference
     \item \ac{ML} Orchestration/Scheduling in Edge Computing
     \item Computational Offloading for \ac{ML} inference
-    \item Heterogeneous Resource Management in \ac{IoT}/Edge
 \end{enumerate}
 
 In addition, the proposal's bibliography was also
@@ -33,39 +32,38 @@ To accomplish this search, the following search strings were built,
 respectively for each topic:\footnote{It should be noted that the
 proximity and wildcard operators were adapted to each digital library's syntax.}
 \begin{enumerate}
-    \item ("split inference" OR "distributed inference" OR "split computing" OR "collaborative inference" OR "layer partitioning" OR "DNN partitioning") AND ("Edge" OR "Far-Edge" OR "TinyML" OR "microcontroller" OR "resource-constrained")	
-    \item ( ("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "placement" OR "allocation") ) AND ( "inference" OR "ML model*" OR "DNN" ) AND ( "Edge" OR "Fog" OR "IoT" OR "Far-Edge" )
-    \item ( "inference" NEAR/3 ("offload*" OR "decision*") OR "inference offloading" ) AND ( "resource-aware" OR "latency-aware" OR "energy-aware" OR "adaptive" OR "resource-constrained" OR "decision model" ) AND ( "Edge" OR "Far-Edge" OR "IoT" OR "TinyML" OR "MCU" )	
-    \item ("device heterogeneity" OR "hardware heterogeneity" OR "heterogeneous computing" OR "heterogeneous resources" OR "heterogeneous cluster") AND ("schedul*" OR "orchestrat*" OR "allocation") AND ("inference" OR "DNN" OR "ML workload*") AND ("Edge" OR "IoT" OR "Far-Edge")	
+    \item ("dynamic partitioning" OR "dynamic splitting" OR "model partitioning" OR "model splitting" OR "adaptive partitioning" OR "adaptive splitting") AND "inference" AND ("ML model*" OR "DNN") AND ("Edge" OR "Far-Edge")	
+    \item (("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "allocation") ) AND ( "inference" OR "ML model*" OR "DNN" OR "AI workload*") AND ("Edge" OR "IoT" OR "Far-Edge")
+    \item (("inference" AND ("offload*" OR "decision*")) OR "inference offloading") AND ("resource-aware" OR "latency-aware" OR "adaptive" OR "resource-constrained") AND ("TinyML" OR "MCU" OR "microcontroller*")
 \end{enumerate}
 
 \subsection{Inclusion and Exclusion Criteria} \label{sec:se222}
 
-In order to filter the search results, the rules in Table \ref{tab:lr_incl} were applied to include or
+In order to filter the search results, the rules in Table \ref{tab:criteria} were applied to include or
 exclude the documents found:
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{|c|>{\raggedright\arraybackslash}p{0.5\textwidth}|}
-\hline
-1 & Results found during the search \\
-\hline
-2 & Date of publication since 2018 (inclusive) \\
-\hline
-3 & Full-text available \\
-\hline
-4 & Published in the English language \\
-\hline
-5 & Adequate document format\\
-\hline
-6 & Not duplicated \\
-\hline
-... & ... \\
-\hline
-
-\end{tabular}
-\vspace{2mm}
-\caption{Inclusion and exclusion criteria for the systematic literature review.}\label{tab:lr_incl}
+\begin{table}[htbp]
+    \centering
+    \renewcommand{\arraystretch}{1.3} % Increases row height for better readability
+    \begin{tabular}{c l p{0.65\linewidth}}
+        \toprule
+        \textbf{Type} & \textbf{ID} & \textbf{Criteria} \\
+        \midrule
+        \multirow{3}{*}{\rotatebox{90}{Inclusion}} 
+        & IC1 & The publication is in an adequate document type. \\
+        & IC2 & Date of publication since 2018 (inclusive) \\
+        & IC3 & The publication focuses on IoT/Edge Computing environments \\
+        \midrule
+        \multirow{5.5}{*}{\rotatebox{90}{Exclusion}} 
+        & EC1 & It is a duplicate result \\
+        & EC2 & Full-text is not available \\
+        & EC3 & The publication is not English \\
+        & EC4 & The publication does not focus on cloud computing. \\
+        & EC5 & The publication does not focus on high-performance device usage. \\
+        \bottomrule
+    \end{tabular}
+    \caption{Inclusion and exclusion criteria for the systematic literature review.}
+    \label{tab:criteria}
 \end{table}
 
 Different formats were found in the indicated set of digital libraries.
@@ -81,8 +79,8 @@ documents.
 
 \section{Results of the Search} \label{sec:se23}
 
-The literature search was fruitful, returning a total of 1,577
-documents across the four topics and the three digital libraries used.
+The literature search was fruitful, returning a total of 441
+documents across the three topics and the three digital libraries used.
 
 Table \ref{tab:lr_lib} summarizes the number of documents found on the initial
 stage per topic and digital library, yet to be filtered through the inclusion
@@ -94,15 +92,13 @@ and exclusion criteria.
 \hline
 \textbf{Topic} & \textbf{IEEE Xplore} & \textbf{ACM DL} & \textbf{Scopus} & \textbf{Total} \\
 \hline
-1 & 455 &  19 & 587 & 1061 \\
+1 & 54 &  24 & 71 & 149 \\
 \hline
-2 & 91 & 1 & 97 & 189 \\
+2 & 93 & 8 & 95 & 196 \\
 \hline
-3 & 68 & 22 & 96 & 186 \\
+3 & 43 & 14 & 39 & 96 \\
 \hline
-4 & 88 & 0 & 53 & 141 \\
-\hline
-\textbf{Total} & 702 & 42 & 833 & \textbf{1577} \\
+\textbf{Total} & 190 & 46 & 205 & \textbf{441} \\
 \hline
 \end{tabular}
 \vspace{2mm}
@@ -112,10 +108,10 @@ and exclusion criteria.
 After applying the inclusion and exclusion criteria, a total of ?? documents
 were included for further analysis and serve as basis for this work.
 Figure \ref{fig:lr_screening} illustrates the flow that documents went through
-during the screening process. 
+during the screening process.
 
 \begin{figure}
 \centering
-    \includegraphics[width=0.8\textwidth]{Literature_review_screening.png}
+    \includegraphics[width=0.9\textwidth]{Literature_review_screening.png}
 \caption{Screening process of the systematic literature review.}\label{fig:lr_screening}
 \end{figure}
