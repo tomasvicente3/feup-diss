@@ -10,24 +10,29 @@ constrained devices and use more powerful and even less constrained
 devices in the later stages of the inference tasks, which may not be the
 most optimal approach in a network where the devices lay closer together.
 
-To address these issues, we propose a novel model partitioning framework that
-exploits the cyclic topology of certain \ac{ML} models to use devices as
-loop processors, reusing them in different stages of the inference task.
-The presented approach will mostly make use of highly constrained devices with a
-lower usage of less constrained devices. Paired with including devices with more 
-computing power, this approach allows us to better distribute the computational 
-load across the available devices, taking advantage of their proximity in the 
-network.
+To address these issues, we propose a novel model partitioning framework for 
+efficient integration of edge devices within far-edge device networks, enabling 
+collaborative inference in highly constrained environments. The framework primarily 
+leverages the densely deployed far-edge devices, with minimal reliance on more 
+capable edge devices. Unlike typical edge deployments that distribute work across 
+heterogeneous and geographically dispersed nodes, this approach targets networks 
+where devices are in close physical proximity, creating a more challenging but 
+realistic scenario for far-edge computing.
+Additionally, the framework can exploit the cyclic topology of certain \ac{ML} 
+models (e.g., \acp{RNN}), enabling device reuse across multiple inference stages. 
+By leveraging the recurrent nature of these models, individual devices can process 
+different layers or iterations, effectively acting as shared computational resources 
+throughout the inference pipeline.
 
 \section{Methods} \label{sec:se42}
 
-For the testing and validation of the proposed framework, we will use a set of
-15 \ac{MCU}-based devices with available memory on the order of kilobytes and one
-\ac{MPU}-based device with available memory on the order of megabytes. 
+For the testing and validation stages of the proposed framework, we will use a set 
+of 15 \ac{MCU}-based devices with available memory on the order of kilobytes and 
+one \ac{MPU}-based device with available memory on the order of megabytes. 
 
 The devices will be connected via Wi-Fi and deployed in an 
-indoor environment. The network topology represents a typical smart building 
-scenario, with the network representing a fully-connected graph of 16 nodes.
+indoor environment. The topology represents a typical smart building 
+scenario, forming a fully-connected graph of 16 nodes.
 
 The metrics for evaluation will include inference latency, energy consumption, and
 memory usage per device. We will then compare the performance of our proposed
@@ -42,9 +47,10 @@ environments.
 
 Additionally, we anticipate improved performance in terms of
 latency and energy efficiency compared to existing model partitioning frameworks,
-especially in scenarios with a high density of constrained devices. This is 
-partially due  to improved communication methods between devices and better 
-utilization of edge devices among the far-edge devices in the network.
+especially in scenarios with a high density of constrained devices. This is
+partially due to improved communication methods between devices and more efficient
+utilization of the available computational resources across the network, in
+particular, the use of the edge device among the far-edge devices.
 
 \section{Project plan} \label{sec:se44}
 
@@ -54,28 +60,28 @@ The project is planned to be executed over a period of 5 months, resulting in
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
     \item[Testbed Setup (Weeks 1-8):]
-    in this task, we will set up the hardware and software environment for testing,
+    This task involves setting up the hardware and software environment for testing,
     including the configuration of the devices and network. Furthermore, we will
     implement the necessary tools for monitoring and evaluating performance metrics.
     
     \item[Deployment of the Model Partition Segments (Weeks 4-7):]
-    this task involves the deployment of the partitioned model segments onto the
+    This task involves deploying the partitioned model segments onto the
     selected devices, ensuring correct functionality and efficient communication
     between them.
     
     \item[Partitioning Subprocedure Implementation (Weeks 7-12):]
-    responsible for implementing the core partitioning algorithm that will divide
+    This task focuses on implementing the core partitioning algorithm that will divide
     the \ac{DNN} models into lightweight segments suitable for the constrained 
     devices in the network. Ideally, this subprocedure will take into account the 
     cyclic topology of certain models to optimize the partitioning process.
     
     \item[Testing and Evaluation (Weeks 12-14):]
-    during these weeks, we will conduct extensive testing of the deployed framework,
+    During these weeks, we will conduct extensive testing of the deployed framework,
     measuring the defined performance metrics and comparing them against baseline
     results from existing frameworks.
 
     \item[Dissertation Elaboration (Weeks 15-18):]
-    after completing the implementation work and testing, we will focus on writing
+    After completing the implementation work and testing, we will focus on writing
     the dissertation, documenting the methodology, results, and conclusions of the
     project.
 
@@ -90,8 +96,10 @@ are well-documented and presented.
 
 \section{Conclusions} \label{sec:se45}
 
-This chapter proposes a novel framework for closely integrating constrained devices
-to varying degrees, enabling the deployment of \ac{DNN} models with cyclic 
-topology in edge environments. This marks a significant advancement in the
-field of edge computing and \ac{IoT}, opening new possibilities for applications
-that require real-time processing and low latency.
+This chapter proposes a novel framework for efficient integration of edge devices
+within far-edge device networks, enabling collaborative inference in highly 
+constrained environments. Additionally, the framework extends support to 
+\ac{DNN} models with cyclic topology through device reuse across inference stages.
+This marks a significant advancement in the field of edge computing and \ac{IoT}, 
+opening new possibilities for applications that require real-time processing and 
+low latency.
