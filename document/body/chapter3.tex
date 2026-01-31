@@ -3,7 +3,7 @@
 In this chapter, we analyse the current state of the art described
 by the documents gathered in the literature review (Chapter \ref{chap:ch2}).
 We will review different approaches and techniques applied in Edge and \ac{IoT}
-environments to reach a better performance when executing \ac{ML} inference 
+environments to achieve a better performance when executing \ac{ML} inference 
 tasks. In particular,
 the overall layout and flow of the systems, recognizing the role of each
 element that takes part in the inference task, as well as the management and 
@@ -16,7 +16,7 @@ communication methods.
 
 \subsection{Multi-Model Partitioning} \label{sec:se311}
 
-Rather than focusing on partitioning a single monolithical model, these
+Rather than focusing on partitioning a single monolithic model, these
 frameworks deploy differently sized \ac{ML} models throughout several
 hierarchies of devices according to their computational capabilities (i.e.
 deploying smaller models closer to the edge and bigger and more capable
@@ -24,7 +24,7 @@ ones closer to the cloud).
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-    \item[N/A] No article was yet reviewed in this category.
+    \item[N/A] No articles were reviewed yet in this category.
 
 \end{description}
 
@@ -39,26 +39,26 @@ further away from the end-user device.
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
     \item [CoFANN \cite{tran-van_cofann_2025}]
-    works out the trade-off between model accuracy and efficiency by employing
+    addresses the trade-off between model accuracy and efficiency by employing
     dynamic inference strategies. CoFANN significantly reduces overall latency
     through search algorithms that minimize additional latency overhead. The 
     inference workload is divided between \ac{IoT} devices and edge devices.
-    The network devices are benchmarked in an initial phase, allowing to
-    estimate the time needed for each device on each step of the model.
-    The framework goes on to employ a differentiable search algorithm to find
-    optimal inference strategies for allocating \ac{DNN} tasks to the 
+    The network devices are benchmarked in an initial phase, allowing the 
+    framework to estimate the time needed for each device on each step of the 
+    model. The framework then employs a differentiable search algorithm 
+    to find optimal inference strategies for allocating \ac{DNN} tasks to the 
     computing devices.   
 
     \item[DINA \cite{t_mohammed_distributed_2020}]
     is a framework that relies on fog nodes to partition inference tasks into
     sub-tasks and deploys them according to each node's characteristics, using
-    matching theory for joint partitioning and task offloading. This project 
+    matching theory for joint partitioning and task offloading. This framework 
     allows for a more efficient use of the network's resources, while also 
     reducing the total computation time.
     This work can process \ac{DNN} models with a \ac{DAG} topology, composed of 
-    fully connected and convolutional layers. This framework ponders to partition 
-    the inference task and then divides it according to the network's condition.
-    It should be stated that the network is expected to be homogenous.
+    fully connected and convolutional layers. This framework determines how to 
+    partition the inference task and then divides it according to the network's 
+    condition. It should be stated that the network is expected to be homogeneous.
 
 \end{description}
 
@@ -66,20 +66,20 @@ further away from the end-user device.
 \subsection{Model Local Partitioning} \label{sec:se313}
 
 In this subsection, we will analyse approaches that deploy the whole partitioned
-system to devices locally, avoiding requiring computing power from nodes closer
+system to devices locally, without requiring computing power from nodes closer
 to the cloud.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
     \item[CAS \cite{wang_context-aware_2021}]
-    is a framework that succeeds in adapting a given model in real-time, upon a
+    is a framework that successfully adapts a given model in real-time, upon a
     network context change. It generates a "partition state graph", containing 
-    the set of possible partition, given a
+    the set of possible partitions, given a
     \ac{DNN} model, choosing one based on the current network status, such as 
     inference latency and resources budgets. This work gathers the information
-    of the network, taking note on possible constrained devices. This framework
-    creates a fast adapting system, responding to network flutters, keeping the
-    active deployment optimized.
+    of the network, taking note on possibly constrained devices. This framework
+    creates a fast adapting system, responding to network fluctuations, keeping 
+    the active deployment optimized.
 
     % \item[NAMP \cite{rego::namp}]
     % approaches %TODO
@@ -87,7 +87,7 @@ to the cloud.
     \item[\textcite{p_dai_joint_2025}] 
     presents a solution to the collaborative inference problem that optimizes
     device placement and model partitioning, accounting for particularities of 
-    heterogeneous edge resources and \ac{CNN} models, making its objective to
+    heterogeneous edge resources and \ac{CNN} models, with the objective to
     maximize throughput.
     A combination of intra-layer and inter-layer partitioning techniques are 
     applied in the proposed approach. This approach reformulates the network as 
@@ -104,17 +104,17 @@ to the cloud.
     for each layer and branch processing.
     The characteristics of this network are also taken into account, such as, 
     its bandwidth and the number of devices present in the network. 
-    The authors also allow the network to be based on devices with homogenous 
-    computation times or heterogenous, given the computation time estimations
+    The authors also allow the network to be based on devices with homogeneous 
+    computation times or heterogeneous, given the computation time estimations
     of each layer and branch for each device.
     This work also points out the unreliability and unsafety in partitioning the 
     model between data centers and edge devices.
 
 \end{description}
 
-To better uniformalize the following syntesis, we will recognize previously 
-reffered user, end devices and similarly constrained devices as our defitinion 
-of far-edge devices. Likewise, the intermediate devices, placed above on the
+To better standardize the following synthesis, we will recognize previously 
+referred user, end devices and similarly constrained devices as our definition 
+of far-edge devices. Likewise, the intermediate devices, placed higher in the
 hierarchy than the far-edge devices (e.g.: edge nodes, local servers), will be 
 recognized simply as edge devices.
 
@@ -124,9 +124,9 @@ recognized simply as edge devices.
 \hline
 \textbf{Strategy} & \textbf{System Layout} & \textbf{System Agents} & \textbf{Partitioning Method} \\
 \hline
-CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices Edge Devices & Graph Partitioning \\
+CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning \\
 \hline
-DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices Edge Devices & Graph Partitioning \\
+DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning \\
 \hline
 CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & Graph Partitioning \\
 \hline
@@ -152,10 +152,10 @@ and reinforcement learning scheduling approaches.
 \subsection{Heuristics} \label{sec:se321}
 
 Predicting the assignments that lead to the most efficient processing of any
-given inference task has been revealed to be a highly complex problem. In this
-way, several works have relied on heuristical approaches to simplify the problem
-without risking to lose a big part of the desired efficiency. In this subsection
-we will be reviewing the framework that rely on heuristics, which heuristics are
+given inference task has been revealed to be a highly complex problem. Therefore,
+several works have relied on heuristical approaches to simplify the problem
+without risking the loss of a big part of the desired efficiency. In this subsection
+we will be reviewing the frameworks that rely on heuristics, which heuristics are
 chosen and how the network is managed.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
@@ -165,17 +165,18 @@ chosen and how the network is managed.
     to the first devices, closer to the user, and allocates the tail layers to
     devices closer to the cloud, noted to be heavier on computation time
     even if lighter on the data. All the devices' constraints
-    are gathered on a previous stage and taken into account. Network conditions
+    are gathered in a previous stage and taken into account. Network conditions
     are monitored in real-time, allowing the framework to strive for an optimal
     partitioning and deployment, adapting to network changes. 
 
     \item [CoFANN \cite{tran-van_cofann_2025}]
     is a minimalist framework, in regards to network management, taking only
     into account a pair of devices. Nonetheless, it looks to minimize inference
-    time and data transfers by search throughly a continuous search adapted from
+    time and data transfers by searching thoroughly a continuous search space
+    created from
     factors in the inference process. To minimize the data transfer, the initial
-    raw data is processed in the end device and condensed as a intermediate 
-    feature tensor to be wirelessly transmited to a edge server. The result is
+    raw data is processed in the end device and condensed as an intermediate 
+    feature tensor to be wirelessly transmitted to an edge server. The result is
     then sent back to the end device to be logged. 
     %TODO rever separação layout/flow vs network management 
 
@@ -184,13 +185,13 @@ chosen and how the network is managed.
     approaches the scheduling problem using matching games, based on game theory.
     Matching is obtained according to preference relations, similarly to 
     partitioning, which are derived by means of utility functions, representing 
-    the benefit obtained by executing a given task on that device. This matching is
-    further improved by proposing swapping one of the fog nodes between any two
-    user nodes.
+    the benefit obtained by executing a given task on that device. The initial 
+    matching is further improved by proposing swapping edge nodes between two 
+    user nodes, if it benefits both parties.
 
     \item[\textcite{p_dai_joint_2025}]
     relies on device placement to assign the model partitions to the devices.
-    The feature extractor segment of the \ac{CNN} models are distributed along the
+    The feature extractor segment of the \ac{CNN} models is distributed along the
     network, while the classifier, as it requires less computation, is assigned to
     a singular device. Intermediate inference results are exchanged between devices
     through a wireless link, using a "OFDMA-based wireless transmission model".
@@ -199,7 +200,7 @@ chosen and how the network is managed.
 
     \item[\textcite{w_miao_adaptive_2020}]
     minimizes the inference time relying on estimations of the computing time
-    needed at each step. Since the inference is reckoned to take as long as the
+    needed at each step. Since the inference time is determined by the
     edge device that gets results last, they approach scheduling by reducing 
     it to a load balancing problem. The data offloading between devices is 
     implemented by \ac{RPC}s.
@@ -215,7 +216,7 @@ to a greater extent.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-    \item[N/A] No article was yet reviewed in this category.
+    \item[N/A] No articles were reviewed yet in this category.
 
 \end{description}
 
@@ -227,11 +228,11 @@ to a greater extent.
 \hline
 CAS \cite{wang_context-aware_2021} & Heuristical & Inference Time & Wireless link (3G, 4G) & \ding{51} \\
 \hline
-CoFANN \cite{tran-van_cofann_2025} & Heuristical & Inference Time, Data Transfered & Wireless link & \ding{51} \\
+CoFANN \cite{tran-van_cofann_2025} & Heuristical & Inference Time, Data Transferred & Wireless link & \ding{51} \\
 \hline
 DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource Utilization & Wireless link & \ding{55} \\
 \hline
-\textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFMDA-based links & \ding{51} \\
+\textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFDMA-based links & \ding{51} \\
 \hline
 \textcite{w_miao_adaptive_2020} & Heuristical & Inference Time & \ac{RPC} & \ding{51}\\
 \hline
@@ -262,7 +263,7 @@ CAS \cite{wang_context-aware_2021}
 \hline
 CoFANN \cite{tran-van_cofann_2025} 
 & 
-    Proposes a bi-partitioned system that uses detectors in the network to compute 
+    Proposes a bi-partitioned system that uses end devices in the network to compute 
     initial inference. The framework relies on only two devices, one on-site and
     one edge server. 
 &  
@@ -272,8 +273,8 @@ CoFANN \cite{tran-van_cofann_2025}
 \hline
 DINA \cite{t_mohammed_distributed_2020} 
 & 
-    Employs a bi-hierarchycal fog computing architecture to execute inference tasks.
-    Deploys partitioned \ac{DNN} models with \ac{DAG} topologies to homogenous
+    Employs a bi-hierarchical fog computing architecture to execute inference tasks.
+    Deploys partitioned \ac{DNN} models with \ac{DAG} topologies to homogeneous
     devices. Adapts to reduce execution time in varying network conditions.
 &  
     Extension of a local inference task to a distributed edge device network.
@@ -284,8 +285,8 @@ DINA \cite{t_mohammed_distributed_2020}
 \textcite{p_dai_joint_2025} 
 & 
     Widely applicable framework for collaborative inference in edge networks,
-    optimizing throughput and adapting partitioning according each device's 
-    capabilities. The framework has been tested to be a highly scalable,
+    optimizing throughput and adapting partitioning according to each device's 
+    capabilities. The framework has been shown to be a highly scalable,
     robust and efficient solution.
 & 
     Partition and parallelization techniques for \ac{CNN} models.
@@ -296,10 +297,10 @@ DINA \cite{t_mohammed_distributed_2020}
 & 
     Collaborative inference framework that takes advantage of parallelizable
     segments in \ac{DNN} models with \ac{DAG} topologies. The framework
-    adapts to heterogenous devices, balancing the load between them to
+    adapts to heterogeneous devices, balancing the load between them to
     minimize the overall inference time.
 & 
-    Load balancing approach for heterogenous devices.
+    Load balancing approach for heterogeneous devices.
 \\
 \hline
 \end{tabularx}
