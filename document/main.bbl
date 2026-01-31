@@ -51,52 +51,6 @@
       \verb https://arxiv.org/abs/2010.08678
       \endverb
     \endentry
-    \entry{ACMDigitalLibrary}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=849731f4f6c962ebf3a016a8b55f644f}{%
-           family={{Association for Computing Machinery}},
-           familyi={A\bibinitperiod}}}%
-      }
-      \strng{namehash}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{fullhash}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{fullhashraw}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{bibnamehash}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{authorbibnamehash}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{authornamehash}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{authorfullhash}{849731f4f6c962ebf3a016a8b55f644f}
-      \strng{authorfullhashraw}{849731f4f6c962ebf3a016a8b55f644f}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://dl.acm.org}}
-      \field{note}{Accessed: 2025-12-09}
-      \field{title}{{ACM} {Digital} {Library}}
-      \field{year}{2025}
-    \endentry
-    \entry{Scopus}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=21abe5a91c2949aba6ef77033a5f98f3}{%
-           family={{Elsevier}},
-           familyi={E\bibinitperiod}}}%
-      }
-      \strng{namehash}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{fullhash}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{fullhashraw}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{bibnamehash}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{authorbibnamehash}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{authornamehash}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{authorfullhash}{21abe5a91c2949aba6ef77033a5f98f3}
-      \strng{authorfullhashraw}{21abe5a91c2949aba6ef77033a5f98f3}
-      \field{sortinit}{E}
-      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.scopus.com}}
-      \field{note}{Accessed: 2025-12-09}
-      \field{title}{Scopus}
-      \field{year}{2025}
-    \endentry
     \entry{rego::namp}{article}{}{}
       \name{author}{2}{}{%
         {{hash=a914f7a795a660618530984faba4f61b}{%
@@ -183,29 +137,6 @@
       \verb 10.1109/VLSIDAT52063.2021.9427352
       \endverb
     \endentry
-    \entry{IEEEXplore}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=472abfae8142fdb6f39d081303e8af85}{%
-           family={{IEEE}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \strng{namehash}{472abfae8142fdb6f39d081303e8af85}
-      \strng{fullhash}{472abfae8142fdb6f39d081303e8af85}
-      \strng{fullhashraw}{472abfae8142fdb6f39d081303e8af85}
-      \strng{bibnamehash}{472abfae8142fdb6f39d081303e8af85}
-      \strng{authorbibnamehash}{472abfae8142fdb6f39d081303e8af85}
-      \strng{authornamehash}{472abfae8142fdb6f39d081303e8af85}
-      \strng{authorfullhash}{472abfae8142fdb6f39d081303e8af85}
-      \strng{authorfullhashraw}{472abfae8142fdb6f39d081303e8af85}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://ieeexplore.ieee.org}}
-      \field{note}{Accessed: 2025-12-09}
-      \field{title}{{IEEE} {Xplore}}
-      \field{year}{2025}
-    \endentry
     \entry{Kitchenham2009}{article}{}{}
       \name{author}{6}{}{%
         {{hash=a6a5d6592277cbb0df47f0006e20abf5}{%
@@ -266,6 +197,58 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1016/J.INFSOF.2008.09.009
+      \endverb
+    \endentry
+    \entry{p_dai_joint_2025}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=990f5eeec7a87f207e7054f74e56a124}{%
+           family={{P. Dai}},
+           familyi={P\bibinitperiod}}}%
+        {{hash=0892ddeba0eaacbb899cf27369f49262}{%
+           family={{B. Han}},
+           familyi={B\bibinitperiod}}}%
+        {{hash=ef414bcdff6447734a5c124a120a4d56}{%
+           family={{K. Li}},
+           familyi={K\bibinitperiod}}}%
+        {{hash=fb32cd69fba144089871949444773e44}{%
+           family={{X. Xu}},
+           familyi={X\bibinitperiod}}}%
+        {{hash=98531b6afe368f4c9d17280a6e36c42a}{%
+           family={{H. Xing}},
+           familyi={H\bibinitperiod}}}%
+        {{hash=8eccc2494aefed0ca1956c277b0e39f1}{%
+           family={{K. Liu}},
+           familyi={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{8374fb7c122848f74b2307c388bb0718}
+      \strng{fullhash}{0fd1868c058dbcc26b30b18bd4b7ebb7}
+      \strng{fullhashraw}{0fd1868c058dbcc26b30b18bd4b7ebb7}
+      \strng{bibnamehash}{8374fb7c122848f74b2307c388bb0718}
+      \strng{authorbibnamehash}{8374fb7c122848f74b2307c388bb0718}
+      \strng{authornamehash}{8374fb7c122848f74b2307c388bb0718}
+      \strng{authorfullhash}{0fd1868c058dbcc26b30b18bd4b7ebb7}
+      \strng{authorfullhashraw}{0fd1868c058dbcc26b30b18bd4b7ebb7}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1558-0660}
+      \field{journaltitle}{IEEE Transactions on Mobile Computing}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{Joint {Optimization} of {Device} {Placement} and {Model} {Partitioning} for {Cooperative} {DNN} {Inference} in {Heterogeneous} {Edge} {Computing}}
+      \field{volume}{24}
+      \field{year}{2025}
+      \field{pages}{210\bibrangedash 226}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1109/TMC.2024.3457793
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-86000377432&doi=10.1109%2FTMC.2024.3457793&partnerID=40&md5=71ec07013de9ebd073d2eee6fc0f90c5
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-86000377432&doi=10.1109%2FTMC.2024.3457793&partnerID=40&md5=71ec07013de9ebd073d2eee6fc0f90c5
       \endverb
     \endentry
     \entry{tml-enabled-frugal-smart-objects}{article}{}{}
@@ -342,6 +325,202 @@
       \range{pages}{12}
       \verb{doi}
       \verb 10.1109/ICDCS.2017.226
+      \endverb
+    \endentry
+    \entry{t_mohammed_distributed_2020}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=5713bd4156f0ee7b747ffdc1cc58a7e8}{%
+           family={{T. Mohammed}},
+           familyi={T\bibinitperiod}}}%
+        {{hash=b3597f9009e7c218015a6a3cc53d7af4}{%
+           family={{C. Joe-Wong}},
+           familyi={C\bibinitperiod}}}%
+        {{hash=b27093ab7a4ddf75f9f186a2bd07f9b4}{%
+           family={{R. Babbar}},
+           familyi={R\bibinitperiod}}}%
+        {{hash=ff15ea0b37f44d21316fdc7e1581ea2f}{%
+           family={{M. D. Francesco}},
+           familyi={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{1e17d82d18063feb6b0d0b8ee6a16b67}
+      \strng{fullhash}{9f537c59d341b513d4272350abad980a}
+      \strng{fullhashraw}{9f537c59d341b513d4272350abad980a}
+      \strng{bibnamehash}{1e17d82d18063feb6b0d0b8ee6a16b67}
+      \strng{authorbibnamehash}{1e17d82d18063feb6b0d0b8ee6a16b67}
+      \strng{authornamehash}{1e17d82d18063feb6b0d0b8ee6a16b67}
+      \strng{authorfullhash}{9f537c59d341b513d4272350abad980a}
+      \strng{authorfullhashraw}{9f537c59d341b513d4272350abad980a}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{IEEE} {INFOCOM} 2020 - {IEEE} {Conference} on {Computer} {Communications}}
+      \field{isbn}{2641-9874}
+      \field{month}{7}
+      \field{note}{Journal Abbreviation: IEEE INFOCOM 2020 - IEEE Conference on Computer Communications}
+      \field{title}{Distributed {Inference} {Acceleration} with {Adaptive} {DNN} {Partitioning} and {Offloading}}
+      \field{year}{2020}
+      \field{pages}{854\bibrangedash 863}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/INFOCOM41043.2020.9155237
+      \endverb
+    \endentry
+    \entry{tran-van_cofann_2025}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=2221562c1bc244cb0e8ab42c5d4b001b}{%
+           family={Tran-Van},
+           familyi={T\bibinithyphendelim V\bibinitperiod},
+           given={Nhu\bibnamedelima Y.},
+           giveni={N\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=ebbfb67eb1059be8b981e36db4262dd7}{%
+           family={Le},
+           familyi={L\bibinitperiod},
+           given={Kim\bibnamedelima Hung},
+           giveni={K\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {English}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier B.V.}%
+      }
+      \strng{namehash}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{fullhash}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{fullhashraw}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{bibnamehash}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{authorbibnamehash}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{authornamehash}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{authorfullhash}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \strng{authorfullhashraw}{9fb47dfdaf26af722b7f5afe3a7733e2}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1569190X}
+      \field{journaltitle}{Simulation Modelling Practice and Theory}
+      \field{note}{Type: Article}
+      \field{title}{{CoFANN}: {A} collaborative framework for accelerating {DNN} inference in drone-based agricultural monitoring systems}
+      \field{volume}{144}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.1016/j.simpat.2025.103176
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-105010432774&doi=10.1016%2Fj.simpat.2025.103176&partnerID=40&md5=ce7e1f3b22e087a80647e600be8468d4
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-105010432774&doi=10.1016%2Fj.simpat.2025.103176&partnerID=40&md5=ce7e1f3b22e087a80647e600be8468d4
+      \endverb
+    \endentry
+    \entry{w_miao_adaptive_2020}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=0e6258fb1eedb0658e860f5464be2ba5}{%
+           family={{W. Miao}},
+           familyi={W\bibinitperiod}}}%
+        {{hash=bf678259ac731aaecc937243b6ccaf18}{%
+           family={{Z. Zeng}},
+           familyi={Z\bibinitperiod}}}%
+        {{hash=f8564e4021ef3aceb2c9c9556fd7d4c0}{%
+           family={{L. Wei}},
+           familyi={L\bibinitperiod}}}%
+        {{hash=2845aa2265c34cfe459fd0f5a567fa5a}{%
+           family={{S. Li}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=d096e8920a4603c3001267de9c215cef}{%
+           family={{C. Jiang}},
+           familyi={C\bibinitperiod}}}%
+        {{hash=a18b9397d3e23c6e94b6f29b4d839ccf}{%
+           family={{Z. Zhang}},
+           familyi={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{e808fe13bdd2f2a38a0659f00728e879}
+      \strng{fullhash}{9598d752c094a55dfa2065a2c4b6bce0}
+      \strng{fullhashraw}{9598d752c094a55dfa2065a2c4b6bce0}
+      \strng{bibnamehash}{e808fe13bdd2f2a38a0659f00728e879}
+      \strng{authorbibnamehash}{e808fe13bdd2f2a38a0659f00728e879}
+      \strng{authornamehash}{e808fe13bdd2f2a38a0659f00728e879}
+      \strng{authorfullhash}{9598d752c094a55dfa2065a2c4b6bce0}
+      \strng{authorfullhashraw}{9598d752c094a55dfa2065a2c4b6bce0}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2020 {IEEE} 26th {International} {Conference} on {Parallel} and {Distributed} {Systems} ({ICPADS})}
+      \field{isbn}{2690-5965}
+      \field{month}{12}
+      \field{note}{Journal Abbreviation: 2020 IEEE 26th International Conference on Parallel and Distributed Systems (ICPADS)}
+      \field{title}{Adaptive {DNN} {Partition} in {Edge} {Computing} {Environments}}
+      \field{year}{2020}
+      \field{pages}{685\bibrangedash 690}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/ICPADS51040.2020.00097
+      \endverb
+    \endentry
+    \entry{wang_context-aware_2021}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=e890a5d333df8774c59c0ed3ff009d72}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hongli},
+           giveni={H\bibinitperiod}}}%
+        {{hash=ac04bd00a003f7c5bed63f9b75fa0c88}{%
+           family={Guo},
+           familyi={G\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=be8f7c58ca2cf4a8339bf67a456d6de1}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Jiaqi},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a32f81f822d16ab3c593db81297957fc}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Sicong},
+           giveni={S\bibinitperiod}}}%
+        {{hash=3c885a2f36df2711749607c27d076198}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Yungang},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=65ae00ff52a1f9d8174ffcad07d13bfd}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Zhiwen},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{8e671c8f446c11a871580366c3aa4352}
+      \strng{fullhash}{14e2e905bb634309778f251f60f2f416}
+      \strng{fullhashraw}{14e2e905bb634309778f251f60f2f416}
+      \strng{bibnamehash}{8e671c8f446c11a871580366c3aa4352}
+      \strng{authorbibnamehash}{8e671c8f446c11a871580366c3aa4352}
+      \strng{authornamehash}{8e671c8f446c11a871580366c3aa4352}
+      \strng{authorfullhash}{14e2e905bb634309778f251f60f2f416}
+      \strng{authorfullhashraw}{14e2e905bb634309778f251f60f2f416}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proc. ACM Interact. Mob. Wearable Ubiquitous Technol.}
+      \field{month}{9}
+      \field{note}{Place: New York, NY, USA}
+      \field{number}{3}
+      \field{title}{Context-aware {Adaptive} {Surgery}: {A} {Fast} and {Effective} {Framework} for {Adaptative} {Model} {Partition}}
+      \field{volume}{5}
+      \field{year}{2021}
+      \verb{doi}
+      \verb 10.1145/3478073
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3478073
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3478073
       \endverb
     \endentry
   \enddatalist

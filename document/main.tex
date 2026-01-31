@@ -12,6 +12,13 @@
 %% Source text uses in UTF-8 encoding
 \usepackage[utf8]{inputenc}
 
+%% Extra packages (CUSTOM)
+\usepackage{enumitem}
+\usepackage{pifont}
+\usepackage{tabularx}
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
 %% The package feupteses.sty may take several options
 %% There are options for specific FEUP programmes/degrees
 %% When no programme specification is given, a generic thesis format is used
@@ -85,7 +92,7 @@
 %\degree{Programa Doutoral em Engenharia Informática}
 
 %% Uncomment next line for date of submission
-\thesisdate{October 10, 2025}
+\thesisdate{January 31, 2025}
 
 %% Comment next line copyright text if not used
 \copyrightnotice{Tomás Alexandre Soeiro Vicente, 2025}
@@ -140,7 +147,7 @@
   \cleardoublepage
   \pdfbookmark[0]{List of Tables}{tables}
   \listoftables
-  \include{frontmatter/abbrevs}  % the list of acronyms used if needed
+  \include{frontmatter/abbrevs}  
 \end{Prolog}
 
 %%----------------------------------------
@@ -151,7 +158,7 @@
 %% Use a separate file for each chapter
 \include{body/chapter1} 
 \include{body/chapter2}
-% \include{body/chapter3}
+\include{body/chapter3}
 %% Uncomment to see a listing example for option meic (meic.cfg loaded)
 % \include{body/chapter45-listing}
 

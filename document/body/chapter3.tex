@@ -1,297 +1,308 @@
-\chapter{Chapter WITH Examples} \label{chap:ch3}
+\chapter{State Of The Art} \label{chap:ch3}
 
-Maecenas eleifend facilisis leo. Vestibulum et
-mi. Aliquam posuere, ante non tristique consectetuer, dui elit
-scelerisque augue, eu vehicula nibh nisi ac est. 
-Suspendisse elementum sodales felis. Nullam laoreet fermentum urna. 
+In this chapter, we analyse the current state of the art described
+by the documents gathered in the literature review (Chapter \ref{chap:ch2}).
+We will review different approaches and techniques applied in Edge and \ac{IoT}
+environments to reach a better performance when executing \ac{ML} inference 
+tasks. In particular,
+the overall layout and flow of the systems, recognizing the role of each
+element that takes part in the inference task, as well as the management and 
+orchestration of the network, analysing the strategies for scheduling and 
+communication methods.
 
-\section{Introduction}
+    
+\section{System Network Layouts} \label{sec:se31}
 
-Pellentesque rutrum, sapien at viverra 
-facilisis\footnote{\url{https://en.wikipedia.org/wiki/Equation}}\footnote{\url{https://www.overleaf.com/learn/latex/Mathematical_expressions}}:
 
-\begin{eqnarray}
-CIF_1: \hspace*{5mm}F_0^j(a) &=& \frac{1}{2\pi \iota} \oint_{\gamma} \frac{F_0^j(z)}{z - a} dz \label{eq:cif1} \\
-CIF_2: \hspace*{5mm}F_1^j(a) &=& \frac{1}{2\pi \iota} \oint_{\gamma} \frac{F_0^j(x)}{x - a} dx \label{eq:cif2}
-\end{eqnarray}
+\subsection{Multi-Model Partitioning} \label{sec:se311}
 
-Equação~\ref{eq:cif2} lorem ipsum dolor sit amet, consectetuer
-adipiscing elit. Suspendisse tincidunt viverra elit. Donec tempus
-vulputate mauris. Donec arcu. Vestibulum condimentum porta
-justo. Curabitur ornare tincidunt lacus. Curabitur ac massa vel ante
-tincidunt placerat. Cras vehicula semper elit. Curabitur gravida, est
-a elementum suscipit, est eros ullamcorper quam, sed cursus velit
-velit tempor neque. Duis tempor condimentum ante. Nam
-sollicitudin. Vestibulum adipiscing, orci eu tempor dapibus, risus
-sapien porta metus, et cursus leo metus eget nibh. 
+Rather than focusing on partitioning a single monolithical model, these
+frameworks deploy differently sized \ac{ML} models throughout several
+hierarchies of devices according to their computational capabilities (i.e.
+deploying smaller models closer to the edge and bigger and more capable
+ones closer to the cloud).
 
-Pellentesque rutrum, sapien at viverra facilisis, metus eros blandit
-sem, quis dictum erat metus eget erat. Vivamus malesuada dapibus
-nulla. Maecenas nec purus. Suspendisse auctor mattis augue. Phasellus
-enim nisi, iaculis sit amet, pellentesque a, iaculis in, dui. Integer
-risus. 
+\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-Curabitur ac massa vel ante tincidunt placerat. 
-Curabitur gravida, est cras vehicula semper elit
-a elementum suscipit, est eros ullamcorper quam, sed cursus velit
-velit tempor neque. Duis tempor condimentum ante. Nam
-sollicitudin. Vestibulum adipiscing, orci eu tempor dapibus, risus
-sapien porta metus, et cursus leo metus eget nibh.
+    \item[N/A] No article was yet reviewed in this category.
 
-\section{Section Example} \label{sec:se32}
+\end{description}
 
-Curabitur ac massa vel ante tincidunt placerat \parencite{kn:ZPMD97}: 
 
-\begin{itemize}
-\item \textbf{Components} --- Suspendisse auctor mattis augue \emph{push};
-\item \textbf{Praesent} --- Sit amet sem maecenas eleifend facilisis leo;
-\item \textbf{Pellentesque} --- Habitant morbi tristique senectus et netus.
-\end{itemize}
+\subsection{Model Bi-Partitioning} \label{sec:se312}
 
-\subsection{Subsection Example --- Figures} \label{sec:se321}
+The approaches reviewed in this category are based on processing an initial 
+portion of the inference task on devices closer to the end-user and the 
+remaining portion on one or more devices on a higher layer, 
+further away from the end-user device.
 
-Suspendisse elementum sodales felis Figure~\ref{fig:arch} on 
-page~\pageref{fig:arch} is a floating figure\footnote{\url{https://tex.stackexchange.com/questions/381426/advantage-of-floating-figures}}.
+\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-% DO NOT use [h] or [H] so figures may float to the right place
-\begin{figure}
-    \includegraphics[width=0.86\textwidth]{puzzle}
-    \caption{A figure, caption below}
-    \label{fig:arch}
-\end{figure}
+    \item [CoFANN \cite{tran-van_cofann_2025}]
+    works out the trade-off between model accuracy and efficiency by employing
+    dynamic inference strategies. CoFANN significantly reduces overall latency
+    through search algorithms that minimize additional latency overhead. The 
+    inference workload is divided between \ac{IoT} devices and edge devices.
+    The network devices are benchmarked in an initial phase, allowing to
+    estimate the time needed for each device on each step of the model.
+    The framework goes on to employ a differentiable search algorithm to find
+    optimal inference strategies for allocating \ac{DNN} tasks to the 
+    computing devices.   
 
-Loren ipsum dolor sit amet, consectetuer adipiscing elit. 
-Praesent sit amet sem. Maecenas eleifend facilisis leo. Vestibulum et
-mi. Aliquam posuere, ante non tristique consectetuer, dui elit
-scelerisque augue, eu vehicula nibh nisi ac est. Nullam laoreet fermentum 
-urna.
+    \item[DINA \cite{t_mohammed_distributed_2020}]
+    is a framework that relies on fog nodes to partition inference tasks into
+    sub-tasks and deploys them according to each node's characteristics, using
+    matching theory for joint partitioning and task offloading. This project 
+    allows for a more efficient use of the network's resources, while also 
+    reducing the total computation time.
+    This work can process \ac{DNN} models with a \ac{DAG} topology, composed of 
+    fully connected and convolutional layers. This framework ponders to partition 
+    the inference task and then divides it according to the network's condition.
+    It should be stated that the network is expected to be homogenous.
 
-Duis eget diam. In est justo, tristique in, lacinia vel, feugiat eget,
-quam. Pellentesque habitant morbi tristique senectus et netus et
-malesuada fames ac turpis egestas. Fusce feugiat, elit ac placerat
-fermentum, augue nisl ultricies eros, id fringilla enim sapien eu
-felis. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Sed dolor mi, porttitor quis,
-condimentum sed, luctus in. 
+\end{description}
 
-\subsection{Subsection Example --- Tables} \label{sec:se322}
 
-Suspendisse elementum sodales felis Table~\ref{tab:example} is a 
-floating table.
+\subsection{Model Local Partitioning} \label{sec:se313}
 
-% DO NOT use [h] or [H] so tables may float to the right place
-\begin{table}
-  \caption{A table, caption on top}
-\begin{tabular}{|c|r@{.}lr@{.}lr@{.}l||r|}
-	\hline
-\multicolumn{8}{|c|}
-	{\rule[-3mm]{0mm}{8mm}Iteration $k$ de $f(x_n)$} \\
-\textbf{\em k}
-	& \multicolumn{2}{c}{$x_1^k$}
-	& \multicolumn{2}{c}{$x_2^k$}
-	& \multicolumn{2}{c||}{$x_3^k$}
-	& comments \\ \hline \hline
-0   & -0&3                 & 0&6                 &  0&7   & - \\
-1   &  0&47102965 & 0&04883157 & -0&53345964  & $\delta<\epsilon$ \\
-2   &  0&49988691 & 0&00228830 & -0&52246185  & $\delta < \varepsilon$ \\
-3   &  0&49999976 & 0&00005380 & -0&523656   &   $N$ \\
-4   &  0&5                 & 0&00000307 & -0&52359743  & \\
-\vdots	& \multicolumn{2}{c}{\vdots}
-	& \multicolumn{2}{c}{$\ddots$}
-	& \multicolumn{2}{c||}{\vdots}  & \\
-7   &  0&5   & 0&0    & \textbf{-0}&\textbf{52359878}
-		 & $\delta<10^{-8}$ \\ \hline
-\end{tabular}
-  \label{tab:example}
+In this subsection, we will analyse approaches that deploy the whole partitioned
+system to devices locally, avoiding requiring computing power from nodes closer
+to the cloud.
+
+\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
+
+    \item[CAS \cite{wang_context-aware_2021}]
+    is a framework that succeeds in adapting a given model in real-time, upon a
+    network context change. It generates a "partition state graph", containing 
+    the set of possible partition, given a
+    \ac{DNN} model, choosing one based on the current network status, such as 
+    inference latency and resources budgets. This work gathers the information
+    of the network, taking note on possible constrained devices. This framework
+    creates a fast adapting system, responding to network flutters, keeping the
+    active deployment optimized.
+
+    % \item[NAMP \cite{rego::namp}]
+    % approaches %TODO
+
+    \item[\textcite{p_dai_joint_2025}] 
+    presents a solution to the collaborative inference problem that optimizes
+    device placement and model partitioning, accounting for particularities of 
+    heterogeneous edge resources and \ac{CNN} models, making its objective to
+    maximize throughput.
+    A combination of intra-layer and inter-layer partitioning techniques are 
+    applied in the proposed approach. This approach reformulates the network as 
+    a pipeline system, where each device is responsible for simultaneous 
+    inference batches. The \ac{DNN} model segments are tailored for the devices 
+    in the network and assigned according to the network topology, that can be 
+    represented as a \ac{DAG}. The devices in the network can have sequential 
+    or parallel relationships, that affect the assigned model segment.
+
+    \item[\textcite{w_miao_adaptive_2020}]
+    explores an approach based on splitting and deploying a given \ac{DNN} model 
+    with a \ac{DAG} topology to several devices, exploiting parallelizable 
+    segments (branches), based on model data and computation time estimations 
+    for each layer and branch processing.
+    The characteristics of this network are also taken into account, such as, 
+    its bandwidth and the number of devices present in the network. 
+    The authors also allow the network to be based on devices with homogenous 
+    computation times or heterogenous, given the computation time estimations
+    of each layer and branch for each device.
+    This work also points out the unreliability and unsafety in partitioning the 
+    model between data centers and edge devices.
+
+\end{description}
+
+To better uniformalize the following syntesis, we will recognize previously 
+reffered user, end devices and similarly constrained devices as our defitinion 
+of far-edge devices. Likewise, the intermediate devices, placed above on the
+hierarchy than the far-edge devices (e.g.: edge nodes, local servers), will be 
+recognized simply as edge devices.
+
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|Y|Y|Y|}
+\hline
+\textbf{Strategy} & \textbf{System Layout} & \textbf{System Agents} & \textbf{Partitioning Method} \\
+\hline
+CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices Edge Devices & Graph Partitioning \\
+\hline
+DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices Edge Devices & Graph Partitioning \\
+\hline
+CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & Graph Partitioning \\
+\hline
+\textcite{p_dai_joint_2025} & Model Local Partitioning & Edge Devices & Inter and Intra-Layer Partitioning\\
+\hline
+\textcite{w_miao_adaptive_2020} & Model Local Partitioning & Far-Edge Devices & Graph Partitioning \\
+\hline
+\end{tabularx}
+\vspace{2mm}
+\caption{Overview of the system layouts of the reviewed strategies.}\label{tab:sota_layout}
 \end{table}
 
-Loren ipsum dolor sit amet, consectetuer adipiscing elit. 
-Praesent sit amet sem. Maecenas eleifend facilisis leo. Vestibulum et
-mi. Aliquam posuere, ante non tristique consectetuer, dui elit
-scelerisque augue, eu vehicula nibh nisi ac est. Suspendisse elementum
-sodales felis. Nullam laoreet fermentum urna. 
 
-Duis eget diam. In est justo, tristique in, lacinia vel, feugiat eget,
-quam. Pellentesque habitant morbi tristique senectus et netus et
-malesuada fames ac turpis egestas. Fusce feugiat, elit ac placerat
-fermentum, augue nisl ultricies eros, id fringilla enim sapien eu
-felis. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Sed dolor mi, porttitor quis,
-condimentum sed, luctus in. 
+\section{Network Node Management} \label{sec:se32}
 
-\subsection{Subsection Example --- SI} \label{sec:si}
- 
-Always use the \texttt{siunitx} package\footnote{Manual available at 
-\url{https://ctan.org/pkg/siunitx}.} to write values, units, etc.\ 
-according to the International System of Units convention rules and style conventions (see \url{https://physics.nist.gov/cuu/Units/checklist.html}).
+In a distributed system, the orchestration and management of every node of a
+given network is of utmost importance. Since we are reviewing collaborative
+frameworks, for the next subsection, we will be analysing how the presented 
+frameworks strategize the scheduling and communications between their devices.
+In this section, the frameworks will be separated into two classes, heuristical 
+and reinforcement learning scheduling approaches.
 
-For example:
-\SI{50}{\kilo\gram}, 
-\SI{15}{\celsius}, 
-\SI{20,01}{\meter\per\second}, 
-\SI{120}{\kilo\byte\per\second}, 
-\SI{34}{\percent}, 
-\SI{289300.00}{\eurocurrency}, 
-%\SI{28.3}{\mega\eurocurrency}, 
-\num{10245.450234}.
+\subsection{Heuristics} \label{sec:se321}
 
-Table~\ref{tab:feup} % (excerto adaptado de ``A FEUP em números'', 2011)
-serves to exemplify the alignment in the columns with numbers, and has nothing to do with any numerical data associated with \acs*{FEUP}'s resources and investments in 2025.
+Predicting the assignments that lead to the most efficient processing of any
+given inference task has been revealed to be a highly complex problem. In this
+way, several works have relied on heuristical approaches to simplify the problem
+without risking to lose a big part of the desired efficiency. In this subsection
+we will be reviewing the framework that rely on heuristics, which heuristics are
+chosen and how the network is managed.
 
-\begin{table}
-  \centering
-  \caption[Physical Resources of \acs*{FEUP}]{Physical Resources of \acs*{FEUP}~\parencite{kn:feup}.}
-  \begin{tabular}{@{}S@{}}
-    \toprule
-    {Some Values} \\
-    \midrule
-    2.3456 \\
-    34.2345 \\
-    -6.7835 \\
-    90.473 \\
-    5642.5 \\
-    1.2e3 \\
-    e4 \\
-    \bottomrule
-  \end{tabular}
-  \label{tab:feup}
+\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
+
+    \item[CAS \cite{wang_context-aware_2021}]
+    makes use of "the neighbour effect" and assigns the initial partitions 
+    to the first devices, closer to the user, and allocates the tail layers to
+    devices closer to the cloud, noted to be heavier on computation time
+    even if lighter on the data. All the devices' constraints
+    are gathered on a previous stage and taken into account. Network conditions
+    are monitored in real-time, allowing the framework to strive for an optimal
+    partitioning and deployment, adapting to network changes. 
+
+    \item [CoFANN \cite{tran-van_cofann_2025}]
+    is a minimalist framework, in regards to network management, taking only
+    into account a pair of devices. Nonetheless, it looks to minimize inference
+    time and data transfers by search throughly a continuous search adapted from
+    factors in the inference process. To minimize the data transfer, the initial
+    raw data is processed in the end device and condensed as a intermediate 
+    feature tensor to be wirelessly transmited to a edge server. The result is
+    then sent back to the end device to be logged. 
+    %TODO rever separação layout/flow vs network management 
+
+
+    \item[DINA \cite{t_mohammed_distributed_2020}]
+    approaches the scheduling problem using matching games, based on game theory.
+    Matching is obtained according to preference relations, similarly to 
+    partitioning, which are derived by means of utility functions, representing 
+    the benefit obtained by executing a given task on that device. This matching is
+    further improved by proposing swapping one of the fog nodes between any two
+    user nodes.
+
+    \item[\textcite{p_dai_joint_2025}]
+    relies on device placement to assign the model partitions to the devices.
+    The feature extractor segment of the \ac{CNN} models are distributed along the
+    network, while the classifier, as it requires less computation, is assigned to
+    a singular device. Intermediate inference results are exchanged between devices
+    through a wireless link, using a "OFDMA-based wireless transmission model".
+    This solution assumes that the pipeline supports asynchronous communication.
+    %rever OFDMA (citação/sigla)
+
+    \item[\textcite{w_miao_adaptive_2020}]
+    minimizes the inference time relying on estimations of the computing time
+    needed at each step. Since the inference is reckoned to take as long as the
+    edge device that gets results last, they approach scheduling by reducing 
+    it to a load balancing problem. The data offloading between devices is 
+    implemented by \ac{RPC}s.
+
+\end{description}
+
+\subsection{Reinforcement Learning} \label{sec:se322}
+
+Rather than relying on simple heuristics to achieve a near-optimal
+solution, the works in this subsection build reinforcement learning models to 
+capture the complex relationship between the network and the optimal assignment
+to a greater extent. 
+
+\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
+
+    \item[N/A] No article was yet reviewed in this category.
+
+\end{description}
+
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|Y|Y|Y|Y|}
+\hline
+\textbf{Strategy} & \textbf{Scheduling Approach} & \textbf{Optimized Metrics} & \textbf{Communication Method} & \textbf{Tolerates Node Heterogeneity} \\
+\hline
+CAS \cite{wang_context-aware_2021} & Heuristical & Inference Time & Wireless link (3G, 4G) & \ding{51} \\
+\hline
+CoFANN \cite{tran-van_cofann_2025} & Heuristical & Inference Time, Data Transfered & Wireless link & \ding{51} \\
+\hline
+DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource Utilization & Wireless link & \ding{55} \\
+\hline
+\textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFMDA-based links & \ding{51} \\
+\hline
+\textcite{w_miao_adaptive_2020} & Heuristical & Inference Time & \ac{RPC} & \ding{51}\\
+\hline
+\end{tabularx}
+\vspace{2mm}
+\caption{Overview of the network management in the reviewed strategies.}\label{tab:sota_scheduling}
 \end{table}
 
-% \begin{table}
-%   \centering
-% \caption[Physical Resources of \acs*{FEUP}]{Physical Resources of \acs*{FEUP}~\parencite{kn:feup}.}
-% \begin{tabular}{| l | S[table-number-alignment = right] |}
-%   \hline
-%   \textbf{Description} & \textbf{Quantity} \\ \hline
-%   \hline
-%   Total area of the FEUP campus & \SI{93918}{\square\meter} \\ \hline
-%   Green spaces & \SI{23}{\kilo\square\meter} \\ \hline
-%   Number of computers dedicated to teaching & \num{1815} \\ \hline
-%   Investment in laboratory equipment & \SI{1.46}{\mega\eurocurrency} \\ \hline
-%   Investment in Sustainability & \SI{31.4}{\kilo\eurocurrency} \\
-%   \hline
-% \end{tabular}
-%   \label{tab:feup}
-% \end{table}
+\section{Final Remarks}
 
-Loren ipsum dolor sit amet, consectetuer adipiscing elit. 
-Praesent sit amet sem. Maecenas eleifend facilisis leo. Vestibulum et
-mi. Aliquam posuere, ante non tristique consectetuer, dui elit
-scelerisque augue, eu vehicula nibh nisi ac est. Suspendisse elementum
-sodales felis. Nullam laoreet fermentum urna. 
+%TODO conclusões gerais do SOTA 
 
-Duis eget diam. In est justo, tristique in, lacinia vel, feugiat eget,
-quam. Pellentesque habitant morbi tristique senectus et netus et
-malesuada fames ac turpis egestas. Fusce feugiat, elit ac placerat
-fermentum, augue nisl ultricies eros, id fringilla enim sapien eu
-felis. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Sed dolor mi, porttitor quis,
-condimentum sed, luctus in. 
-
-\subsection{Subsection Example --- Acronyms} \label{sec:acronym}
-
-This section shows how to use the acronyms \ac{AI} and \ac{ML}.  
-Later we can simply refer to \ac{AI} or \ac{ML} without expansion.
-
-In modern technology, \ac{NLP} plays a crucial role in virtual assistants 
-and chatbots.  
-We also rely on \ac{GPU} hardware for deep learning models.
-
-\subsubsection{Special use in titles as \acs*{FEUP}}
-
-Acronyms can also be made plural: \acp{GPU} are widely used in 
-high-performance computing.  
-Possessive forms are supported too: \ac{AI}'s impact on society is 
-profound at \ac{FEUP}.
-
-\section{Summary}
-
-Pellentesque habitant morbi tristique senectus et netus et
-malesuada fames ac turpis egestas. Fusce feugiat, elit ac placerat
-fermentum, augue nisl ultricies eros, id fringilla enim sapien eu
-felis. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Sed dolor mi, porttitor quis,
-condimentum sed, luctus in. 
-
-
-%%%% Another chapter to force two pages in the index
-%%%%
-\chapter{Another chapter}
-
-Integer nec quam. Sed fermentum. Nunc vitae leo. Etiam sit amet
-quam. Nunc vestibulum massa in mauris. Duis eget nulla. 
-
-\section{Section Example}
-
-Fusce ultricies arcu eu nibh volutpat feugiat. Maecenas urna pede, 
-commodo quis, porta eu, bibendum elementum, pede. 
-
-\section{Section Example}
-
-Sed eros massa, molestie eget, mattis non, rutrum ac, magna. 
-Duis dui. Maecenas eget tortor ut dolor semper mattis. 
-Maecenas auctor, tellus et ultricies tempor, elit
-est placerat lacus, in posuere mauris lorem et arcu. 
-
-\subsection{Subsection Example}
-
-Nulla nec eros et pede vehicula aliquam. Aenean sodales pede vel
-ante. Fusce sollicitudin sodales lacus. Maecenas justo mauris,
-adipiscing vitae, ornare quis, convallis nec, eros. 
-
-\subsection{Subsection Example}
-
-Pellentesque pulvinar fringilla dolor. In sit amet pede. 
-Proin orci justo, semper vel, vulputate quis, convallis
-ac, nulla. Nulla at justo. Mauris feugiat dolor. 
-Etiam posuere fermentum eros. Morbi nisl ipsum, tempus id, 
-ornare quis, mattis id, dolor. Aenean molestie metus 
-suscipit dolor. Aliquam id lectus sed
-nisl lobortis rhoncus. Curabitur vitae diam sed sem aliquet
-tempus. Sed scelerisque nisi nec sem.
-
-\section{Section Example}
-
-Sed eros massa, molestie eget, mattis non, rutrum ac, magna. 
-Duis dui. Maecenas eget tortor ut dolor semper mattis. 
-Maecenas auctor, tellus et ultricies tempor, elit
-est placerat lacus, in posuere mauris lorem et arcu. 
-
-\subsection{Subsection Example}
-
-Nulla nec eros et pede vehicula aliquam. Aenean sodales pede vel
-ante. Fusce sollicitudin sodales lacus. Maecenas justo mauris,
-adipiscing vitae, ornare quis, convallis nec, eros. 
-
-\subsection{Subsection Example}
-
-\textcite{khakipoor_linear_2023,liu_energy_2023} aliquam id lectus sed nisl lobortis rhoncus. 
-Curabitur vitae diam sed sem aliquet tempus. Sed scelerisque 
-nisi nec sem.
-
-\section{Section Example}
-
-Maecenas urna pede, commodo quis, porta eu, bibendum elementum, 
-pede. Sed eros massa, molestie eget, mattis non, rutrum ac, 
-magna. Duis dui. Maecenas eget tortor ut dolor semper mattis. 
-Maecenas auctor, tellus et ultricies tempor, elit est placerat 
-lacus, in posuere mauris lorem et arcu~\parencite{monopoli_exploiting_2023,zhang_carma_2023,chang_adas_2023, guo_rapidstream_2023}. 
-
-\subsection{Subsection Example}
-
-Nulla nec eros et pede vehicula aliquam. Aenean sodales pede vel
-ante. Fusce sollicitudin sodales lacus. Maecenas justo mauris,
-adipiscing vitae, ornare quis, convallis nec, eros. 
-
-\subsection{Subsection Example}
-
-\textcite{khakipoor_linear_2023,liu_energy_2023} aliquam id lectus sed nisl lobortis rhoncus. 
-Curabitur vitae diam sed sem aliquet tempus. Sed scelerisque 
-nisi nec sem scelerisque.
-
-Nulla nec eros et pede vehicula aliquam. Aenean sodales pede vel
-ante. Fusce sollicitudin sodales lacus. Maecenas justo mauris,
-adipiscing vitae, ornare quis, convallis nec, eros. Etiam laoreet
-venenatis ipsum. In tellus odio, eleifend ac, ultrices vel, lobortis
-sed, nibh. Fusce nunc augue, dictum non, pulvinar sed, consectetuer
-eu, ipsum. Vivamus nec pede.  
+\begin{table}[ht]
+\centering
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\textbf{Strategy} & \multicolumn{1}{c|}{\textbf{Overview}} & \multicolumn{1}{c|}{\textbf{Relevant Aspects}} \\
+\hline
+CAS \cite{wang_context-aware_2021} 
+& 
+    Edge system responsive to network changes, allows for local collaborative
+    inference with low latency withstanding network fluctuations. Deployed on
+    edge devices, avoiding reliance on large computing resources.
+&  
+    Proposal for a network context-aware partitioning system, adapting to network
+    changes in real-time.
+\\
+\hline
+CoFANN \cite{tran-van_cofann_2025} 
+& 
+    Proposes a bi-partitioned system that uses detectors in the network to compute 
+    initial inference. The framework relies on only two devices, one on-site and
+    one edge server. 
+&  
+    Employment of a gradient descent based search algorithm to detect the optimal
+    inference strategy, to minimize latency and data transfer.  
+\\
+\hline
+DINA \cite{t_mohammed_distributed_2020} 
+& 
+    Employs a bi-hierarchycal fog computing architecture to execute inference tasks.
+    Deploys partitioned \ac{DNN} models with \ac{DAG} topologies to homogenous
+    devices. Adapts to reduce execution time in varying network conditions.
+&  
+    Extension of a local inference task to a distributed edge device network.
+    Partition and compression techniques for \ac{CNN} models.
+    Matching theory for scheduling purposes.
+\\
+\hline
+\textcite{p_dai_joint_2025} 
+& 
+    Widely applicable framework for collaborative inference in edge networks,
+    optimizing throughput and adapting partitioning according each device's 
+    capabilities. The framework has been tested to be a highly scalable,
+    robust and efficient solution.
+& 
+    Partition and parallelization techniques for \ac{CNN} models.
+    Device placement and network topology considerations for scheduling. 
+\\
+\hline
+\textcite{w_miao_adaptive_2020} 
+& 
+    Collaborative inference framework that takes advantage of parallelizable
+    segments in \ac{DNN} models with \ac{DAG} topologies. The framework
+    adapts to heterogenous devices, balancing the load between them to
+    minimize the overall inference time.
+& 
+    Load balancing approach for heterogenous devices.
+\\
+\hline
+\end{tabularx}
+\vspace{2mm}
+\caption{Overview of the reviewed strategies.}\label{tab:sota_overview}
+\end{table}
