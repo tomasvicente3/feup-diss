@@ -199,6 +199,51 @@
       \verb https://doi.org/10.1016/J.INFSOF.2008.09.009
       \endverb
     \endentry
+    \entry{ma_joint_2025}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=66d365c9699fa36b959afcec99c12a36}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=61ad10c626e1d641e0b1d7b5f48d3233}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ed89b74a4f46ce11089b9ddb21467ed5}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{fullhash}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{fullhashraw}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{bibnamehash}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{authorbibnamehash}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{authornamehash}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{authorfullhash}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \strng{authorfullhashraw}{9bb0c7377d3ddb955b3e3efc1c82a7d5}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Electronics (Switzerland)}
+      \field{number}{8}
+      \field{title}{Joint {Optimization} of {Model} {Partitioning} and {Resource} {Allocation} for {Multi}-{Exit} {DNNs} in {Edge}-{Device} {Collaboration}}
+      \field{volume}{14}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.3390/electronics14081647
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-105003660775&doi=10.3390%2Felectronics14081647&partnerID=40&md5=ed4bff9eb6c599eafb4de99fdce789c6
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-105003660775&doi=10.3390%2Felectronics14081647&partnerID=40&md5=ed4bff9eb6c599eafb4de99fdce789c6
+      \endverb
+    \endentry
     \entry{p_dai_joint_2025}{article}{}{}
       \name{author}{6}{}{%
         {{hash=990f5eeec7a87f207e7054f74e56a124}{%

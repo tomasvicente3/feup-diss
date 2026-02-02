@@ -60,6 +60,18 @@ further away from the end-user device.
     partition the inference task and then divides it according to the network's 
     condition. It should be stated that the network is expected to be homogeneous.
 
+    \item [\textcite{ma_joint_2025}]
+    proposes a framework that focuses on minimizing energy consumption, making use
+    of multiple early-exits along the inference process, when confidence thresholds 
+    are met. The framework partitions each model instance into two segments, depending
+    on the end device's capabilities. The initial segment is deployed on the end 
+    device, while the remaining segment is deployed on an edge server. The framework 
+    deploys the same model architecture across a range of devices participating in
+    the inference task, adapting each instance to the device's capabilities.
+    The early-exit mechanism allows for task termination prematurely in 
+    early stages of the inference task, reducing energy consumption and
+    latency, given the model is confident enough. 
+
 \end{description}
 
 
@@ -129,6 +141,8 @@ CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices, E
 DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning \\
 \hline
 CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & Graph Partitioning \\
+\hline
+\textcite{ma_joint_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Inter-Layer Partitioning \\
 \hline
 \textcite{p_dai_joint_2025} & Model Local Partitioning & Edge Devices & Inter and Intra-Layer Partitioning\\
 \hline
@@ -216,7 +230,14 @@ to a greater extent.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-    \item[N/A] No articles were reviewed yet in this category.
+    \item[\textcite{ma_joint_2025}]
+    makes use of a \ac{DRL}-based algorithm, employing an actor-critic model to
+    determine the optimal resource assignment and inference task's layer to mark
+    the bi-partitioning point. The \ac{PPO} algorithm is used to train the model,
+    optimizing cost evolution, balancing energy consumption and inference latency.
+    This approach takes into account all relevant system information, such as task
+    characteristics, device capabilities and network conditions, to make informed
+    decisions on resource allocation and task partitioning.
 
 \end{description}
 
@@ -224,13 +245,15 @@ to a greater extent.
 \centering
 \begin{tabularx}{\textwidth}{|l|Y|Y|Y|Y|}
 \hline
-\textbf{Strategy} & \textbf{Scheduling Approach} & \textbf{Optimized Metrics} & \textbf{Communication Method} & \textbf{Tolerates Node Heterogeneity} \\
+\textbf{Strategy} & \textbf{Scheduling Approach} & \textbf{Optimized Metrics} & \textbf{Communi-cation Method} & \textbf{Tolerates Node Hete-rogeneity} \\
 \hline
 CAS \cite{wang_context-aware_2021} & Heuristical & Inference Time & Wireless link (3G, 4G) & \ding{51} \\
 \hline
 CoFANN \cite{tran-van_cofann_2025} & Heuristical & Inference Time, Data Transferred & Wireless link & \ding{51} \\
 \hline
 DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource Utilization & Wireless link & \ding{55} \\
+\hline
+\textcite{ma_joint_2025} & Reinforcement Learning & Inference Time, Energy Consumption & N/A & \ding{51} \\
 \hline
 \textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFDMA-based links & \ding{51} \\
 \hline
@@ -280,6 +303,17 @@ DINA \cite{t_mohammed_distributed_2020}
     Extension of a local inference task to a distributed edge device network.
     Partition and compression techniques for \ac{CNN} models.
     Matching theory for scheduling purposes.
+\\
+\hline
+\textcite{ma_joint_2025} 
+& 
+    Framework that minimizes energy consumption in inference networks by employing
+    early-exit mechanisms and bi-partitioning of \ac{DNN} models. The framework
+    relies on a \ac{DRL}-based algorithm to optimize resource assignment and
+    partitioning point.
+&  
+    Use of early-exit mechanisms to reduce energy consumption and latency.
+    \ac{DRL}-based scheduling approach using \ac{PPO} algorithm.
 \\
 \hline
 \textcite{p_dai_joint_2025} 
