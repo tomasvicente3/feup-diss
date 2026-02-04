@@ -3,21 +3,23 @@
 \section{Approach} \label{sec:se41}
 
 After analyzing the state of the art on model partitioning and \ac{ML} 
-orchestration in edge computing, we found a lack of adaptation of models
-with cyclic topology (e.g., \acp{RNN}, MobileNets, etc.) to the edge
-environment. Additionally, current frameworks tend to make use of less
-constrained devices and use more powerful and even less constrained
-devices in the later stages of the inference tasks, which may not be the
-most optimal approach in a network where the devices lay closer together.
+orchestration in edge computing, we found that current frameworks tend to 
+make use of less constrained devices and use more powerful and even less 
+constrained devices only in the later stages of the inference tasks, which may 
+not be the most optimal approach in a network where the devices lay closer 
+together. Additionally, there is a lack of available partitioning methods 
+tackling models with cyclic topology (e.g., \acp{RNN}, MobileNets, etc.) to 
+the edge environment.
 
 To address these issues, we propose a novel model partitioning framework for 
 efficient integration of edge devices within far-edge device networks, enabling 
 collaborative inference in highly constrained environments. The framework primarily 
-leverages the densely deployed far-edge devices, with minimal reliance on more 
-capable edge devices. Unlike typical edge deployments that distribute work across 
-heterogeneous and geographically dispersed nodes, this approach targets networks 
-where devices are in close physical proximity, creating a more challenging but 
-realistic scenario for far-edge computing.
+leverages the densely interconnected deployed far-edge devices, with minimal 
+reliance on more capable edge devices. Unlike typical edge deployments that 
+distribute work across heterogeneous nodes separated by non-negligible 
+communication delays, this approach targets networks where devices experience 
+negligible communication delays, creating a more challenging but realistic 
+scenario for far-edge computing.
 Additionally, the framework can exploit the cyclic topology of certain \ac{ML} 
 models (e.g., \acp{RNN}), enabling device reuse across multiple inference stages. 
 By leveraging the recurrent nature of these models, individual devices can process 
@@ -37,7 +39,7 @@ scenario, forming a fully-connected graph of 16 nodes.
 The metrics for evaluation will include inference latency, energy consumption, and
 memory usage per device. We will then compare the performance of our proposed
 framework against the state of the art model partitioning frameworks that we
-analysed in Chapter \ref{chap:ch3}.
+analysed in Chapter~\ref{chap:ch3}.
 
 \section{Expected Results} \label{sec:se43}
 
@@ -69,11 +71,13 @@ The project is planned to be executed over a period of 5 months, resulting in
     selected devices, ensuring correct functionality and efficient communication
     between them.
     
-    \item[Partitioning Subprocedure Implementation (Weeks 7-12):]
-    This task focuses on implementing the core partitioning algorithm that will divide
+    \item[Partitioning Subprocedure Integration (Weeks 7-12):]
+    This task focuses on integrating a core partitioning algorithm, chosen from 
+    an existing framework reviewed in chapter~\ref{chap:ch3}, that will divide
     the \ac{DNN} models into lightweight segments suitable for the constrained 
-    devices in the network. Ideally, this subprocedure will take into account the 
-    cyclic topology of certain models to optimize the partitioning process.
+    devices in the network. Ideally, this subprocedure will be extended to take 
+    into account the cyclic topology of certain models to optimize the partitioning 
+    process.
     
     \item[Testing and Evaluation (Weeks 12-14):]
     During these weeks, we will conduct extensive testing of the deployed framework,
@@ -92,14 +96,24 @@ The first three tasks represent the milestone corresponding to the MVP of the
 project, expected to be completed by the end of week 12. The testing and evaluation
 task will provide the necessary data to analyze the performance of the proposed
 framework, while the dissertation elaboration task will ensure that the findings
-are well-documented and presented. 
+are well-documented and presented. The workflow can be better visualized in the Gantt
+chart shown in Figure~\ref{fig:gantt}. It should be noted that the weeks corresponding
+to the Easter break and Academic Week are not taken into account in this timeline.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{approach-gantt.png}
+  \caption{Gantt chart representing the project plan and timeline.}
+  \label{fig:gantt}
+\end{figure}
 
 \section{Conclusions} \label{sec:se45}
 
-This chapter proposes a novel framework for efficient integration of edge devices
-within far-edge device networks, enabling collaborative inference in highly 
-constrained environments. Additionally, the framework extends support to 
-\ac{DNN} models with cyclic topology through device reuse across inference stages.
-This marks a significant advancement in the field of edge computing and \ac{IoT}, 
-opening new possibilities for applications that require real-time processing and 
-low latency.
+This chapter proposes a novel framework to efficiently execute collaborative 
+inference tasks,
+excelling in the integration of edge devices within a far-edge device network and 
+managing to make use of highly constrained devices. Additionally, the framework 
+extends support to \ac{DNN} models with cyclic topology through device reuse across 
+inference stages. This marks a significant advancement in the field of edge computing
+and \ac{IoT}, opening new possibilities for applications that require real-time 
+processing and low latency.

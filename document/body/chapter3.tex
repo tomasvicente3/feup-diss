@@ -1,7 +1,7 @@
 \chapter{State Of The Art} \label{chap:ch3}
 
 In this chapter, we analyse the current state of the art described
-by the documents gathered in the literature review (Chapter \ref{chap:ch2}).
+by the documents gathered in the literature review (Chapter~\ref{chap:ch2}).
 We will review different approaches and techniques applied in Edge and \ac{IoT}
 environments to achieve a better performance when executing \ac{ML} inference 
 tasks. In particular,
@@ -13,27 +13,31 @@ communication methods.
     
 \section{System Network Layouts} \label{sec:se31}
 
+Firstly, we will analyse how the proposed frameworks make use of different system 
+layouts to achieve collaborative inference in edge and far-edge devices. We will
+classify them into two main categories, according to their system layout:
+Model Bi-Partitioning and Model Local Partitioning.
 
-\subsection{Multi-Model Partitioning} \label{sec:se311}
+% \subsection{Multi-Model Partitioning} \label{sec:se311}
 
-Rather than focusing on partitioning a single monolithic model, these
-frameworks deploy differently sized \ac{ML} models throughout several
-hierarchies of devices according to their computational capabilities (i.e.
-deploying smaller models closer to the edge and bigger and more capable
-ones closer to the cloud).
+% Rather than focusing on partitioning a single monolithic model, these
+% frameworks deploy differently sized \ac{ML} models throughout several
+% hierarchies of devices according to their computational capabilities (i.e.
+% deploying smaller models closer to the edge and bigger and more capable
+% ones closer to the cloud).
 
-\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
+% \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-    \item[N/A] No articles were reviewed yet in this category.
+%     \item[N/A] No articles were reviewed yet in this category.
 
-\end{description}
+% \end{description}
 
 
 \subsection{Model Bi-Partitioning} \label{sec:se312}
 
-The approaches reviewed in this category are based on processing an initial 
-portion of the inference task on devices closer to the end-user and the 
-remaining portion on one or more devices on a higher layer, 
+The approaches reviewed in this category divide the work load in two, deploying 
+the initial portion of the inference task to devices closer to the end-user and 
+the remaining portion to one or more devices on a higher hierarchical layer, 
 further away from the end-user device.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
@@ -47,7 +51,9 @@ further away from the end-user device.
     framework to estimate the time needed for each device on each step of the 
     model. The framework then employs a differentiable search algorithm 
     to find optimal inference strategies for allocating \ac{DNN} tasks to the 
-    computing devices.   
+    computing devices. Even though this framework deploys successfully a
+    partitioned model between an end device and an edge server, it is limited
+    to two-device networks.  
 
     \item[DINA \cite{t_mohammed_distributed_2020}]
     is a framework that relies on fog nodes to partition inference tasks into
@@ -124,6 +130,7 @@ to the cloud.
 
 \end{description}
 
+%TODO acabar conclusão de system layouts (incluir ref à tabela)
 To better standardize the following synthesis, we will recognize previously 
 referred user, end devices and similarly constrained devices as our definition 
 of far-edge devices. Likewise, the intermediate devices, placed higher in the
@@ -158,10 +165,10 @@ CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & G
 
 In a distributed system, the orchestration and management of every node of a
 given network is of utmost importance. Since we are reviewing collaborative
-frameworks, for the next subsection, we will be analysing how the presented 
-frameworks strategize the scheduling and communications between their devices.
-Furthermore, the frameworks will be separated into two classes, heuristical 
-and reinforcement learning scheduling approaches.
+frameworks, we will be analysing how the presented frameworks strategize the 
+scheduling and communications between their devices. Furthermore, the frameworks 
+will be separated into two classes, heuristical and reinforcement learning 
+scheduling approaches.
 
 \subsection{Heuristical Approach} \label{sec:se321}
 
@@ -181,7 +188,8 @@ chosen and how the network is managed.
     even if lighter on the data. All the devices' constraints
     are gathered in a previous stage and taken into account. Network conditions
     are monitored in real-time, allowing the framework to strive for an optimal
-    partitioning and deployment, adapting to network changes. 
+    partitioning and deployment, adapting to network changes, such as device power 
+    and network bandwidth fluctuations, as well as user requirement of latency. 
 
     \item [CoFANN \cite{tran-van_cofann_2025}]
     is a minimalist framework, in regards to network management, taking only
@@ -190,9 +198,9 @@ chosen and how the network is managed.
     created from
     factors in the inference process. To minimize the data transfer, the initial
     raw data is processed in the end device and condensed as an intermediate 
-    feature tensor to be wirelessly transmitted to an edge server. The result is
-    then sent back to the end device to be logged. 
-    %TODO rever separação layout/flow vs network management 
+    feature tensor to be wirelessly transmitted to an edge server.
+    %TODO rever separação layout/flow vs network management
+    % FR não comentou
 
 
     \item[DINA \cite{t_mohammed_distributed_2020}]
@@ -207,10 +215,12 @@ chosen and how the network is managed.
     relies on device placement to assign the model partitions to the devices.
     The feature extractor segment of the \ac{CNN} models is distributed along the
     network, while the classifier, as it requires less computation, is assigned to
-    a singular device. Intermediate inference results are exchanged between devices
-    through a wireless link, using a "OFDMA-based wireless transmission model".
+    a singular device, given it has sufficient available memory for the corresponding
+    weights. Intermediate inference results are exchanged between devices
+    through a wireless link, using a "OFDMA\footnote{Orthogonal Frequency-Division 
+    Multiple Access}-based wireless transmission model",
+    allowing for a higher throughput.
     This solution assumes that the pipeline supports asynchronous communication.
-    %rever OFDMA (citação/sigla)
 
     \item[\textcite{w_miao_adaptive_2020}]
     minimizes the inference time relying on estimations of the computing time
@@ -241,6 +251,8 @@ to a greater extent.
 
 \end{description}
 
+%TODO conclusões de network management (c/ tabela)
+
 \begin{table}[ht]
 \centering
 \begin{tabularx}{\textwidth}{|l|Y|Y|Y|Y|}
@@ -267,10 +279,11 @@ DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource
 \section{Final Remarks}
 
 %TODO conclusões gerais do SOTA 
+%TODO incluir problema/limitação de cada framework (na tabela?)
 
 \begin{table}[ht]
 \centering
-\begin{tabularx}{\textwidth}{|l|X|X|}
+\begin{tabularx}{\textwidth}{|p{2.5cm}|X|X|}
 \hline
 \textbf{Strategy} & \multicolumn{1}{c|}{\textbf{Overview}} & \multicolumn{1}{c|}{\textbf{Relevant Aspects}} \\
 \hline
@@ -280,8 +293,9 @@ CAS \cite{wang_context-aware_2021}
     inference with low latency withstanding network fluctuations. Deployed on
     edge devices, avoiding reliance on large computing resources.
 &  
-    Proposal for a network context-aware partitioning system, adapting to network
-    changes in real-time.
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Deployed partition responsiveness to network changes in real-time.
+    \end{itemize}
 \\
 \hline
 CoFANN \cite{tran-van_cofann_2025} 
@@ -290,8 +304,10 @@ CoFANN \cite{tran-van_cofann_2025}
     initial inference. The framework relies on only two devices, one on-site and
     one edge server. 
 &  
-    Employment of a gradient descent based search algorithm to detect the optimal
-    inference strategy, to minimize latency and data transfer.  
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Employment of a gradient descent based search algorithm to detect the optimal
+        inference strategy, to minimize latency and data transfer.  
+    \end{itemize}
 \\
 \hline
 DINA \cite{t_mohammed_distributed_2020} 
@@ -300,9 +316,11 @@ DINA \cite{t_mohammed_distributed_2020}
     Deploys partitioned \ac{DNN} models with \ac{DAG} topologies to homogeneous
     devices. Adapts to reduce execution time in varying network conditions.
 &  
-    Extension of a local inference task to a distributed edge device network.
-    Partition and compression techniques for \ac{CNN} models.
-    Matching theory for scheduling purposes.
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Extension of a local inference task to a distributed edge device network.
+        \item Partition and compression techniques for \ac{CNN} models.
+        \item Matching theory for scheduling purposes.
+    \end{itemize}
 \\
 \hline
 \textcite{ma_joint_2025} 
@@ -312,8 +330,10 @@ DINA \cite{t_mohammed_distributed_2020}
     relies on a \ac{DRL}-based algorithm to optimize resource assignment and
     partitioning point.
 &  
-    Use of early-exit mechanisms to reduce energy consumption and latency.
-    \ac{DRL}-based scheduling approach using \ac{PPO} algorithm.
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Use of early-exit mechanisms to reduce energy consumption and latency.
+        \item \ac{DRL}-based scheduling approach using \ac{PPO} algorithm.
+    \end{itemize}
 \\
 \hline
 \textcite{p_dai_joint_2025} 
@@ -323,8 +343,10 @@ DINA \cite{t_mohammed_distributed_2020}
     capabilities. The framework has been shown to be a highly scalable,
     robust and efficient solution.
 & 
-    Partition and parallelization techniques for \ac{CNN} models.
-    Device placement and network topology considerations for scheduling. 
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Partition and parallelization techniques for \ac{CNN} models.
+        \item Device placement and network topology considerations for scheduling. 
+    \end{itemize}
 \\
 \hline
 \textcite{w_miao_adaptive_2020} 
@@ -334,7 +356,9 @@ DINA \cite{t_mohammed_distributed_2020}
     adapts to heterogeneous devices, balancing the load between them to
     minimize the overall inference time.
 & 
-    Load balancing approach for heterogeneous devices.
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Load balancing approach for heterogeneous devices.
+    \end{itemize}
 \\
 \hline
 \end{tabularx}

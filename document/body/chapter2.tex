@@ -1,5 +1,14 @@
 \chapter{Literature Review} \label{chap:ch2}
 
+This chapter investigates existing research on deploying \ac{DNN} models 
+on edge and far-edge devices through a systematic literature review. We 
+examine three main areas: model partitioning and split inference, \ac{ML} 
+orchestration and scheduling in edge computing, and computational offloading 
+for \ac{ML} inference. The chapter details the search methodology, including the
+search strategy and inclusion/exclusion criteria, and 
+presents the results, establishing the current state of the art in these fields.
+
+
 \section{Introduction}\label{sec:se21}
 
 This literature review followed \textcite{Kitchenham2009}'s 
@@ -20,12 +29,19 @@ included and examined in this context of this work.
 
 
 \section{Review Methodology}\label{sec:se22}
+
+To ensure replicability and rigor, the following subsections describe the 
+methodology employed to retrieve relevant studies. Particular emphasis is 
+placed on the search strategy, including the search queries used, and the 
+criteria applied for filtering results.
+
+
 \subsection{Search Strategy} \label{sec:se221}
 
 There were three digital libraries used to search for relevant articles:
-the IEEE Xplore Digital Library \footnote{\url{https://ieeexplore.ieee.org/Xplore/home.jsp}} and the ACM Digital
-Library \footnote{\url{https://dl.acm.org/}} as the main sources of specialized
-literature on the subject, and Scopus \footnote{\url{https://www.scopus.com/}} as a broader database
+the IEEE Xplore Digital Library\footnote{\url{https://ieeexplore.ieee.org/Xplore/home.jsp}} and the ACM Digital
+Library\footnote{\url{https://dl.acm.org/}} as the main sources of specialized
+literature on the subject, and Scopus\footnote{\url{https://www.scopus.com/}} as a broader database
 to cover any gaps that could arise.
 
 To accomplish this search, the following search strings were built,
@@ -49,15 +65,16 @@ exclude the documents found:
         \toprule
         \textbf{Type} & \textbf{ID} & \textbf{Criteria} \\
         \midrule
-        \multirow{3}{*}{\rotatebox{90}{Inclusion}} 
+        \multirow{4.5}{*}{\rotatebox{90}{Inclusion}} 
         & IC1 & The publication is in an adequate document type. \\
-        & IC2 & Date of publication since 2018 (inclusive) \\
-        & IC3 & The publication focuses on IoT/Edge Computing environments \\
+        & IC2 & Date of publication since 2018 (inclusive). \\
+        & IC3 & The publication addresses constrained devices. \\
+        & IC4 & The publication discusses network deployment or topics pertinent to it. \\
         \midrule
         \multirow{5.5}{*}{\rotatebox{90}{Exclusion}} 
-        & EC1 & It is a duplicate result \\
-        & EC2 & Full-text is not available \\
-        & EC3 & The publication is not English \\
+        & EC1 & It is a duplicate result. \\
+        & EC2 & Full-text is not available. \\
+        & EC3 & The publication is not English. \\
         & EC4 & The publication does not focus on cloud computing. \\
         & EC5 & The publication does not focus on high-performance device usage. \\
         \bottomrule
@@ -105,7 +122,7 @@ and exclusion criteria.
 \caption{Number of documents found per topic and digital library.}\label{tab:lr_lib}
 \end{table}
 
-After applying the inclusion and exclusion criteria, a total of ?? documents %TODO correct
+After applying the inclusion and exclusion criteria, a total of 16 documents %TODO corrigir
 were included for further analysis and serve as basis for this work.
 Figure \ref{fig:lr_screening} illustrates the flow that documents went through
 during the screening process.
