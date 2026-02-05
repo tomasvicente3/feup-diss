@@ -51,6 +51,64 @@
       \verb https://arxiv.org/abs/2010.08678
       \endverb
     \endentry
+    \entry{chen_deep_2024}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=80489b75bcde120c9f335f4995d789c2}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=bf9cb8b7d7a30ff0a3651466be0488da}{%
+           family={Dong},
+           familyi={D\bibinitperiod},
+           given={Q.},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=16ae0989f5e1d256ef0cfff56b31723a}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Q.},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=8b3d031e33fa8ec00b3b97374ef74c0a}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{3be352c40e31b139d1a2c4bb6898c27c}
+      \strng{fullhash}{3987b82f96f25e9d9c9f89b223268278}
+      \strng{fullhashraw}{3987b82f96f25e9d9c9f89b223268278}
+      \strng{bibnamehash}{3be352c40e31b139d1a2c4bb6898c27c}
+      \strng{authorbibnamehash}{3be352c40e31b139d1a2c4bb6898c27c}
+      \strng{authornamehash}{3be352c40e31b139d1a2c4bb6898c27c}
+      \strng{authorfullhash}{3987b82f96f25e9d9c9f89b223268278}
+      \strng{authorfullhashraw}{3987b82f96f25e9d9c9f89b223268278}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 2024 {International} {Academic} {Conference} on {Edge} {Computing}, {Parallel} and {Distributed} {Computing}}
+      \field{isbn}{979-8-4007-1816-8}
+      \field{series}{{ECPDC} '24}
+      \field{title}{Deep {Reinforcement} {Learning} for {Collaborative} {Inference} in {Local}- {Edge} {Computing}}
+      \field{year}{2024}
+      \field{pages}{138\bibrangedash 142}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1145/3677404.3677428
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85202826259&doi=10.1145%2F3677404.3677428&partnerID=40&md5=185908bd6020c82533e4257a1884b0b5
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85202826259&doi=10.1145%2F3677404.3677428&partnerID=40&md5=185908bd6020c82533e4257a1884b0b5
+      \endverb
+    \endentry
     \entry{rego::namp}{article}{}{}
       \name{author}{2}{}{%
         {{hash=a914f7a795a660618530984faba4f61b}{%
@@ -294,6 +352,48 @@
       \endverb
       \verb{url}
       \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-86000377432&doi=10.1109%2FTMC.2024.3457793&partnerID=40&md5=71ec07013de9ebd073d2eee6fc0f90c5
+      \endverb
+    \endentry
+    \entry{r_g_pacheco_calibration-aided_2021}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=9c781186c8304f35f797c1c8f2f0e4c4}{%
+           family={{R. G. Pacheco}},
+           familyi={R\bibinitperiod}}}%
+        {{hash=84a72d0498edf9d248940608c5082011}{%
+           family={{R. S. Couto}},
+           familyi={R\bibinitperiod}}}%
+        {{hash=1e5288ec8a39258eeddeff94e7e0f3b0}{%
+           family={{O. Simeone}},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{aface444624b1df96284f4a9ed76b448}
+      \strng{fullhash}{aface444624b1df96284f4a9ed76b448}
+      \strng{fullhashraw}{aface444624b1df96284f4a9ed76b448}
+      \strng{bibnamehash}{aface444624b1df96284f4a9ed76b448}
+      \strng{authorbibnamehash}{aface444624b1df96284f4a9ed76b448}
+      \strng{authornamehash}{aface444624b1df96284f4a9ed76b448}
+      \strng{authorfullhash}{aface444624b1df96284f4a9ed76b448}
+      \strng{authorfullhashraw}{aface444624b1df96284f4a9ed76b448}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{ICC} 2021 - {IEEE} {International} {Conference} on {Communications}}
+      \field{isbn}{1938-1883}
+      \field{month}{6}
+      \field{note}{Journal Abbreviation: ICC 2021 - IEEE International Conference on Communications}
+      \field{title}{Calibration-{Aided} {Edge} {Inference} {Offloading} via {Adaptive} {Model} {Partitioning} of {Deep} {Neural} {Networks}}
+      \field{year}{2021}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/ICC42927.2021.9500760
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85114267495&doi=10.1109%2FICC42927.2021.9500760&partnerID=40&md5=9c98cf9d174cc836fcf024d85a23ae29
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85114267495&doi=10.1109%2FICC42927.2021.9500760&partnerID=40&md5=9c98cf9d174cc836fcf024d85a23ae29
       \endverb
     \endentry
     \entry{tml-enabled-frugal-smart-objects}{article}{}{}

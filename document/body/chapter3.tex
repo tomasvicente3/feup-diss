@@ -22,7 +22,7 @@ Model Bi-Partitioning and Model Local Partitioning.
 
 % Rather than focusing on partitioning a single monolithic model, these
 % frameworks deploy differently sized \ac{ML} models throughout several
-% hierarchies of devices according to their computational capabilities (i.e.
+% hierarchies of devices according to their computational capabilities (i.e.,
 % deploying smaller models closer to the edge and bigger and more capable
 % ones closer to the cloud).
 
@@ -66,6 +66,17 @@ further away from the end-user device.
     partition the inference task and then divides it according to the network's 
     condition. It should be stated that the network is expected to be homogeneous.
 
+    \item [\textcite{chen_deep_2024}]
+    is a framework that maximizes the user \ac{QoS}, compared to traditional 
+    frameworks, as it allows for the user to specify their 
+    priorities, such as inference latency and energy consumption. This is achieved 
+    by modelling the collaborative inference problem as a \ac{MDP} and applying a
+    \ac{DRL}-based algorithm to determine the optimal partitioning point (i.e., the
+    last subtask in a given \ac{DNN} model), between end and edge devices. 
+    This way the user's requirements and the network's
+    conditions, such as device capabilities and network bandwidth, are taken into 
+    account to optimize the inference process.
+
     \item [\textcite{ma_joint_2025}]
     proposes a framework that focuses on minimizing energy consumption, making use
     of multiple early-exits along the inference process, when confidence thresholds 
@@ -76,7 +87,20 @@ further away from the end-user device.
     the inference task, adapting each instance to the device's capabilities.
     The early-exit mechanism allows for task termination prematurely in 
     early stages of the inference task, reducing energy consumption and
-    latency, given the model is confident enough. 
+    latency, given the model is confident enough.
+
+    \item [\textcite{r_g_pacheco_calibration-aided_2021}]
+    develops a framework that exploits the early-exit mechanism to reduce
+    the inference delay in the inference process. This is achieved by adding
+    a classifier branch at an intermediate layer of the \ac{DNN} model, allowing
+    the model to make a prediction with a given confidence at that point. 
+    If the confidence threshold is met, the inference task
+    is terminated early, otherwise, the remaining layers are processed in the
+    cloud, after the intermediate results are transmitted. This framework
+    presents a clear implementation of the early-exit mechanism, surpassing the
+    related overconfidence problem in the intermediate classifier by applying
+    a calibration technique, such as temperature scaling. Nonetheless, the 
+    framework lacks scalability, as it is only applied to a two-device network. 
 
 \end{description}
 
@@ -99,8 +123,16 @@ to the cloud.
     creates a fast adapting system, responding to network fluctuations, keeping 
     the active deployment optimized.
 
-    % \item[NAMP \cite{rego::namp}]
-    % approaches %TODO
+    \item[NAMP \cite{rego::namp}]
+    is a framework that emphasizes resource utilization, by partitioning the
+    model into several segments and deploying them to multiple severely
+    constrained devices. The framework analyses the network's devices and their
+    capabilities, partitioning the model into appropriate sized segments and
+    deploying them to the devices, according to their capabilities. 
+    The framework allows for inference tasks to be
+    executed in a highly scalable manner, even in an environment of highly
+    constrained devices, although it is limited in the model's topology
+    flexibility, as it only supports chain-like \ac{DNN} models. 
 
     \item[\textcite{p_dai_joint_2025}] 
     presents a solution to the collaborative inference problem that optimizes
@@ -130,30 +162,55 @@ to the cloud.
 
 \end{description}
 
-%TODO acabar conclusão de system layouts (incluir ref à tabela)
-To better standardize the following synthesis, we will recognize previously 
-referred user, end devices and similarly constrained devices as our definition 
-of far-edge devices. Likewise, the intermediate devices, placed higher in the
-hierarchy than the far-edge devices (e.g.: edge nodes, local servers), will be 
-recognized simply as edge devices.
+%TODO aprimorar esta bodega
+Unlike traditional cloud-based inference systems, the reviewed frameworks
+leverage the computational capabilities of edge and far-edge devices to
+distribute the inference workload. This distribution not only reduces latency
+but also optimizes resource utilization across the network, allowing for a 
+faster and more power efficient processing.
+
+Several techniques can be employed to achieve this effect, such as model partitioning,
+which can be done in different ways: either by bi-partitioning the model between
+far-edge and edge devices, or by locally partitioning the model among a collection
+of devices closer to the far-edge layer. On the other hand, some frameworks employ
+partitioning on a per-layer basis, while others rely on graph-based partitioning
+techniques to better adapt to the model's topology.
+
+Additionally, some frameworks incorporate early-exit mechanisms to further
+optimize the inference process, allowing for the termination of the task
+prematurely when a certain confidence threshold is met. This technique can
+significantly reduce both latency and energy consumption, especially in scenarios
+where high accuracy is not always required.
+
+To better standardize the following synthesis, in the Table~\ref{tab:sota_layout},
+we will recognize previously referred user, end devices and similarly constrained 
+devices as our definition of far-edge devices. Likewise, the intermediate devices, 
+placed higher in the hierarchy than the far-edge devices (e.g.: edge nodes, local 
+servers), will be recognized simply as edge devices.
 
 \begin{table}[ht]
 \centering
-\begin{tabularx}{\textwidth}{|l|Y|Y|Y|}
+\begin{tabularx}{\textwidth}{|m{2.75cm}|Y|Y|Y|>{\centering\arraybackslash}m{1.2cm}|}
 \hline
-\textbf{Strategy} & \textbf{System Layout} & \textbf{System Agents} & \textbf{Partitioning Method} \\
+\textbf{Strategy} & \textbf{System Layout} & \textbf{System Agents} & \textbf{Partitioning Method} & \textbf{Uses Early Exits} \\
 \hline
-CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning \\
+CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
-DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning \\
+\textcite{chen_deep_2024} & Model Bi-Partitioning & Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
-CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & Graph Partitioning \\
+DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
-\textcite{ma_joint_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Inter-Layer Partitioning \\
+CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
-\textcite{p_dai_joint_2025} & Model Local Partitioning & Edge Devices & Inter and Intra-Layer Partitioning\\
+\textcite{ma_joint_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Inter-Layer Partitioning & \ding{51} \\
 \hline
-\textcite{w_miao_adaptive_2020} & Model Local Partitioning & Far-Edge Devices & Graph Partitioning \\
+NAMP \cite{rego::namp} & Model Local Partitioning & Far-Edge Devices & Inter and Intra-Layer Partitioning & \ding{55} \\
+\hline
+\textcite{p_dai_joint_2025} & Model Local Partitioning & Edge Devices & Inter and Intra-Layer Partitioning & \ding{55} \\
+\hline
+\textcite{r_g_pacheco_calibration-aided_2021} & Model Bi-Partitioning & Edge Devices, Cloud & Inter-Layer Partitioning & \ding{51} \\
+\hline
+\textcite{w_miao_adaptive_2020} & Model Local Partitioning & Far-Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
 \end{tabularx}
 \vspace{2mm}
@@ -202,7 +259,6 @@ chosen and how the network is managed.
     %TODO rever separação layout/flow vs network management
     % FR não comentou
 
-
     \item[DINA \cite{t_mohammed_distributed_2020}]
     approaches the scheduling problem using matching games, based on game theory.
     Matching is obtained according to preference relations, similarly to 
@@ -210,6 +266,18 @@ chosen and how the network is managed.
     the benefit obtained by executing a given task on that device. The initial 
     matching is further improved by proposing swapping edge nodes between two 
     user nodes, if it benefits both parties.
+
+    \item[NAMP \cite{rego::namp}]
+    implements a heuristical scheduling algorithm to optimize the inference 
+    process, taking into account the chosen programmable heuristics, such as 
+    inference time or resource utilization. The framework gathers the devices' 
+    characteristics and determines the optimal partitioning and deployment
+    according to the chosen heuristics only before deployment, without further
+    responsiveness to network changes. The deployment is achieved by using
+    the Zephyr RTOS\footnote{Linux Foundation, Zephyr Project, \url{https://www.zephyrproject.org/}}
+    with the CoAP protocol, to further minimize the overhead 
+    of the communication between devices.
+
 
     \item[\textcite{p_dai_joint_2025}]
     relies on device placement to assign the model partitions to the devices.
@@ -240,6 +308,16 @@ to a greater extent.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
+    \item[\textcite{chen_deep_2024}]
+    employs a \ac{DRL}-based algorithm to determine the optimal partitioning point,
+    between end and edge devices. The work elaborates a special algorithm that
+    branches from the traditional Deep Q-Network (DQN), to improve decision-making
+    efficiency, by storing and reusing past experiences, as well as by having a dual 
+    estimation stream, one for state-value function and one for action-value function. 
+    Nevertheless, the framework also regards the user's priorities, integrated in
+    experience memory sampling. The network also makes use of ZeroMQ\footnote{\url{https://zeromq.org/}} 
+    for communication between devices, using a PUSH-PULL pattern for data transfer.  
+
     \item[\textcite{ma_joint_2025}]
     makes use of a \ac{DRL}-based algorithm, employing an actor-critic model to
     determine the optimal resource assignment and inference task's layer to mark
@@ -251,15 +329,49 @@ to a greater extent.
 
 \end{description}
 
-%TODO conclusões de network management (c/ tabela)
+To manage efficiently a network of devices, it is crucial to have a robust
+strategy for scheduling and communication. The reviewed frameworks employ
+different approaches to tackle this problem, ranging from simpler heuristics
+to more complex reinforcement learning algorithms. 
+
+On one hand, heuristical approaches provide a straightforward and computationally
+light solution to the scheduling problem. They often rely on predefined rules
+or simple optimization techniques to allocate tasks and manage communication
+between devices. These methods can be effective in scenarios where the network
+conditions are relatively stable and predictable. However, they may struggle to
+adapt to dynamic environments or complex network topologies.
+
+On the other hand, reinforcement learning approaches offer a more sophisticated
+solution by allowing the system to learn optimal scheduling policies through
+interaction with the environment. These methods can adapt to changing network
+conditions and can potentially discover more efficient scheduling strategies.
+However, they often require more computational resources and time to train the
+learning models.
+
+The communication between devices is another critical aspect of network management.
+Efficient communication protocols and methods can significantly impact the overall
+performance of the collaborative inference process. The reviewed frameworks
+utilize various communication methods, even if not always explicitly specified (i.e.,
+the wireless links referred to in Table~\ref{tab:sota_scheduling}). 
+These methods include ZeroMQ, CoAP protocol, and \ac{RPC}s, each with the goal
+of minimizing communication overhead and latency while ensuring reliable data
+exchange.
+
+The previously described frameworks that were not mentioned in either of these
+network management categories do not present any particular strategy for network 
+management, relying on previous works or simple approaches.
+%TODO rever bodega de conclusão
+
 
 \begin{table}[ht]
 \centering
-\begin{tabularx}{\textwidth}{|l|Y|Y|Y|Y|}
+\begin{tabularx}{\textwidth}{|m{2.5cm}|Y|Y|Y|>{\centering\arraybackslash}m{2.2cm}|}
 \hline
-\textbf{Strategy} & \textbf{Scheduling Approach} & \textbf{Optimized Metrics} & \textbf{Communi-cation Method} & \textbf{Tolerates Node Hete-rogeneity} \\
+\textbf{Strategy} & \textbf{Scheduling Approach} & \textbf{Optimized Metrics} & \textbf{Communi-cation Method} & \textbf{Tolerates Node Heterogeneity} \\
 \hline
 CAS \cite{wang_context-aware_2021} & Heuristical & Inference Time & Wireless link (3G, 4G) & \ding{51} \\
+\hline
+\textcite{chen_deep_2024} & Reinforcement Learning & User \ac{QoS} & ZeroMQ PUSH-PULL & \ding{51} \\
 \hline
 CoFANN \cite{tran-van_cofann_2025} & Heuristical & Inference Time, Data Transferred & Wireless link & \ding{51} \\
 \hline
@@ -267,7 +379,9 @@ DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource
 \hline
 \textcite{ma_joint_2025} & Reinforcement Learning & Inference Time, Energy Consumption & N/A & \ding{51} \\
 \hline
-\textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFDMA-based links & \ding{51} \\
+NAMP \cite{rego::namp} & Heuristical & Configurable Heuristic & CoAP protocol & \ding{51} \\
+\hline
+\textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFDMA-based links & \ding{55} \\
 \hline
 \textcite{w_miao_adaptive_2020} & Heuristical & Inference Time & \ac{RPC} & \ding{51}\\
 \hline
@@ -278,15 +392,63 @@ DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource
 
 \section{Final Remarks}
 
-%TODO conclusões gerais do SOTA 
+%TODO rever conclusões gerais do SOTA 
+In this chapter, we have analysed the current state of the art in collaborative
+inference frameworks for edge and far-edge devices. We have reviewed various
+approaches and techniques employed to optimize the inference process, focusing
+on system layouts and network management strategies.
+
+Each framework presents unique solutions to the challenges posed by distributed
+inference tasks. Some focusing on model partitioning strategies, to maximize
+the use of available resources, while others emphasize efficient scheduling and
+communication methods to minimize latency and overhead.
+
+We have reviewed frameworks according to their system layouts, distinguishing
+between Model Bi-Partitioning and Model Local Partitioning approaches. The former
+involves dividing the inference task into two segments deployed to different network
+layers with different computational capabilities. The latter deploys the entire
+partitioned model is deployed locally, to a collection of devices closer to the
+far-edge layer.
+
+Furthermore, we have analysed the network management strategies employed by
+the reviewed frameworks, categorizing them into heuristical and reinforcement
+learning approaches, providing a range of possible solutions from simple and fast
+heuristics to more complex and adaptive reinforcement learning algorithms.
+
+The diversity of approaches highlights the complexity of the problem and the
+need for tailored solutions depending on the specific requirements and constraints
+of the target environment. An overview of the reviewed strategies is presented
+in Table~\ref{tab:sota_overview}, summarizing their key features and relevant
+aspects.
+
 %TODO incluir problema/limitação de cada framework (na tabela?)
 
-\begin{table}[ht]
-\centering
-\begin{tabularx}{\textwidth}{|p{2.5cm}|X|X|}
+\begin{xltabular}{\textwidth}{|m{2.4cm}|X|X|}
+\caption{Overview of the reviewed strategies.}\label{tab:sota_overview}\\
 \hline
 \textbf{Strategy} & \multicolumn{1}{c|}{\textbf{Overview}} & \multicolumn{1}{c|}{\textbf{Relevant Aspects}} \\
 \hline
+\endfirsthead
+
+% --- Header for subsequent pages (Fixes broken top border) ---
+\hline
+\multicolumn{3}{|c|}{\tablename\ \thetable\ -- Continued from previous page} \\
+\hline
+\textbf{Strategy} & \multicolumn{1}{c|}{\textbf{Overview}} & \multicolumn{1}{c|}{\textbf{Relevant Aspects}} \\
+\hline
+\endhead
+
+% --- Footer for normal pages (Fixes broken bottom border) ---
+\hline
+\multicolumn{3}{|r|}{Continued on next page} \\
+\hline
+\endfoot
+
+% --- Footer for the last page (Prevents double line) ---
+\endlastfoot
+
+% --- Table Content ---
+
 CAS \cite{wang_context-aware_2021} 
 & 
     Edge system responsive to network changes, allows for local collaborative
@@ -295,6 +457,20 @@ CAS \cite{wang_context-aware_2021}
 &  
     \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
         \item Deployed partition responsiveness to network changes in real-time.
+    \end{itemize}
+\\
+\hline
+\textcite{chen_deep_2024}
+& 
+    Framework that maximizes user \ac{QoS} by allowing the user to specify
+    their priorities, such as inference latency and energy consumption.
+    This is achieved by modelling the collaborative inference problem as a 
+    \ac{MDP} and applying a \ac{DRL}-based algorithm to determine the optimal
+    partitioning point, between end and edge devices.
+&  
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item User priority integration in experience memory sampling.
+        \item Use of ZeroMQ for communication between devices.
     \end{itemize}
 \\
 \hline
@@ -336,6 +512,19 @@ DINA \cite{t_mohammed_distributed_2020}
     \end{itemize}
 \\
 \hline
+NAMP \cite{rego::namp}
+&
+    Framework that emphasizes resource utilization, partitioning the model into
+    several segments, fit for multiple severely constrained devices. The framework 
+    is flexible and makes the most use of the network's heterogenous resources,
+    as well as allows for the user to choose the heuristics to optimize.
+&
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Configurable heuristics to optimize.
+        \item Use of Zephyr RTOS and CoAP protocol to minimize communication overhead.
+    \end{itemize}
+\\
+\hline
 \textcite{p_dai_joint_2025} 
 & 
     Widely applicable framework for collaborative inference in edge networks,
@@ -349,6 +538,21 @@ DINA \cite{t_mohammed_distributed_2020}
     \end{itemize}
 \\
 \hline
+
+\textcite{r_g_pacheco_calibration-aided_2021}
+&
+    Specialized work in early-exit mechanisms for split inference,
+    even if limited to two-device networks. The framework excels in
+    inserting early-exit branches in intermediate layers of \ac{DNN}
+    models, while addressing the overconfidence problem.
+&
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Effective early-exits insertion mechanism.
+        \item Calibration techniques to address overconfidence.
+    \end{itemize}
+\\
+\hline
+
 \textcite{w_miao_adaptive_2020} 
 & 
     Collaborative inference framework that takes advantage of parallelizable
@@ -361,7 +565,4 @@ DINA \cite{t_mohammed_distributed_2020}
     \end{itemize}
 \\
 \hline
-\end{tabularx}
-\vspace{2mm}
-\caption{Overview of the reviewed strategies.}\label{tab:sota_overview}
-\end{table}
+\end{xltabular}
