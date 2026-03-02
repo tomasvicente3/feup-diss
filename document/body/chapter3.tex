@@ -16,7 +16,7 @@ communication methods.
 Firstly, we will analyse how the proposed frameworks make use of different system 
 layouts to achieve collaborative inference in edge and far-edge devices. We will
 classify them into two main categories, according to their system layout:
-Model Bi-Partitioning and Model Local Partitioning.
+Model Hierarchical and Model Local Partitioning.
 
 % \subsection{Multi-Model Partitioning} \label{sec:se311}
 
@@ -33,12 +33,13 @@ Model Bi-Partitioning and Model Local Partitioning.
 % \end{description}
 
 
-\subsection{Model Bi-Partitioning} \label{sec:se312}
+\subsection{Model Hierarchical Partitioning} \label{sec:se312}
 
-The approaches reviewed in this category divide the work load in two, deploying 
-the initial portion of the inference task to devices closer to the end-user and 
-the remaining portion to one or more devices on a higher hierarchical layer, 
-further away from the end-user device.
+The approaches reviewed in this category divide the workload through a chain of 
+devices, deploying the initial portion of the inference task to devices closer to 
+the end-user and the remaining portion to one or more devices on a higher 
+hierarchical layer, further away from the end-user device. Assuming a device
+that is further away from the end-user device has more computational capabilities.
 
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
@@ -64,7 +65,9 @@ further away from the end-user device.
     This work can process \ac{DNN} models with a \ac{DAG} topology, composed of 
     fully connected and convolutional layers. This framework determines how to 
     partition the inference task and then divides it according to the network's 
-    condition. It should be stated that the network is expected to be homogeneous.
+    condition. It should be stated that the network is expected to be homogeneous
+    by design, as it . 
+    % TODO rever esta parte.
 
     \item [\textcite{chen_deep_2024}]
     is a framework that maximizes the user \ac{QoS}, compared to traditional 
@@ -310,12 +313,15 @@ to a greater extent.
 
     \item[\textcite{chen_deep_2024}]
     employs a \ac{DRL}-based algorithm to determine the optimal partitioning point,
-    between end and edge devices. The work elaborates a special algorithm that
+    between end (our "Far-Edge") and edge devices. The work elaborates a special 
+    algorithm that
     branches from the traditional Deep Q-Network (DQN), to improve decision-making
     efficiency, by storing and reusing past experiences, as well as by having a dual 
     estimation stream, one for state-value function and one for action-value function. 
     Nevertheless, the framework also regards the user's priorities, integrated in
-    experience memory sampling. The network also makes use of ZeroMQ\footnote{\url{https://zeromq.org/}} 
+    experience memory sampling. This allows the framework to minimize the inference
+    latency or the energy consumption, according to the user's needs. 
+    The network also makes use of ZeroMQ\footnote{\url{https://zeromq.org/}} 
     for communication between devices, using a PUSH-PULL pattern for data transfer.  
 
     \item[\textcite{ma_joint_2025}]
@@ -323,8 +329,8 @@ to a greater extent.
     determine the optimal resource assignment and inference task's layer to mark
     the bi-partitioning point. The \ac{PPO} algorithm is used to train the model,
     optimizing cost evolution, balancing energy consumption and inference latency.
-    This approach takes into account all relevant system information, such as task
-    characteristics, device capabilities and network conditions, to make informed
+    This approach takes into account all relevant system information, such as "task
+    characteristics, device capabilities and network conditions", to make informed
     decisions on resource allocation and task partitioning.
 
 \end{description}
@@ -337,7 +343,7 @@ to more complex reinforcement learning algorithms.
 On one hand, heuristical approaches provide a straightforward and computationally
 light solution to the scheduling problem. They often rely on predefined rules
 or simple optimization techniques to allocate tasks and manage communication
-between devices. These methods can be effective in scenarios where the network
+between devices. These methods thrive on scenarios where the network
 conditions are relatively stable and predictable. However, they may struggle to
 adapt to dynamic environments or complex network topologies.
 
@@ -346,7 +352,7 @@ solution by allowing the system to learn optimal scheduling policies through
 interaction with the environment. These methods can adapt to changing network
 conditions and can potentially discover more efficient scheduling strategies.
 However, they often require more computational resources and time to train the
-learning models.
+learning models, as well as enough data from the network to make informed decisions. 
 
 The communication between devices is another critical aspect of network management.
 Efficient communication protocols and methods can significantly impact the overall
@@ -399,19 +405,19 @@ approaches and techniques employed to optimize the inference process, focusing
 on system layouts and network management strategies.
 
 Each framework presents unique solutions to the challenges posed by distributed
-inference tasks. Some focusing on model partitioning strategies, to maximize
+inference tasks. Some works focus on model partitioning strategies to maximize
 the use of available resources, while others emphasize efficient scheduling and
 communication methods to minimize latency and overhead.
 
 We have reviewed frameworks according to their system layouts, distinguishing
-between Model Bi-Partitioning and Model Local Partitioning approaches. The former
+between Model Hierarchical and Model Local Partitioning approaches. The former
 involves dividing the inference task into two segments deployed to different network
 layers with different computational capabilities. The latter deploys the entire
-partitioned model is deployed locally, to a collection of devices closer to the
+partitioned model is local to a cluster of devices closer to the
 far-edge layer.
 
 Furthermore, we have analysed the network management strategies employed by
-the reviewed frameworks, categorizing them into heuristical and reinforcement
+the reviewed frameworks. We categorized them into heuristical and reinforcement
 learning approaches, providing a range of possible solutions from simple and fast
 heuristics to more complex and adaptive reinforcement learning algorithms.
 
@@ -482,7 +488,7 @@ CoFANN \cite{tran-van_cofann_2025}
 &  
     \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
         \item Employment of a gradient descent based search algorithm to detect the optimal
-        inference strategy, to minimize latency and data transfer.  
+        inference strategy, minimizing latency and data transfer.  
     \end{itemize}
 \\
 \hline
