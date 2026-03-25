@@ -50,7 +50,7 @@ proximity and wildcard operators were adapted to each digital library's syntax.}
 \begin{enumerate}
     \item ("dynamic partitioning" OR "dynamic splitting" OR "model partitioning" OR "model splitting" OR "adaptive partitioning" OR "adaptive splitting") AND "inference" AND ("ML model*" OR "DNN") AND ("Edge" OR "Far-Edge")	
     \item (("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "allocation") ) AND ( "inference" OR "ML model*" OR "DNN" OR "AI workload*") AND ("Edge" OR "IoT" OR "Far-Edge")
-    \item (("inference" AND ("offload*" OR "decision*")) OR "inference offloading") AND ("resource-aware" OR "latency-aware" OR "adaptive" OR "resource-constrained") AND ("TinyML" OR "MCU" OR "microcontroller*")
+    \item ("inference offload*" OR "model offload*" OR "task offload*") AND ("resource-aware" OR "latency-aware" OR "adaptive" OR "resource-constrained") AND ("TinyML" OR "MCU" OR "microcontroller*")
 \end{enumerate}
 
 \subsection{Inclusion and Exclusion Criteria} \label{sec:se222}
@@ -70,6 +70,7 @@ exclude the documents found:
         & IC2 & Date of publication since 2018 (inclusive). \\
         & IC3 & The publication addresses constrained devices. \\
         & IC4 & The publication discusses network deployment or topics pertinent to it. \\
+        % TODO refinar os critérios de inclusão
         \midrule
         \multirow{5.5}{*}{\rotatebox{90}{Exclusion}} 
         & EC1 & It is a duplicate result. \\
@@ -113,9 +114,9 @@ and exclusion criteria.
 \hline
 2 & 93 & 8 & 95 & 196 \\
 \hline
-3 & 43 & 14 & 39 & 96 \\
+3 & 6 & 0 & 6 & 12 \\
 \hline
-\textbf{Total} & 190 & 46 & 205 & \textbf{441} \\
+\textbf{Total} & 153 & 32 & 172 & \textbf{357} \\
 \hline
 \end{tabular}
 \vspace{2mm}
