@@ -66,8 +66,10 @@ that is further away from the end-user device has more computational capabilitie
     fully connected and convolutional layers. This framework determines how to 
     partition the inference task and then divides it according to the network's 
     condition. It should be stated that the network is expected to be homogeneous
-    by design, as it . 
-    % TODO rever esta parte.
+    by design, as it does not take the device characteristics into account.
+    Furthermore, the performance evaluation was conducted through simulations, 
+    which may not fully capture real-world scenarios.
+    
 
     \item [\textcite{chen_deep_2024}]
     is a framework that maximizes the user \ac{QoS}, compared to traditional 
@@ -143,7 +145,10 @@ to the cloud.
     heterogeneous edge resources and \ac{CNN} models, with the objective to
     maximize throughput.
     A combination of intra-layer and inter-layer partitioning techniques are 
-    applied in the proposed approach. This approach reformulates the network as 
+    applied in the proposed approach, including layer-wise partitioning for 
+    inter-layer partitioning and channel and spatial segmentations
+    for intra-layer partitioning.
+    This approach reformulates the network as 
     a pipeline system, where each device is responsible for simultaneous 
     inference batches. The \ac{DNN} model segments are tailored for the devices 
     in the network and assigned according to the network topology, that can be 
@@ -326,12 +331,16 @@ to a greater extent.
 
     \item[\textcite{ma_joint_2025}]
     makes use of a \ac{DRL}-based algorithm, employing an actor-critic model to
-    determine the optimal resource assignment and inference task's layer to mark
-    the bi-partitioning point. The \ac{PPO} algorithm is used to train the model,
-    optimizing cost evolution, balancing energy consumption and inference latency.
-    This approach takes into account all relevant system information, such as "task
-    characteristics, device capabilities and network conditions", to make informed
-    decisions on resource allocation and task partitioning.
+    determine the optimal resource assignment and the layer of the inference task 
+    to mark the bi-partitioning point. The \ac{PPO} algorithm is used to train the 
+    model, optimizing cost evolution, balancing energy consumption and inference 
+    latency. This approach takes into account all relevant system information, 
+    including task characteristics, device capabilities and network conditions.
+    These conditions include the layer's required \acp{FLOP}, computational 
+    capabilities, power consumption at each device, network's channel bandwidth, 
+    among other relevant factors. 
+    This information is used to make informed decisions on resource allocation
+    and task partitioning.
 
 \end{description}
 
@@ -341,11 +350,22 @@ different approaches to tackle this problem, ranging from simpler heuristics
 to more complex reinforcement learning algorithms. 
 
 On one hand, heuristical approaches provide a straightforward and computationally
-light solution to the scheduling problem. They often rely on predefined rules
-or simple optimization techniques to allocate tasks and manage communication
-between devices. These methods thrive on scenarios where the network
-conditions are relatively stable and predictable. However, they may struggle to
-adapt to dynamic environments or complex network topologies.
+light solution to the scheduling problem, while also being deterministic. They 
+often rely on predefined rules or simple optimization techniques to allocate 
+tasks and manage communication between devices, avoiding the need for more complex
+computation as required by the reinforcement learning approaches (i.e., training).
+These methods thrive on scenarios where the network conditions are relatively 
+stable and predictable. However, they may struggle to adapt to dynamic 
+environments or complex network topologies, lacking the overall flexibility and 
+robustness.
+
+The most common approaches to these heuristic scheduling algorithms are based on
+estimating the computational load and communication overhead for each device and 
+subtask, and then using a search algorithm to find a near-optimal assignment of 
+tasks to devices. This method, if not adapted, may lead to sub-optimal performance,
+as the estimations end up overlooking any particularities of the devices and the
+network, including fluctuations in performance, transmission and other factors that
+may further hinder the performance of the system. 
 
 On the other hand, reinforcement learning approaches offer a more sophisticated
 solution by allowing the system to learn optimal scheduling policies through
