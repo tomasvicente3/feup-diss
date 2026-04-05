@@ -51,6 +51,132 @@
       \verb https://arxiv.org/abs/2010.08678
       \endverb
     \endentry
+    \entry{al-atat_case_2023}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=c423efd1f611acbc94966e8c341730c4}{%
+           family={Al-Atat},
+           familyi={A\bibinithyphendelim A\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=1e111be010b0e09324092959536c2b4d}{%
+           family={Fresa},
+           familyi={F\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3d54c6a3e50cfe1f7f6c48fe940214c4}{%
+           family={Behera},
+           familyi={B\bibinitperiod},
+           given={A.P.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=03c3a032800b9ff8a0ca761974419bd8}{%
+           family={Moothedath},
+           familyi={M\bibinitperiod},
+           given={V.N.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=fd0120586057e80c08353a729e6f6577}{%
+           family={Gross},
+           familyi={G\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=75dae3f1f2da652ee8a7b7f30012d806}{%
+           family={Champati},
+           familyi={C\bibinitperiod},
+           given={J.P.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{9c6eda17c4436ac4c3c34dcada7d5a2e}
+      \strng{fullhash}{90936317ef215ff0bad1e77075386a60}
+      \strng{fullhashraw}{90936317ef215ff0bad1e77075386a60}
+      \strng{bibnamehash}{9c6eda17c4436ac4c3c34dcada7d5a2e}
+      \strng{authorbibnamehash}{9c6eda17c4436ac4c3c34dcada7d5a2e}
+      \strng{authornamehash}{9c6eda17c4436ac4c3c34dcada7d5a2e}
+      \strng{authorfullhash}{90936317ef215ff0bad1e77075386a60}
+      \strng{authorfullhashraw}{90936317ef215ff0bad1e77075386a60}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 1st {International} {Workshop} on {Networked} {AI} {Systems}}
+      \field{isbn}{979-8-4007-0212-9}
+      \field{series}{{NetAISys} '23}
+      \field{title}{The {Case} for {Hierarchical} {Deep} {Learning} {Inference} at the {Network} {Edge}}
+      \field{year}{2023}
+      \field{pages}{13\bibrangedash 18}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1145/3597062.3597278
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85164295939&doi=10.1145%2F3597062.3597278&partnerID=40&md5=683d8372200f23a97c4cf499ca414566
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85164295939&doi=10.1145%2F3597062.3597278&partnerID=40&md5=683d8372200f23a97c4cf499ca414566
+      \endverb
+    \endentry
+    \entry{behera_improved_2023}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=3d54c6a3e50cfe1f7f6c48fe940214c4}{%
+           family={Behera},
+           familyi={B\bibinitperiod},
+           given={A.P.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=85d18cbb17d74b22d5542e3e50b90c10}{%
+           family={Morabito},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=9a12ce0b37af6e9111303c49d25087b5}{%
+           family={Widmer},
+           familyi={W\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=75dae3f1f2da652ee8a7b7f30012d806}{%
+           family={Champati},
+           familyi={C\bibinitperiod},
+           given={J.P.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{6128c67b3431b73c6d9c53b4b2487698}
+      \strng{fullhash}{7ddb7eb63b4aba84f86b3e9c644f1011}
+      \strng{fullhashraw}{7ddb7eb63b4aba84f86b3e9c644f1011}
+      \strng{bibnamehash}{6128c67b3431b73c6d9c53b4b2487698}
+      \strng{authorbibnamehash}{6128c67b3431b73c6d9c53b4b2487698}
+      \strng{authornamehash}{6128c67b3431b73c6d9c53b4b2487698}
+      \strng{authorfullhash}{7ddb7eb63b4aba84f86b3e9c644f1011}
+      \strng{authorfullhashraw}{7ddb7eb63b4aba84f86b3e9c644f1011}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 29th {Annual} {International} {Conference} on {Mobile} {Computing} and {Networking}}
+      \field{isbn}{978-1-4503-9990-6}
+      \field{series}{{ACM} {MobiCom} '23}
+      \field{title}{Improved {Decision} {Module} {Selection} for {Hierarchical} {Inference} in {Resource}-{Constrained} {Edge} {Devices}}
+      \field{year}{2023}
+      \field{pages}{1501\bibrangedash 1503}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1145/3570361.3615732
+      \endverb
+      \verb{urlraw}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85198962078&doi=10.1145%2F3570361.3615732&partnerID=40&md5=c75369a88f81dece6877d2790f9b9d65
+      \endverb
+      \verb{url}
+      \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85198962078&doi=10.1145%2F3570361.3615732&partnerID=40&md5=c75369a88f81dece6877d2790f9b9d65
+      \endverb
+    \endentry
     \entry{chen_deep_2024}{inproceedings}{}{}
       \name{author}{4}{}{%
         {{hash=80489b75bcde120c9f335f4995d789c2}{%
@@ -107,6 +233,54 @@
       \endverb
       \verb{url}
       \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85202826259&doi=10.1145%2F3677404.3677428&partnerID=40&md5=185908bd6020c82533e4257a1884b0b5
+      \endverb
+    \endentry
+    \entry{e_m_k_adaptive_2025}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{hash=094c2a6fecd1893ce0002a598b2c0061}{%
+           family={{E. M. K}},
+           familyi={E\bibinitperiod}}}%
+        {{hash=5632ce0f440b4c5d00257e4507eaa533}{%
+           family={{T. S. V. Ramya}},
+           familyi={T\bibinitperiod}}}%
+        {{hash=4d6d91b1797aad52f98db63d197959a6}{%
+           family={{V. G}},
+           familyi={V\bibinitperiod}}}%
+        {{hash=4de3a96bf5357f7b997794d20cd8fc65}{%
+           family={{V. Ramasubramanian}},
+           familyi={V\bibinitperiod}}}%
+        {{hash=4aef03fdc246c642aa62da90ab30610c}{%
+           family={{V. Kumar Sundar}},
+           familyi={V\bibinitperiod}}}%
+        {{hash=a822f67a41d73c3b1b9c324e0bf4530d}{%
+           family={{S. Vishnu}},
+           familyi={S\bibinitperiod}}}%
+        {{hash=0d4e0fd20879596c7b142b98de1a6d73}{%
+           family={{V. Rajagopal}},
+           familyi={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{66e1fc3fc4ce0fd5dbc47b55c57cdebf}
+      \strng{fullhash}{499af13a562996579f479c820ccd4749}
+      \strng{fullhashraw}{499af13a562996579f479c820ccd4749}
+      \strng{bibnamehash}{66e1fc3fc4ce0fd5dbc47b55c57cdebf}
+      \strng{authorbibnamehash}{66e1fc3fc4ce0fd5dbc47b55c57cdebf}
+      \strng{authornamehash}{66e1fc3fc4ce0fd5dbc47b55c57cdebf}
+      \strng{authorfullhash}{499af13a562996579f479c820ccd4749}
+      \strng{authorfullhashraw}{499af13a562996579f479c820ccd4749}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2025 {IEEE} 11th {World} {Forum} on {Internet} of {Things} ({WF}-{IoT})}
+      \field{isbn}{2768-1734}
+      \field{month}{10}
+      \field{note}{Journal Abbreviation: 2025 IEEE 11th World Forum on Internet of Things (WF-IoT)}
+      \field{title}{Adaptive {Hierarchical} {Inference} {Framework} for {Enhanced} {Efficiency} and {Scalability} in {Complex} {IoT} {Decision}-{Making} {Systems}}
+      \field{year}{2025}
+      \field{pages}{1\bibrangedash 3}
+      \range{pages}{3}
+      \verb{doi}
+      \verb 10.1109/WF-IoT64238.2025.11270664
       \endverb
     \endentry
     \entry{rego::namp}{article}{}{}

@@ -15,25 +15,74 @@ communication methods.
 
 Firstly, we will analyse how the proposed frameworks make use of different system 
 layouts to achieve collaborative inference in edge and far-edge devices. We will
-classify them into two main categories, according to their system layout:
-Model Hierarchical and Model Local Partitioning.
+classify them into three main categories, according to their system layout:
+Hierarchical Inference, Model Chain Partitioning and Model Local Partitioning.
 
-% \subsection{Multi-Model Partitioning} \label{sec:se311}
+\subsection{Hierarchical Inference} \label{sec:se311}
 
-% Rather than focusing on partitioning a single monolithic model, these
-% frameworks deploy differently sized \ac{ML} models throughout several
-% hierarchies of devices according to their computational capabilities (i.e.,
-% deploying smaller models closer to the edge and bigger and more capable
-% ones closer to the cloud).
+Rather than focusing on partitioning a single monolithic model, these
+frameworks deploy differently sized \ac{ML} models throughout several
+hierarchies of devices according to their computational capabilities (i.e.,
+deploying smaller models closer to the edge and bigger and more capable
+ones closer to the cloud).
 
-% \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
+Hierarchical inference is a strategy that relies on the deployment of multiple
+models with different sizes and complexities across a hierarchy of devices. Its most
+basic form involves deploying a smaller, less complex model on the edge device,
+for example ones similar to TinyML, to perform an initial inference. The results of
+this initial inference are then analyzed by a decision module, which determines
+whether the edge device is confident enough to classify the input data. If the
+confidence threshold is not met, the data is transmitted to an edge server, where a
+large \ac{DL} model is deployed to perform a more accurate inference. 
 
-%     \item[N/A] No articles were reviewed yet in this category.
+\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
-% \end{description}
+    \item [\textcite{al-atat_case_2023}]
+    presents an implementation of the idealized hierarchical inference system, such
+    that it works as an image classification system in a real-world scenario. The
+    smaller model is made of five layers and built using TensorFlow and later 
+    quantized to TFLite. On the other hand, for the larger model, EfficientNet was
+    chosen, achieving a 95\% accuracy. Several methods for offloading decisions were
+    tested, including a simple confidence threshold and a more complex minimization 
+    of a cost function that takes into account the offload and misclassification costs.  
+    The framework achieves a significant
+    reduction in latency, energy consumption and bandwidth usage, at the cost of a 
+    small reduction in accuracy.
 
 
-\subsection{Model Hierarchical Partitioning} \label{sec:se312}
+    
+    \item [\textcite{behera_improved_2023}]
+    reinforces all the ground knowledge for Hierarchical Inference, by providing
+    a comprehensive review of the intended purpose of the strategy, such as an initial
+    layer that is more efficient in the inference task than plainly offloading it to
+    an Edge Server, in terms of energy consumption and latency and memory constraints.
+    Additionally, the work further explores methods to improve the decision module, by 
+    testing different methods, such as a model calibration with fixed threshold, to
+    face the overconfidence problem; use of classifiers after the TinyML model, that
+    take the final layer of the TinyML model to make a more informed decision; and the
+    use of classifiers before the TinyML model, that tries to predict if the sample is
+    hard to classify, and therefore should be directly offloaded to the Edge Server,
+    avoiding the energy consumption of the initial inference. In the end, the work
+    concludes that the use of a Linear Regression model after the TinyML model is the
+    best approach, considering the overall costs and F1 scores.
+
+    
+    \item[\textcite{e_m_k_adaptive_2025}] 
+    is a work that proposes a more complex hierarchical inference system, including
+    three layers of models, deployed on the end device, edge server and cloud. The
+    framework is comprised of an end layer composed of single-board computers (e.g.:
+    ESP32, STM32), an edge layer composed of more powerful devices (e.g.: Raspberry Pi,
+    Jetson Nano) and a cloud layer where models like Gemini and ChatGPT are hosted.
+    This framework is designed to be highly adaptable, allowing for a quick response
+    to simple inputs, while also being able to handle more complex inputs by offloading
+    them to more powerful devices. Although the framework exhibits a more robust
+    structure, the offloading decision module is as simple as a confidence threshold,
+    which may lead to sub-optimal performance. 
+
+\end{description}
+
+
+\subsection{Model Chain Partitioning} \label{sec:se312}
 
 The approaches reviewed in this category divide the workload through a chain of 
 devices, deploying the initial portion of the inference task to devices closer to 
@@ -184,11 +233,16 @@ of devices closer to the far-edge layer. On the other hand, some frameworks empl
 partitioning on a per-layer basis, while others rely on graph-based partitioning
 techniques to better adapt to the model's topology.
 
-Additionally, some frameworks incorporate early-exit mechanisms to further
-optimize the inference process, allowing for the termination of the task
-prematurely when a certain confidence threshold is met. This technique can
-significantly reduce both latency and energy consumption, especially in scenarios
-where high accuracy is not always required.
+Another important architecture used to achieve a more efficient inference process
+is Hierarchical Inference, which is accomplished by deploying 
+differently sized \ac{ML} models through several hierarchies of devices, allowing
+for a quick response in simple inputs where a smaller model is sufficient.
+
+Characteristics of the latter strategy can be found in the partitioning based 
+approaches, materialized in the early-exit mechanisms . Early-exits allow the load to 
+be distributed, reaching only the 
+more powerful devices when the inference task is more complex, while still reducing
+the overall latency, energy consumption and bandwidth usage. 
 
 To better standardize the following synthesis, in the Table~\ref{tab:sota_layout},
 we will recognize previously referred user, end devices and similarly constrained 
@@ -202,21 +256,27 @@ servers), will be recognized simply as edge devices.
 \hline
 \textbf{Strategy} & \textbf{System Layout} & \textbf{System Agents} & \textbf{Partitioning Method} & \textbf{Uses Early Exits} \\
 \hline
-CoFANN \cite{tran-van_cofann_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning & \ding{55} \\
+\textcite{al-atat_case_2023} & Hierarchical Inference & Far-Edge Devices, Edge Devices & N/A & \ding{51} \\
 \hline
-\textcite{chen_deep_2024} & Model Bi-Partitioning & Edge Devices & Graph Partitioning & \ding{55} \\
-\hline
-DINA \cite{t_mohammed_distributed_2020} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning & \ding{55} \\
+\textcite{behera_improved_2023} & Hierarchical Inference & Far-Edge Devices, Edge Devices & N/A & \ding{51} \\
 \hline
 CAS \cite{wang_context-aware_2021} & Model Local Partitioning & Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
-\textcite{ma_joint_2025} & Model Bi-Partitioning & Far-Edge Devices, Edge Devices & Inter-Layer Partitioning & \ding{51} \\
+\textcite{chen_deep_2024} & Model Chain Partitioning & Edge Devices & Graph Partitioning & \ding{55} \\
+\hline
+CoFANN \cite{tran-van_cofann_2025} & Model Chain Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning & \ding{55} \\
+\hline
+DINA \cite{t_mohammed_distributed_2020} & Model Chain Partitioning & Far-Edge Devices, Edge Devices & Graph Partitioning & \ding{55} \\
+\hline
+\textcite{e_m_k_adaptive_2025} & Hierarchical Inference & Far-Edge Devices, Edge Devices, Cloud & N/A & \ding{51} \\
+\hline
+\textcite{ma_joint_2025} & Model Chain Partitioning & Far-Edge Devices, Edge Devices & Inter-Layer Partitioning & \ding{51} \\
 \hline
 NAMP \cite{rego::namp} & Model Local Partitioning & Far-Edge Devices & Inter and Intra-Layer Partitioning & \ding{55} \\
 \hline
 \textcite{p_dai_joint_2025} & Model Local Partitioning & Edge Devices & Inter and Intra-Layer Partitioning & \ding{55} \\
 \hline
-\textcite{r_g_pacheco_calibration-aided_2021} & Model Bi-Partitioning & Edge Devices, Cloud & Inter-Layer Partitioning & \ding{51} \\
+\textcite{r_g_pacheco_calibration-aided_2021} & Model Chain Partitioning & Edge Devices, Cloud & Inter-Layer Partitioning & \ding{51} \\
 \hline
 \textcite{w_miao_adaptive_2020} & Model Local Partitioning & Far-Edge Devices & Graph Partitioning & \ding{55} \\
 \hline
@@ -429,11 +489,14 @@ inference tasks. Some works focus on model partitioning strategies to maximize
 the use of available resources, while others emphasize efficient scheduling and
 communication methods to minimize latency and overhead.
 
-We have reviewed frameworks according to their system layouts, distinguishing
-between Model Hierarchical and Model Local Partitioning approaches. The former
-involves dividing the inference task into two segments deployed to different network
+We have reviewed frameworks according to their system layouts. Some frameworks rely
+on Hierarchical Inference, deploying differently sized \ac{ML} models across several
+sets of devices according to their computational capabilities. Others rely on model
+partitioning techniques to distribute the inference workload across the network, such
+as the Model Chain Partitioning and Model Local Partitioning approaches. The former
+involves dividing the inference task into segments deployed to different network
 layers with different computational capabilities. The latter deploys the entire
-partitioned model is local to a cluster of devices closer to the
+partitioned model locally to a cluster of devices closer to the
 far-edge layer.
 
 Furthermore, we have analysed the network management strategies employed by
@@ -474,7 +537,29 @@ aspects.
 \endlastfoot
 
 % --- Table Content ---
-
+\textcite{al-atat_case_2023}
+&
+    Hierarchical inference system for image classification. Achieves significant
+    reductions in latency, energy consumption and bandwidth usage, at the cost of
+    a small reduction in accuracy.
+&
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Use of a cost function to make offloading decisions.
+        \item Deployment of a smaller model on the edge device and a larger model on the edge server.
+    \end{itemize}
+\\
+\hline
+\textcite{behera_improved_2023}
+&
+    Exploration of Hierarchical Inference strategy implementations, focuses
+    on improving the decision module through different methods. Concludes that
+    the use of a Linear Regression model after the TinyML model is the best approach.
+&
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Overall comparison of different methods to improve the decision module.
+    \end{itemize}
+\\
+\hline
 CAS \cite{wang_context-aware_2021} 
 & 
     Edge system responsive to network changes, allows for local collaborative
@@ -522,6 +607,17 @@ DINA \cite{t_mohammed_distributed_2020}
         \item Extension of a local inference task to a distributed edge device network.
         \item Partition and compression techniques for \ac{CNN} models.
         \item Matching theory for scheduling purposes.
+    \end{itemize}
+\\
+\hline
+\textcite{e_m_k_adaptive_2025}
+&
+    Hierarchical Inference system with three layers of models, from \acp{MCU}
+    to cloud-based models. Highly adaptable framework, although it uses a 
+    simplistic offloading decision module.
+&
+    \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+        \item Coordination between three layers of models, from \acp{MCU} to cloud-based models.
     \end{itemize}
 \\
 \hline
