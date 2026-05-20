@@ -23,7 +23,7 @@ Hierarchical Inference, Model Chain Partitioning and Model Local Partitioning.
 Rather than focusing on partitioning a single monolithic model, these
 frameworks deploy differently sized \ac{ML} models throughout several
 hierarchies of devices according to their computational capabilities (i.e.,
-deploying smaller models closer to the edge and bigger and more capable
+deploying smaller models closer to the edge, and larger and more capable
 ones closer to the cloud).
 
 Hierarchical inference is a strategy that relies on the deployment of multiple
@@ -55,8 +55,8 @@ large \ac{DL} model is deployed to perform a more accurate inference.
     reinforces all the ground knowledge for Hierarchical Inference, by providing
     a comprehensive review of the intended purpose of the strategy, such as an initial
     layer that is more efficient in the inference task than plainly offloading it to
-    an Edge Server, in terms of energy consumption and latency and memory constraints.
-    Additionally, the work further explores methods to improve the decision module, by 
+    an Edge Server, in terms of energy consumption, latency, and memory constraints.
+    Additionally, the work further explores methods to improve the decision module by 
     testing different methods, such as a model calibration with fixed threshold, to
     face the overconfidence problem; use of classifiers after the TinyML model, that
     take the final layer of the TinyML model to make a more informed decision; and the
@@ -195,7 +195,7 @@ to the cloud.
     maximize throughput.
     A combination of intra-layer and inter-layer partitioning techniques are 
     applied in the proposed approach, including layer-wise partitioning for 
-    inter-layer partitioning and channel and spatial segmentations
+    inter-layer partitioning, and channel and spatial segmentations
     for intra-layer partitioning.
     This approach reformulates the network as 
     a pipeline system, where each device is responsible for simultaneous 
@@ -395,7 +395,7 @@ to a greater extent.
     to mark the bi-partitioning point. The \ac{PPO} algorithm is used to train the 
     model, optimizing cost evolution, balancing energy consumption and inference 
     latency. This approach takes into account all relevant system information, 
-    including task characteristics, device capabilities and network conditions.
+    including task characteristics, device capabilities, and network conditions.
     These conditions include the layer's required \acp{FLOP}, computational 
     capabilities, power consumption at each device, network's channel bandwidth, 
     among other relevant factors. 
@@ -411,7 +411,7 @@ to more complex reinforcement learning algorithms.
 
 On one hand, heuristical approaches provide a straightforward and computationally
 light solution to the scheduling problem, while also being deterministic. They 
-often rely on predefined rules or simple optimization techniques to allocate 
+often rely on predefined rules or optimization techniques to allocate 
 tasks and manage communication between devices, avoiding the need for more complex
 computation as required by the reinforcement learning approaches (i.e., training).
 These methods thrive on scenarios where the network conditions are relatively 
@@ -425,7 +425,7 @@ subtask, and then using a search algorithm to find a near-optimal assignment of
 tasks to devices. This method, if not adapted, may lead to sub-optimal performance,
 as the estimations end up overlooking any particularities of the devices and the
 network, including fluctuations in performance, transmission and other factors that
-may further hinder the performance of the system. 
+may further hinder the system performance. 
 
 On the other hand, reinforcement learning approaches offer a more sophisticated
 solution by allowing the system to learn optimal scheduling policies through
