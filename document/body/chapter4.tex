@@ -1,10 +1,9 @@
 \chapter{Distributed Resource Utility \&{} Performance Testbed} \label{chap:ch4}
 
 To answer the research questions outlined in Chapter \ref{chap:intro}, 
-we developed the Distributed Resource Utility and Performance Testbed [DISRUPT] 
+we developed the \ac{DisRUPT}
 that can evaluate the performance of distributed resource management algorithms. 
-In this chapter, we will discuss the design and implementation of a distributed 
-resource utility and performance testbed using 
+In this chapter, we will discuss the design and implementation of \ac{DisRUPT} using 
 Raspberry Pi\footnote{https://www.raspberrypi.com/} devices along with a set of 
 \acp{MCU}.
 
@@ -13,8 +12,20 @@ way that we can evaluate the inference latency and the network's energy consumpt
 under different partitioning and deployment strategies. The models will be 
 partitioned using the %a
 
+\section {System Overview} \label{sec:se41}
 
-\section{Raspberry Pi Integration} \label{sec:se41}
+The \ac{DisRUPT} framework consists of two main components: the Raspberry Pi Interface
+and the Microcontroller Interface. In addition, these components can be automatically
+managed and evaluated by an Orchestrator Module, this module is optional, as the
+former two are sufficient to achieve distributed inference.
+
+Each device in the network runs its corresponding interface, which is responsible
+
+\section {Model Partitioning} % Model Partitioning Module (não NAMP)
+
+\section {MCU Interface} \label{sec:se42} % TODO \ac{MCU}?
+
+\section{Raspberry Pi Interface} \label{sec:se43}
 
 The Raspberry Pi brand offers a range of small, affordable, and versatile
 single-board computers that are widely used in various applications, including 
@@ -31,5 +42,7 @@ of inference tasks, we will develop a custom API that allows us to manage the
 Raspberry Pi's resources and execute inference tasks remotely, while also transmitting
 the intermediate results to the next device in the pipeline, monitoring the system
 along the way.
+
+
 
 
