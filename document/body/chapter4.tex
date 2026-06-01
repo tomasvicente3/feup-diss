@@ -7,42 +7,220 @@ In this chapter, we will discuss the design and implementation of \ac{DisRUPT} u
 Raspberry Pi\footnote{https://www.raspberrypi.com/} devices along with a set of 
 \acp{MCU}.
 
-This testbed will allow us to easily deploy and test various use cases, in such
-way that we can evaluate the inference latency and the network's energy consumption
-under different partitioning and deployment strategies. The models will be 
-partitioned using the %a
+This testbed will allow us to easily partition a model, deploy it and test various use 
+cases, in such way that we can evaluate the inference latency and the network's energy 
+consumption under different partitioning and deployment strategies.
 
 \section {System Overview} \label{sec:se41}
 
-The \ac{DisRUPT} framework consists of two main components: the Raspberry Pi Interface
-and the Microcontroller Interface. In addition, these components can be automatically
-managed and evaluated by an Orchestrator Module, this module is optional, as the
-former two are sufficient to achieve distributed inference.
+The \ac{DisRUPT} framework consists of four main components. Two inference interfaces: 
+the Raspberry Pi Interface and the Microcontroller Interface. In addition, the 
+mentioned components can be automatically managed and evaluated by an Orchestrator 
+Module, this module is optional, as the former two are sufficient to achieve distributed 
+inference. A Partitioning Module is also included, it is responsible for 
+partitioning the models, before the deployment stage, and it is not involved in the 
+inference process itself. %todo cortar o "this module is optional"?
 
-Each device in the network runs its corresponding interface, which is responsible
+To achieve the collaborative inference, we first use the Partitioning Module to 
+partition the \ac{DNN} models into all possible partitions that might be executed on 
+the constrained devices. Then, the
+segments and the devices that will execute them are selected according to the devices'
+capabilities and the model's requirements, and finally, the segments are deployed to the
+respective devices, that are also configured to communicate with each other effectively.
 
-\section {Model Partitioning} % Model Partitioning Module (não NAMP)
+Each device in the network runs its corresponding interface, which is responsible for
+the execution of the assigned inference subtasks, as well as the communication with
+other devices in the network to receive input data and transmit intermediate results.
 
-\section {MCU Interface} \label{sec:se42} % TODO \ac{MCU}?
+In order to evaluate the performance of the proposed framework, we automated the testing
+process through a set of scripts, resulting in the Orchestrator Module, that can manage
+the network to execute a given inference task, following the configuration defined by
+the user, and then collect the performance metrics for analysis.
 
-\section{Raspberry Pi Interface} \label{sec:se43}
+The interaction between the \ac{DisRUPT} components can be visualized in 
+Figure~\ref{fig:DisRUPT-arch}. Note that the inference interfaces can be scaled to 
+accommodate more devices in the network. 
 
-The Raspberry Pi brand offers a range of small, affordable, and versatile
-single-board computers that are widely used in various applications, including 
-education, hobby projects, and even industrial use, on a \ac{IoT} context.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{chap4/DisRUPT-arch.png}
+  \caption{\ac{DisRUPT} architecture.}
+  \label{fig:DisRUPT-arch}
+\end{figure}
 
-In our testbed, we will integrate a single Raspberry %TODO inserir modelo
-as a computing powerhouse, to allow the network to perform inference tasks with
-bigger models%, such as MobileNetV2.
-.
+\section {Model Partitioning} \label{sec:se42} % Model Partitioning Module (não NAMP)
 
-\subsection{Raspberry Pi API} \label{sec:se411}
+Before the network configuration phase, we need to partition the \ac{DNN} models into
+segments that are fit for the constrained devices in our network. To achieve this, we
+will use the \ac{NAMP}'s model surgery module, that allows us to easily partition
+\acp{MLP} and \acp{CNN} into said segments.~\cite{rego::namp}
+
+\ac{NAMP}'s Partitioning Module takes a \ac{DNN} as input and generates a set with all
+the possible partitions of the model, breaking it layer by layer. Some \ac{FC}
+layers can also be partitioned, this allows for wide \ac{FC} layers to be executed in 
+a collaborative way between multiple devices.
+
+To further minimize the memory requirements of the submodels, they are quantized to 8
+bits, meaning that the weights and activations are represented using 8 bits instead of 
+32 bits, which significantly reduces the memory footprint of the submodels, making them
+further suitable for deployment on constrained devices. 
+This is achieved by using [...] %todo ask the quantization tools
+and take the $.tflite$ format.
+
+
+\section {MCU Interface} \label{sec:se43}
+
+To enable the execution of inference tasks on the \acp{MCU}, we made use of
+Embserve, %TODO cite embserve?, also embserve vs Embserve vs EmbServe
+a runtime application built on top of Zephyr\footnote{https://www.zephyrproject.org/}, 
+that allows us to deploy and execute services on constrained devices.
+
+Embserve provides an agnostic interface to the underlying hardware, allowing us to
+easily deploy the inference submodels to the \acp{MCU} as services, and also to manage
+the communication routes between the devices in the network.
+
+To deploy the inference submodels, we need to compile an Embserve service: a C
+application that dictates the behavior of the device when that service is active,
+specially the inference execution upon receiving input data. The service is then
+uploaded to the device, and after defining the incoming and outgoing communication 
+routes, the device is ready to partake in the inference network.
+
+
+\section{Raspberry Pi Interface} \label{sec:se44}
+
+% The Raspberry Pi brand offers a range of small, affordable, and versatile
+% single-board computers that are widely used in various applications, including 
+% education, hobby projects, and even industrial use, on a \ac{IoT} context.
+
+% \subsection{Raspberry Pi API} \label{sec:se411}
+
 To facilitate the interaction with the Raspberry Pi and to enable the deployment
-of inference tasks, we will develop a custom API that allows us to manage the
+of inference tasks, we have developed a custom API that allows us to manage the
 Raspberry Pi's resources and execute inference tasks remotely, while also transmitting
 the intermediate results to the next device in the pipeline, monitoring the system
 along the way.
 
+This was achieved by creating a Python runtime application on the Raspberry Pi. The
+application creates a server that listens for incoming requests to allow the Raspberry
+Pi to partake in the inference network, from reporting its status, having configurable
+outgoing communication routes, and executing the assigned inference tasks.
+
+The server creates a set of objects that interact with each other to allow for the 
+integration of the device into the inference network, like we can see in 
+Figure~\ref{fig:RPi-arch}.
+
+\begin{figure}[H]
+  \centering
+  % \includegraphics[width=0.6\textwidth]{chap4/RPi-arch.png}
+  \caption{Raspberry Pi Interface architecture.}
+  \label{fig:RPi-arch}
+\end{figure}
+
+\section{Deployment Planning}\label{sec:se45}
+
+To reduce the impact of constrained devices' limitations on the performance of the
+inference network, we need to carefully plan the deployment and the communication
+between the devices during the inference process. This involves selecting the most
+suitable partitioning and deployment strategies, as well as optimizing the 
+communication protocols to minimize latency and energy consumption. 
+
+In this section, we will discuss the strategies and techniques that can be employed
+to achieve the aforementioned goals, and how they can be implemented in the 
+\ac{DisRUPT} framework.
+
+\subsection{Device Communication}\label{sec:se451}
+
+% CoAP protocol usage
+% Minimized data per transmission
+% Communication only in setup stages and between segments 
+
+Besides each device being responsible for its assigned inference subtask, they also
+need to communicate with each other to bring meaning to the inference process, which 
+takes a toll on the network's performance.
+In order to ease the communication overhead between the devices, we have taken several
+measures such as the messaging protocol selection, the minimization of the data
+transmitted, and the reduction of the communication stages during the inference process.
+
+The CoAP messaging protocol was selected for the communication between the devices, as 
+it is a lightweight protocol designed for constrained devices and networks, making it
+well-suited for our use case. 
+%TODO cite coap, elaborate and insert figure
+
+To further minimize the communication overhead during inference, we have separated the
+communication into two main stages: the setup stage and the inference stage. During the
+setup stage, we transmit all the necessary information to allow the device to perform
+the inference task and to communicate with the other devices in the network. On the
+other hand, during the inference stage, we restrain the communication to only the
+necessary information for the inference process, which is the intermediate results
+between the segments.
 
 
+\subsection{Performance Metrics}\label{sec:se452}
+
+% Inference latency
+% Network Energy consumption - measurement methods
+% Resource utilization (memory and CPU usage)?
+
+% Why these metrics indicators
+% How to measure them in the testbed
+% Future Estimate - allow for heuristics
+
+One of the goals of this work is also to evaluate the performance of the inference
+network under different partitioning and deployment strategies. With \ac{DisRUPT} 
+performance can be measured through the inference latency and the network's energy
+consumption, which are crucial indicators of the efficiency and effectiveness of the
+inference process.
+
+The Orchestrator Module is responsible for collecting these performance metrics during
+the inference process. In particular, the inference latency is measured by recording
+the timestamp of a given inference task and matching it with the timestamp of the final
+result using a unique identifier assigned to each task. 
+
+The energy consumption of the network is measured using external power meters connected
+to the devices, allowing us to monitor the energy usage during the inference process and
+reporting it to another component responsible for collecting and analyzing the data, as
+to not interfere with the devices' performance. This data is then sent to the 
+Orchestrator Module for further analysis and comparison between different strategies.
+
+All this data allows us to estimate the performance of the inference network under
+different configurations, and to identify the most effective strategies for deploying
+\ac{DNN} models on constrained devices. This data can also be used to develop several 
+heuristics for future deployments, allowing us to match the user's needs with the most
+suitable partitioning and deployment strategies, to achieve minimal latency, energy
+consumption, or a balance between the two. 
+
+
+\subsection{Partition and Deployment Strategies}\label{sec:se453}
+
+% Where to partition the model
+% Which devices to select for the execution of each segment
+Another important aspect of the deployment planning is the selection of the
+partitioning and deployment strategies. The way we partition the model and
+assign the segments to the devices can have a significant impact on the performance
+of the inference network.
+
+To further minimize the communication load and therefore the latency in the inference
+task, we can choose to partition the \ac{DNN} in such way that the partition points
+are the layers that produce the smallest intermediate results. This way, the amount
+of necessary data to be transmitted between the devices is reduced. %todo redundante?
+
+When it comes to the deployment strategy, the most relevant aspect to consider is the
+\ac{DNN} architecture, as some layers are more computationally intensive than others.
+Even if the layers in \ac{CNN} models and \ac{MLP} models are based on a series of 
+matrix multiplications, the variations in the dimensions of the matrices and the
+number of parameters can lead to significant differences in the computational load of
+each layer.
+
+In order to achieve the best performance, we need to carefully select the devices
+that are more appropriate for the execution of each segment, considering their
+computational capabilities and the memory constraints. 
+
+Nonetheless, the relationship between the layers' computational load and the devices' 
+capabilities is not always straightforward, so for this work, we will create several
+scenarios with different deployment strategies, to evaluate their performance and to
+identify the most effective ones for different use cases and requirements. 
+
+% For instance, convolutional layers in \ac{CNN} models can be more
+% computationally intensive than fully connected layers in \ac{MLP} models, due to the
+% smaller?? 
 
