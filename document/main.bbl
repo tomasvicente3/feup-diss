@@ -326,6 +326,77 @@
       \verb 10.1145/3722567.3727844
       \endverb
     \endentry
+    \entry{gulati_tdmil_2024}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=c10539a5eaebb47e182eae676a25a6b0}{%
+           family={Gulati},
+           familyi={G\bibinitperiod},
+           given={Mayank},
+           giveni={M\bibinitperiod}}}%
+        {{hash=9abc8e683c94d013e320aeff06abb172}{%
+           family={Zandberg},
+           familyi={Z\bibinitperiod},
+           given={Koen},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5af763f05f2d7e4f664357ffe73f2184}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Zhaolan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=0a94b59d38737e5b484c53c87d81ebb2}{%
+           family={Wunder},
+           familyi={W\bibinitperiod},
+           given={Gerhard},
+           giveni={G\bibinitperiod}}}%
+        {{hash=96f6b73b472f269f00b9e2b45b140e1e}{%
+           family={Adjih},
+           familyi={A\bibinitperiod},
+           given={Cedric},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2521c9ee5da181af238890d7a86bf219}{%
+           family={Baccelli},
+           familyi={B\bibinitperiod},
+           given={Emmanuel},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{f587439ac7004cff3a5aa6cd08ab37ee}
+      \strng{fullhash}{cdc1d0ef9074f6aa731f79cc4ee423dc}
+      \strng{fullhashraw}{cdc1d0ef9074f6aa731f79cc4ee423dc}
+      \strng{bibnamehash}{f587439ac7004cff3a5aa6cd08ab37ee}
+      \strng{authorbibnamehash}{f587439ac7004cff3a5aa6cd08ab37ee}
+      \strng{authornamehash}{f587439ac7004cff3a5aa6cd08ab37ee}
+      \strng{authorfullhash}{cdc1d0ef9074f6aa731f79cc4ee423dc}
+      \strng{authorfullhashraw}{cdc1d0ef9074f6aa731f79cc4ee423dc}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{2169-3536}
+      \field{journaltitle}{IEEE Access}
+      \field{shorttitle}{{TDMiL}}
+      \field{title}{{TDMiL}: {Tiny} {Distributed} {Machine} {Learning} for {Microcontroller}-{Based} {Interconnected} {Devices}}
+      \field{urlday}{29}
+      \field{urlmonth}{12}
+      \field{urlyear}{2025}
+      \field{volume}{12}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \field{pages}{167810\bibrangedash 167826}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1109/ACCESS.2024.3492921
+      \endverb
+      \verb{urlraw}
+      \verb https://ieeexplore.ieee.org/document/10745482/
+      \endverb
+      \verb{url}
+      \verb https://ieeexplore.ieee.org/document/10745482/
+      \endverb
+      \keyw{diss-finished,diss-include,diss-sota,diss-revisit}
+    \endentry
     \entry{doyu::tinymlaas}{article}{}{}
       \name{author}{3}{}{%
         {{hash=a48dad15d6ea91cbffaa3554b62ada8c}{%
@@ -647,6 +718,55 @@
       \range{pages}{15}
       \verb{doi}
       \verb 10.1109/MCAS.2020.3005467
+      \endverb
+    \endentry
+    \entry{coap-rfc7252}{report}{}{}
+      \name{author}{3}{}{%
+        {{hash=ed98cd7a76bd516b3da09ae8534c32a0}{%
+           family={Shelby},
+           familyi={S\bibinitperiod},
+           given={Zach},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=9df875ea8cdea272d47bed2f6b8c68df}{%
+           family={Hartke},
+           familyi={H\bibinitperiod},
+           given={Klaus},
+           giveni={K\bibinitperiod}}}%
+        {{hash=7fe2f98d5101608d1a28002bcb59c6d0}{%
+           family={Bormann},
+           familyi={B\bibinitperiod},
+           given={Carsten},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {RFC Editor}%
+      }
+      \strng{namehash}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{fullhash}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{fullhashraw}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{bibnamehash}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{authorbibnamehash}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{authornamehash}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{authorfullhash}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \strng{authorfullhashraw}{d3b77bed71a92bc7ba4b5c06c8a42240}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2070-1721}
+      \field{month}{6}
+      \field{number}{7252}
+      \field{title}{The Constrained Application Protocol ({CoAP})}
+      \field{type}{RFC}
+      \field{year}{2014}
+      \verb{doi}
+      \verb 10.17487/RFC7252
+      \endverb
+      \verb{urlraw}
+      \verb https://www.rfc-editor.org/info/rfc7252
+      \endverb
+      \verb{url}
+      \verb https://www.rfc-editor.org/info/rfc7252
       \endverb
     \endentry
     \entry{teerapittayannon::ddnn}{article}{}{}

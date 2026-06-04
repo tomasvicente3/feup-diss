@@ -63,10 +63,11 @@ To further minimize the memory requirements of the submodels, they are quantized
 bits, meaning that the weights and activations are represented using 8 bits instead of 
 32 bits, which significantly reduces the memory footprint of the submodels, making them
 further suitable for deployment on constrained devices. 
-This is achieved by using [...] %todo ask the quantization tools
-and take the $.tflite$ format.
-
-% tf -> criar conjunto de submodelos -> n *.tf -> (quantizar e converter) -> n * .tflite
+This is achieved by using TensorFlow's available tools, firstly the set of all possible
+submodels is generated in the standard TensorFlow format, creating a submodel for each
+beginning and ending layer combination, and then each submodel is quantized to 8 bits,
+if flagged to do so, using post-training quantization techniques, and, finally, take 
+the $.tflite$ format.
 
 
 \section {MCU Interface} \label{sec:se43}
@@ -189,10 +190,34 @@ In order to ease the communication overhead between the devices, we have taken s
 measures such as the messaging protocol selection, the minimization of the data
 transmitted, and the reduction of the communication stages during the inference process.
 
-The CoAP messaging protocol was selected for the communication between the devices, as 
-it is a lightweight protocol designed for constrained devices and networks, making it
-well-suited for our use case. 
-%TODO cite coap, elaborate and insert figure
+The CoAP web transfer protocol~\cite{coap-rfc7252} was selected for the communication
+between the devices, as it is a lightweight protocol, as presented in the 
+Figure~\ref{fig:coap-arch}, designed for constrained devices
+and networks, making it well-suited for our use case. Specifically, CoAP operates over
+UDP rather than TCP, drastically reducing connection handshake overhead, transmission
+delays, and power consumption. To fit low-power payload limits, it uses a compact
+4-byte binary header that reduces fragmentation. Its dual-layer design adds reliability
+via confirmable messages while preserving REST semantics (GET, POST, PUT, DELETE).
+
+% Specifically, CoAP operates over 
+% UDP rather than TCP, drastically reducing connection handshake overhead, transmission 
+% delays, and power consumption. To adapt to the strict payload limitations of low-power 
+% wireless networks and minimize packet fragmentation, it replaces verbose, text-based 
+% HTTP headers with a highly compact 4-byte fixed binary header. Furthermore, CoAP 
+% introduces a dual-layer architecture that separates the messaging layer (handling 
+% reliability through confirmable messages) from the request/response layer. This allows 
+% it to preserve standard RESTful semantics (GET, POST, PUT, DELETE) for easy 
+% interoperability with existing web infrastructure, while augmenting communication with 
+% native IoT optimizations. These include built-in resource discovery via 
+% /.well-known/core, IP multicast support, and an asynchronous Observe mechanism that 
+% enables push-based data streaming without the energy waste of continuous client polling.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{chap4/Communication-Protocol-Landscape-for-IoT.png}
+  \caption{Communication protocol landscape for \ac{IoT} (taken from \textcite{gulati_tdmil_2024}).}
+  \label{fig:coap-arch}
+\end{figure}
 
 To further minimize the communication overhead during inference, we have separated the
 communication into two main stages: the setup stage and the inference stage. During the
