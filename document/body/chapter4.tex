@@ -15,11 +15,10 @@ consumption under different partitioning and deployment strategies.
 
 The \ac{DisRUPT} framework consists of four main components. Two inference interfaces: 
 the Raspberry Pi Interface and the Microcontroller Interface. In addition, the 
-mentioned components can be automatically managed and evaluated by an Orchestrator 
-Module, this module is optional, as the former two are sufficient to achieve distributed 
-inference. A Partitioning Module is also included, it is responsible for 
-partitioning the models, before the deployment stage, and it is not involved in the 
-inference process itself. %todo cortar o "this module is optional"?
+mentioned components can be automatically managed and the network's performance 
+can be evaluated by the Orchestrator Module. 
+A Partitioning Module is also included, it is responsible for partitioning the models, 
+before the deployment stage, and it is not involved in the inference process itself.
 
 To achieve the collaborative inference, we first use the Partitioning Module to 
 partition the \ac{DNN} models into all possible partitions that might be executed on 
@@ -48,7 +47,7 @@ accommodate more devices in the network.
   \label{fig:DisRUPT-arch}
 \end{figure}
 
-\section {Model Partitioning} \label{sec:se42} % Model Partitioning Module (não NAMP)
+\section {Model Partitioning} \label{sec:se42}
 
 Before the network configuration phase, we need to partition the \ac{DNN} models into
 segments that are fit for the constrained devices in our network. To achieve this, we
@@ -67,19 +66,23 @@ further suitable for deployment on constrained devices.
 This is achieved by using [...] %todo ask the quantization tools
 and take the $.tflite$ format.
 
+% tf -> criar conjunto de submodelos -> n *.tf -> (quantizar e converter) -> n * .tflite
+
 
 \section {MCU Interface} \label{sec:se43}
 
 To enable the execution of inference tasks on the \acp{MCU}, we made use of
-Embserve, %TODO cite embserve?, also embserve vs Embserve vs EmbServe
+embServe\cite{embserve_oliveira_2023},
 a runtime application built on top of Zephyr\footnote{https://www.zephyrproject.org/}, 
-that allows us to deploy and execute services on constrained devices.
+that allows us to deploy and execute services on constrained devices. This choice was 
+motivated by our State of the Art analysis, where the NAMP framework adopts embServe 
+for MCU deployment. %todo justificar melhor a origem do embServe?
 
-Embserve provides an agnostic interface to the underlying hardware, allowing us to
+This framework provides an agnostic interface to the underlying hardware, allowing us to
 easily deploy the inference submodels to the \acp{MCU} as services, and also to manage
 the communication routes between the devices in the network.
 
-To deploy the inference submodels, we need to compile an Embserve service: a C
+To deploy the inference submodels, we need to compile an embServe service: a C
 application that dictates the behavior of the device when that service is active,
 specially the inference execution upon receiving input data. The service is then
 uploaded to the device, and after defining the incoming and outgoing communication 
@@ -103,7 +106,10 @@ along the way.
 This was achieved by creating a Python runtime application on the Raspberry Pi. The
 application creates a server that listens for incoming requests to allow the Raspberry
 Pi to partake in the inference network, from reporting its status, having configurable
-outgoing communication routes, and executing the assigned inference tasks.
+outgoing communication routes, and executing the assigned inference tasks. It should
+be noted that the Python language does not hinder the performance of the inference tasks,
+as the used TFLite runtime is implemented in C, limiting the Python overhead to the
+communication parsing and the server management.
 
 The server creates a set of objects that interact with each other to allow for the 
 integration of the device into the inference network, like we can see in 
@@ -111,10 +117,52 @@ Figure~\ref{fig:RPi-arch}.
 
 \begin{figure}[H]
   \centering
-  % \includegraphics[width=0.6\textwidth]{chap4/RPi-arch.png}
+  \includegraphics[width=0.9\textwidth]{chap4/RPi-API-arch.png}
+  %todo - rever tamanho da figura - aumentar texto no draw.io?
   \caption{Raspberry Pi Interface architecture.}
   \label{fig:RPi-arch}
 \end{figure}
+
+\begin{table}
+  \centering
+  \small
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|>{\centering\arraybackslash}m{1.8cm}|X|}
+    \hline
+    \textbf{Component} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    \texttt{main.py} & Entrypoint & Initializes all components, and runs the asyncio event loop. \\
+    \hline
+    Config & File & Stores runtime parameters including the network address, CoAP port, active model name, and destination routing. \\
+    \hline
+    CoAP Server & Object & Listens for incoming CoAP requests over UDP and dispatches them to the appropriate endpoint handler. \\
+    \hline
+    Model Manager & Object & Validates, stores, and activates \texttt{.tflite} model files, persisting the active model selection across restarts. \\
+    \hline
+    Inference Engine & Object & Manages the TFLite Interpreter lifecycle, pre-processes input tensors, invokes the model, and returns the output. \\
+    \hline
+    Result Sender & Object & Forwards inference results to the configured destination node via CoAP. \\
+    \hline
+    TFLite Interpreter & Object & Singleton instance of the TFLite runtime that allocates the tensor arena and executes the loaded model. \\
+    \hline
+    \texttt{GET /status} & Endpoint & Returns the currently active model and the configured destination address. \\
+    \hline
+    \texttt{PUT /model} & Endpoint & Accepts new \texttt{.tflite} files encoded in base64 to store or activates existing models.\\
+    \hline
+    \texttt{PUT /infer} & Endpoint & Accepts an input tensor and an inference identifier, runs inference, and forwards the result to the destination. \\
+    \hline
+    \texttt{PUT /destination} & Endpoint & Sets the IP address, port, and path of the next node in the inference pipeline. \\
+    \hline
+    \texttt{models/} & File directory & Contains all deployed \texttt{.tflite} model files and the state file tracking the active model. \\
+    \hline
+    systemd service & System service & Manages the runtime process, ensuring automatic startup on boot and restart on failure. \\
+    \hline
+  \end{tabularx}
+  \vspace{2mm}
+  \caption{Raspberry Pi Interface components.}
+  \label{tab:RPi-components}
+\end{table}
 
 \section{Deployment Planning}\label{sec:se45}
 

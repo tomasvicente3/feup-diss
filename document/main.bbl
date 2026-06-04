@@ -476,6 +476,46 @@
       \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-105003660775&doi=10.3390%2Felectronics14081647&partnerID=40&md5=ed4bff9eb6c599eafb4de99fdce789c6
       \endverb
     \endentry
+    \entry{embserve_oliveira_2023}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=2c2dec828c01976178e1af995ae27ccb}{%
+           family={Oliveira},
+           familyi={O\bibinitperiod},
+           given={João},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3779291f0a69ef03ac90cf846b708254}{%
+           family={Sousa},
+           familyi={S\bibinitperiod},
+           given={Filipe},
+           giveni={F\bibinitperiod}}}%
+        {{hash=4e08ad0f12fcc1bd60ddd68c08f76504}{%
+           family={Almeida},
+           familyi={A\bibinitperiod},
+           given={Luís},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{fullhash}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{fullhashraw}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{bibnamehash}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{authorbibnamehash}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{authornamehash}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{authorfullhash}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \strng{authorfullhashraw}{b0beb1a9687cf2528d8c3d67790f6a4c}
+      \field{sortinit}{O}
+      \field{sortinithash}{2cd7140a07aea5341f9e2771efe90aae}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 IEEE 19th International Conference on Factory Communication Systems (WFCS)}
+      \field{title}{embServe: Embedded Services for Constrained Devices}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 8}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/WFCS57264.2023.10144123
+      \endverb
+      \keyw{Performance evaluation;Protocols;Codes;Runtime;Quality of service;Service-oriented architecture;Time factors;Internet of Things;Constrained Devices;Software-Oriented Architecture;Edge Computing;Far-Edge}
+    \endentry
     \entry{p_dai_joint_2025}{article}{}{}
       \name{author}{6}{}{%
         {{hash=990f5eeec7a87f207e7054f74e56a124}{%
