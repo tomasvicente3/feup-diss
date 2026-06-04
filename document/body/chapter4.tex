@@ -267,6 +267,7 @@ consumption, or a balance between the two.
 
 % Where to partition the model
 % Which devices to select for the execution of each segment
+
 Another important aspect of the deployment planning is the selection of the
 partitioning and deployment strategies. The way we partition the model and
 assign the segments to the devices can have a significant impact on the performance
@@ -274,8 +275,8 @@ of the inference network.
 
 To further minimize the communication load and therefore the latency in the inference
 task, we can choose to partition the \ac{DNN} in such way that the partition points
-are the layers that produce the smallest intermediate results. This way, the amount
-of necessary data to be transmitted between the devices is reduced. %todo redundante?
+are the layers that produce the smallest intermediate results. This way, directly
+reducing the amount of data that needs to be transmitted between the devices.
 
 When it comes to the deployment strategy, the most relevant aspect to consider is the
 \ac{DNN} architecture, as some layers are more computationally intensive than others.
