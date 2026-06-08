@@ -225,7 +225,11 @@ setup stage, we transmit all the necessary information to allow the device to pe
 the inference task and to communicate with the other devices in the network. On the
 other hand, during the inference stage, we restrain the communication to only the
 necessary information for the inference process, which is the intermediate results
-between the segments.
+between the segments. For inter-device communication, we encode payloads in
+\texttt{CBOR}~\cite{cbor-rfc8949}, a compact binary serialization format.
+Compared with text-based \texttt{JSON}, \texttt{CBOR} reduces message size and
+parsing cost. We use \texttt{JSON} for setup and debugging (when messages are
+inspected by tools or developers), but avoid it during production inference.
 
 
 \subsection{Performance Metrics}\label{sec:se452}
@@ -274,7 +278,7 @@ assign the segments to the devices can have a significant impact on the performa
 of the inference network.
 
 To further minimize the communication load and therefore the latency in the inference
-task, we can choose to partition the \ac{DNN} in such way that the partition points
+task, we can choose to partition the \ac{DNN} in such way that the partition points 
 are the layers that produce the smallest intermediate results. This way, directly
 reducing the amount of data that needs to be transmitted between the devices.
 

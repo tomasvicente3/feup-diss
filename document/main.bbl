@@ -177,6 +177,50 @@
       \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-85198962078&doi=10.1145%2F3570361.3615732&partnerID=40&md5=c75369a88f81dece6877d2790f9b9d65
       \endverb
     \endentry
+    \entry{cbor-rfc8949}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=7fe2f98d5101608d1a28002bcb59c6d0}{%
+           family={Bormann},
+           familyi={B\bibinitperiod},
+           given={Carsten},
+           giveni={C\bibinitperiod}}}%
+        {{hash=20339076a46a7815881ab552eb232220}{%
+           family={Hoffman},
+           familyi={H\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {RFC Editor}%
+      }
+      \strng{namehash}{8f099d99efb64167c38b8205136e29f7}
+      \strng{fullhash}{8f099d99efb64167c38b8205136e29f7}
+      \strng{fullhashraw}{8f099d99efb64167c38b8205136e29f7}
+      \strng{bibnamehash}{8f099d99efb64167c38b8205136e29f7}
+      \strng{authorbibnamehash}{8f099d99efb64167c38b8205136e29f7}
+      \strng{authornamehash}{8f099d99efb64167c38b8205136e29f7}
+      \strng{authorfullhash}{8f099d99efb64167c38b8205136e29f7}
+      \strng{authorfullhashraw}{8f099d99efb64167c38b8205136e29f7}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2070-1721}
+      \field{month}{12}
+      \field{number}{8949}
+      \field{title}{Concise Binary Object Representation ({CBOR})}
+      \field{type}{RFC}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.17487/RFC8949
+      \endverb
+      \verb{urlraw}
+      \verb https://www.rfc-editor.org/info/rfc8949
+      \endverb
+      \verb{url}
+      \verb https://www.rfc-editor.org/info/rfc8949
+      \endverb
+    \endentry
     \entry{chen_deep_2024}{inproceedings}{}{}
       \name{author}{4}{}{%
         {{hash=80489b75bcde120c9f335f4995d789c2}{%
