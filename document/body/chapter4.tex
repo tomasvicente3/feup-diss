@@ -226,9 +226,9 @@ the inference task and to communicate with the other devices in the network. On 
 other hand, during the inference stage, we restrain the communication to only the
 necessary information for the inference process, which is the intermediate results
 between the segments. For inter-device communication, we encode payloads in
-\texttt{CBOR}~\cite{cbor-rfc8949}, a compact binary serialization format.
-Compared with text-based \texttt{JSON}, \texttt{CBOR} reduces message size and
-parsing cost. We use \texttt{JSON} for setup and debugging (when messages are
+\ac{CBOR}~\cite{cbor-rfc8949}, a compact binary serialization format.
+Compared with text-based \ac{JSON}, \ac{CBOR} reduces message size and
+parsing cost. We use \ac{JSON} for setup and debugging (when messages are
 inspected by tools or developers), but avoid it during production inference.
 
 
