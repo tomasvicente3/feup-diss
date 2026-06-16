@@ -1,23 +1,94 @@
 \chapter {Experiments and Results} \label{chap:ch5}
 
-
+In this chapter, we present the core segment of this work. Firstly, the experimental
+setup is described, detailing the network topology, the energy measurement process, 
+and the models used for validation of our framework as well as to gather the data for
+the analysis of the results. Then, the performance metrics of the different partitioning
+strategies and distribution configurations are presented and analyzed, with a focus on
+the trade-offs between latency and energy consumption, aiming to profile the
+impacts of these strategies on the collected metrics and understand the potential
+benefits of collaborative inference in edge and far-edge devices.
 
 \section {Experimental Setup} \label{sec:se51}
 
-% In our testbed, we will integrate a single Raspberry %TODO inserir modelo
-% as a computing powerhouse, to allow the network to perform inference tasks with
-% bigger models%, such as MobileNetV2.
-% . 
+In a effort to validate our framework and also to understand the impact of
+partitioning and distributing the inference process across multiple devices, we
+conducted a series of experiments. The experiments were designed to evaluate the
+performance, in terms of latency and energy consumption, of different partitioning
+strategies and distribution configurations across a set of models with varying
+complexity and architecture.
 
 \subsection {Network Topology} \label{sec:se511}
 
+To put the framework into practice, we set up a local network consisting of five %TODO quantidade de Argons
+Particle Argon\footnote{https://docs.particle.io/argon/} microcontrollers and a
+single Raspberry Pi 3 Model B\footnote{https://www.raspberrypi.com/products/raspberry-pi-3-model-b/},
+all connected via Wi-Fi. This network is controlled and monitored by an external
+computer, which is responsible for orchestrating the experiments, collecting data, 
+and processing results.
+
+% - Why just one Raspberry Pi? - One to allow bigger models, no more so it doesnt gravitate into only rpi usage
+The choice of using a single Raspberry Pi was motivated by the need to have a more
+powerful device to handle the inference tasks of more complex models, expanding the
+range of models our framework can support and evaluate. At the same time, we wanted
+to maintain a balance and mitigate the bias toward a Raspberry Pi-centric execution
+for all experiments. This network structure allows us to better understand the 
+trade-offs and possible benefits of having \acp{MCU} in the network, 
+and take advantage of their potential in other real-life heterogeneous networks.
+
 \subsection {Energy Measurement} \label{sec:se512}
+
+In addition, we connected each device to % TODO ?
+that reports the energy consumption of the device in real time. This setup allows us
+to profile the consumption during the inference process. By averaging out the idle
+consumption, we can isolate the energy consumed by the inference process itself,
+composed by the energy consumed by the computation and the communication processes.
 
 \section {Models} \label{sec:se52}
 
-\subsection {Name Model 1} \label{sec:se521}
+To validate our framework, we selected a set of models that are representative of the
+edge computing domain, with varying levels of complexity and architecture. These models
+try to cover a wide range of applications and use cases, from simple image classification
+tasks to wake-word detection and autoencoding. All this while keeping a focus on
+model size for the constraints of the devices on the edge and far-edge. The models we
+selected, partitioned, distributed across the network, and had the performance evaluated
+will be described in the following sections. 
+
+\subsection {All-CNN-C} \label{sec:se521}
+
+The first model we present is the All-CNN-C\cite{all-cnn-c-springenberg2015} model,
+an image classification model selected for its architectural simplicity and efficiency.
+This decision was primarly motivated by the fact that it is a simple \ac{CNN} with
+the peculiarity of being composed entirely of convolutional layers, replacing the
+traditionally used pooling and fully connected layers with strided convolutions. 
+This makes it a good candidate, as the layer types are similar, making the computational
+load uniform along the network, and, therefore, allowing for
+a simple operation to distribute the different partitions. %TODO "simple operation"?
 
 \subsubsection {Model Architecture} \label{sec:se5211}
+
+The All-CNN-C architecture is characterized by its uniform application of 
+convolutional layers. Unlike standard architectures that reduce spatial resolution 
+via max-pooling, All-CNN-C utilizes strided convolutions to downsample the input. 
+
+The network comprises [insert number] convolutional layers, %TODO
+followed by a global average pooling layer. Specifically, the architecture applies
+a series of $3 \times 3$ convolutions, with specific layers utilizing a stride of 2
+to reduce spatial dimensions. The network concludes with a global average pooling 
+layer that maps the resulting feature maps into a single vector, which is then 
+passed to a softmax layer for classification, as represented in
+Figure \ref{fig:all-cnn-c-architecture}. 
+
+This design effectively eliminates the parameter-heavy fully connected layers, 
+significantly reducing the model's memory footprint while maintaining competitive 
+accuracy on benchmarks such as CIFAR-10.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.7\textwidth]{images/all-cnn-c-architecture.png}
+    \caption{All-CNN-C architecture.}
+    \label{fig:all-cnn-c-architecture}
+\end{figure}
 
 \subsubsection {Model Partitioning} \label{sec:se5212}
 
@@ -25,9 +96,59 @@
 
 \subsubsection {Result Analysis} \label{sec:se5214}
 
-\subsection {Name Model 2} \label{sec:se522}
+\subsection {DS-CNN} \label{sec:se522}
+
+The second architecture used to evaluate the performance of different heuristics is the 
+\ac{DS-CNN}\cite{ds-cnn-zhang2018helloedge} model, which is a highly optimized, 
+lightweight convolutional neural network designed for efficient keyword spotting and
+localized inference on resource-constrained devices, such as edge devices. 
+This model shifts away from traditional computationally heavy 3D convolutions by 
+uncoupling spatial and channel-wise feature extraction, 
+which significantly reduce the number of parameters and computational cost in each
+convolutional layer. This makes \ac{DS-CNN} an exemplary model for TinyML, as it can be 
+flexibly partitioned and distributed across a given network of devices, without
+having its evaluation performance compromised.
+
 
 \subsubsection {Model Architecture} \label{sec:se5221}
+
+The model configuration utilized in our evaluation corresponds to the \ac{DS-CNN} (Large) 
+variant delineated in the core \textit{Hello Edge}\cite{ds-cnn-zhang2018helloedge} 
+framework, with a width multiplier of $\alpha=0.75$, to further help us fit the model to the
+constraints of far-edge devices.  
+
+The network architecture, represented in Figure \ref{fig:ds-cnn-architecture}, 
+initiates with a standard 2D convolutional layer, 
+which acts as a primary feature processor over the input time-frequency spectrogram 
+data. This baseline 
+layer prepares the multi-channel feature representation 
+by mapping local correlations across a predefined set of feature channels.
+
+Following the initial standard convolution, the core feature extraction pipeline is 
+composed of five sequential depthwise separable convolutional blocks. Each block 
+factorizes the standard convolution mechanism into two isolated operations:
+\begin{itemize}
+    \item \textbf{Depthwise Convolution:} Applies a dedicated 2D spatial filter per 
+    individual input channel independently to capture localized temporal and spectral 
+    features.
+    \item \textbf{Pointwise Convolution:} Implements a $1 \times 1$ convolution across 
+    the full channel depth, linearly combining the separate outputs of the depthwise 
+    phase and projecting them into a brand new channel space.
+\end{itemize}
+
+Every independent convolutional operation within these blocks is structurally bound to 
+a subsequent Batch Normalization layer followed by a Rectified Linear Unit (ReLU) 
+activation function, ensuring robust optimization stability during the forward pass. 
+The network is concluded by a global average pooling layer that compresses the dimensional 
+spatial map into a singular feature vector, which is subsequently routed through a fully 
+connected softmax layer to compute the localized classification probabilities.
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{images/ds-cnn-architecture.png}
+    \caption{DS-CNN architecture.}
+    \label{fig:ds-cnn-architecture}
+\end{figure}
 
 \subsubsection {Model Partitioning} \label{sec:se5222}
 
@@ -35,15 +156,86 @@
 
 \subsubsection {Result Analysis} \label{sec:se5224}
 
-\subsection {Name Model 3} \label{sec:se523}
+\subsection {MobileNetV1} \label{sec:se523} 
+
+The third and most complex model we present is the MobileNetV1\cite{mobilenet-howard2017},
+a highly popular architecture in the mobile and edge computing domain, designed for
+image classification and object detection, among other computer vision tasks, while
+maintaining a low computational footprint. This model poses a significant challenge, by
+its sheer size and complexity, but also presents itself as an opportunity to collect 
+data closer to a real-life scenario, as it is a model that is widely used and 
+integrated in a variety of applications and frameworks.
 
 \subsubsection {Model Architecture} \label{sec:se5231}
+
+MobileNetV1 is built upon the concept of depthwise separable convolutions, as 
+previously described in section \ref{sec:se5221}. However, it introduces a more complex,
+modular structure, utilizing <number> layers. %TODO
+Unlike the static blocks in \ac{DS-CNN}, MobileNetV1 employs a highly efficient 
+architecture that facilitates hyperparameter tuning through width and resolution 
+multipliers, allowing the model to be scaled according to specific latency or accuracy 
+constraints. 
+
+The architecture relies on several blocks, where a depthwise convolution  % bottleneck block?
+is followed by a pointwise convolution, both bundled with Batch Normalization and ReLU6 
+activations. This structure provides a significantly deeper feature extraction path, 
+making it an ideal candidate for evaluating how our partitioning framework handles long, 
+complex computational chains across heterogeneous edge devices.
+
+In our evaluation, we utilize the MobileNetV1 with an width multiplier of $\alpha=0.25$, an
+input resolution of $128 \times 128 \times 3$, and a final output layer of 100 classes.
+This approach, illustrated in Figure \ref{fig:mobilenet-architecture}, was chosen to 
+maintain a balance between model complexity and the constraints of our far-edge devices, 
+while still providing a realistic scenario for tests.
+
+\begin{figure}
+    \centering
+    % \includegraphics[width=0.7\textwidth]{images/mobilenet-architecture.png}
+    \caption{MobileNetV1 architecture.}
+    \label{fig:mobilenet-architecture}
+\end{figure}
 
 \subsubsection {Model Partitioning} \label{sec:se5232}
 
 \subsubsection {Partition Distributions and Metrics} \label{sec:se5233}
 
 \subsubsection {Result Analysis} \label{sec:se5234}
+
+\subsection {Autoencoder MLP} \label{sec:se524} % TODO nome concreto?/cite
+
+The last model we present is a simple \ac{MLP} autoencoder, fit for anomaly detection.
+This model was selected for its almost archetypal architecture, which allows us to 
+evaluate the performance of the partitioning and distribution strategies in the most
+simple scenario, that is often used in more complex models as a building block.
+
+\subsubsection {Model Architecture} \label{sec:se5241}
+
+The autoencoder model is a \ac{MLP} composed of a simple feedforward architecture, with 
+an input layer, a set of hidden layers, and an output layer. 
+
+The initial layers are designed to
+process the data and extract relevant features, encoding them into a lower-dimensional
+representation. The subsequent layers then decode this representation back into the
+original input space, aiming to reconstruct the input data as accurately as possible,
+as represented in Figure \ref{fig:autoencoder-architecture}. 
+
+The model is trained to minimize the reconstruction error, and by training the model on
+normal data, as it learns to reconstruct the normal patterns, it can be used to detect 
+anomalies by identifying instances where the reconstruction error exceeds a certain
+threshold.
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{images/autoencoder-architecture.png}
+    \caption{Autoencoder MLP architecture.}
+    \label{fig:autoencoder-architecture}
+\end{figure}
+
+\subsubsection {Model Partitioning} \label{sec:se5242}
+
+\subsubsection {Partition Distributions and Metrics} \label{sec:se5243}
+
+\subsubsection {Result Analysis} \label{sec:se5244}
 
 % partition - ilustrar cortes com netron.app
 

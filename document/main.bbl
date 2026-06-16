@@ -484,6 +484,71 @@
       \verb 10.1109/VLSIDAT52063.2021.9427352
       \endverb
     \endentry
+    \entry{mobilenet-howard2017}{article}{}{}
+      \name{author}{8}{}{%
+        {{hash=0cedb03f907400fc304fdfaa1f7e2085}{%
+           family={Howard},
+           familyi={H\bibinitperiod},
+           given={Andrew\bibnamedelima G.},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=d767e8e4d733bcf728bcdf2c193462f7}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Menglong},
+           giveni={M\bibinitperiod}}}%
+        {{hash=31960f03389184b7f052f5b197cc9fdf}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod}}}%
+        {{hash=6cbb997a11c6922af719c32863261918}{%
+           family={Kalenichenko},
+           familyi={K\bibinitperiod},
+           given={Dmitry},
+           giveni={D\bibinitperiod}}}%
+        {{hash=47ad65c82b1de7d642988df185d7d8ea}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Weijun},
+           giveni={W\bibinitperiod}}}%
+        {{hash=7dcb9c6d4d4251a7e32b502d03c9354b}{%
+           family={Weyand},
+           familyi={W\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=8f221f2afb0b5a3d95b3e97101924922}{%
+           family={Andreetto},
+           familyi={A\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c707ec5b5997dc408a14a34a8380166c}{%
+           family={Adam},
+           familyi={A\bibinitperiod},
+           given={Hartwig},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{e1fc6cab9b6009340e110518e53868c4}
+      \strng{fullhash}{cffcf38c642164887a370768f5701b8e}
+      \strng{fullhashraw}{cffcf38c642164887a370768f5701b8e}
+      \strng{bibnamehash}{e1fc6cab9b6009340e110518e53868c4}
+      \strng{authorbibnamehash}{e1fc6cab9b6009340e110518e53868c4}
+      \strng{authornamehash}{e1fc6cab9b6009340e110518e53868c4}
+      \strng{authorfullhash}{cffcf38c642164887a370768f5701b8e}
+      \strng{authorfullhashraw}{cffcf38c642164887a370768f5701b8e}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1704.04861}
+      \field{title}{{MobileNets}: Efficient Convolutional Neural Networks for Mobile Vision Applications}
+      \field{year}{2017}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1704.04861
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1704.04861
+      \endverb
+    \endentry
     \entry{Kitchenham2009}{article}{}{}
       \name{author}{6}{}{%
         {{hash=a6a5d6592277cbb0df47f0006e20abf5}{%
@@ -813,6 +878,51 @@
       \verb https://www.rfc-editor.org/info/rfc7252
       \endverb
     \endentry
+    \entry{all-cnn-c-springenberg2015}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=d52162d1c5497f647e12128f74d58da4}{%
+           family={Springenberg},
+           familyi={S\bibinitperiod},
+           given={Jost\bibnamedelima Tobias},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=72308762399d6ab62bbd9391c64c7bfd}{%
+           family={Dosovitskiy},
+           familyi={D\bibinitperiod},
+           given={Alexey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=b452a32296958371572717940f900884}{%
+           family={Brox},
+           familyi={B\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=68b220d4f198482a4deb1b6d84caffed}{%
+           family={Riedmiller},
+           familyi={R\bibinitperiod},
+           given={Martin\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{fullhash}{e1febc816c503b677dd64d393b081083}
+      \strng{fullhashraw}{e1febc816c503b677dd64d393b081083}
+      \strng{bibnamehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{authorbibnamehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{authornamehash}{8e774f5cb5e44357cb13922f43399da5}
+      \strng{authorfullhash}{e1febc816c503b677dd64d393b081083}
+      \strng{authorfullhashraw}{e1febc816c503b677dd64d393b081083}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{3rd International Conference on Learning Representations (ICLR), Workshop Track}
+      \field{title}{Striving for Simplicity: {T}he All Convolutional Net}
+      \field{year}{2015}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1412.6806
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1412.6806
+      \endverb
+    \endentry
     \entry{teerapittayannon::ddnn}{article}{}{}
       \name{author}{2}{}{%
         {{hash=8f8a57a234f4c475af1d4c6987e439b1}{%
@@ -1044,6 +1154,51 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.1145/3478073
+      \endverb
+    \endentry
+    \entry{ds-cnn-zhang2018helloedge}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=3a60f856e311e8ae22cc8b0ff5ba55ce}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yundong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ea225cb36de210662c60f58c0071544a}{%
+           family={Suda},
+           familyi={S\bibinitperiod},
+           given={Naveen},
+           giveni={N\bibinitperiod}}}%
+        {{hash=81b2174143a798afef5c3a489efeb71e}{%
+           family={Lai},
+           familyi={L\bibinitperiod},
+           given={Liangzhen},
+           giveni={L\bibinitperiod}}}%
+        {{hash=e9719c90fd2fa1ca4ab4c18990a778c7}{%
+           family={Chandra},
+           familyi={C\bibinitperiod},
+           given={Vikas},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{7f56ee69d423843f13950bd66e25664c}
+      \strng{fullhash}{fd8a46ddef0c651b52d8cf71c27089af}
+      \strng{fullhashraw}{fd8a46ddef0c651b52d8cf71c27089af}
+      \strng{bibnamehash}{7f56ee69d423843f13950bd66e25664c}
+      \strng{authorbibnamehash}{7f56ee69d423843f13950bd66e25664c}
+      \strng{authornamehash}{7f56ee69d423843f13950bd66e25664c}
+      \strng{authorfullhash}{fd8a46ddef0c651b52d8cf71c27089af}
+      \strng{authorfullhashraw}{fd8a46ddef0c651b52d8cf71c27089af}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1711.07128}
+      \field{title}{Hello Edge: Keyword Spotting on Microcontrollers}
+      \field{year}{2018}
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1711.07128
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1711.07128
       \endverb
     \endentry
   \enddatalist
