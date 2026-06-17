@@ -1,6 +1,6 @@
 %% FEUP THESIS template for `feupteses.sty`
 %%
-%% Read the documentation inline and at the included `README` file
+%% Read the documentation inline and in the included `README` file
 %%
 
 \documentclass[11pt,a4paper]{report}
@@ -32,6 +32,7 @@
 %% mem     Master's degree in Mechanical Engineering
 %% mesw    Master's degree in Software Engineering
 %% mci     Master's degree in Information Science
+%% mia     Master's degree in Master Artificial Intelligence
 
 %% In general, the dissertation goes through several stages
 %% 
@@ -57,15 +58,15 @@
 
 %% For each of the next, comment previous line
 
-%% PT
-%\usepackage[portugues]{feupteses}
-
 %% MEIC working version
 %\usepackage[meic]{feupteses}
 %% MEIC jury version
 %\usepackage[meic,juri]{feupteses}
 %% MEIC final PDF version
 %\usepackage[meic,final]{feupteses}
+
+%% PT
+%\usepackage[meic,portugues]{feupteses}
 
 %% Packages loaded by feupteses.sty:
 %% url, setspace, makeidx, graphicx, xcolor, etc (see README)
@@ -97,7 +98,7 @@
 \thesisdate{June 15, 2026}
 
 %% Comment next line copyright text if not used
-\copyrightnotice{Tomás Alexandre Soeiro Vicente, 2026}
+\copyrightnotice{Tomás Alexandre Soeiro Vicente, \the\year{}}
 %\copyrightnotice{$<$Nome do Autor, 2008$>$}
 
 \supervisor{Supervisor}{Prof.\ Luís Almeida}
@@ -110,8 +111,8 @@
 %% Comment committee stuff for final version, if not used
 \committeetext{Approved in oral examination by the committee:}
 \committeemember{President}{Prof.\ $<$Name of the Professor$>$}
-\committeemember{Referee}{Prof.\ $<$Name of the Professor$>$}
-\committeemember{Referee}{Prof.\ $<$Name of the Professor$>$}
+\committeemember{Examiner}{Prof.\ $<$Name of the Professor$>$}
+\committeemember{Member}{Prof.\ $<$Name of the Professor$>$}
 
 %% PT
 %\committeetext{Aprovado em provas públicas pelo Júri:}
@@ -137,7 +138,8 @@
   % \include{frontmatter/abstract} % the abstract
   % \include{frontmatter/un-sdg}   % United Nations Sustainable Development Goals (SGD)
   \include{frontmatter/acknows}  % the acknowledgments
-  \include{frontmatter/quote}    % initial quotation if needed
+  \include{frontmatter/ethics}   % the declaration of honour
+%  \include{frontmatter/quote}    % initial quotation if needed
   \cleardoublepage
   %% PT: Uncomment next line for PT
   %\renewcommand{\contentsname}{Índice}
@@ -165,7 +167,7 @@
 \include{body/chapter5}
 \include{body/chapter6}
 %% Uncomment to see a listing example for option meic (meic.cfg loaded)
-% \include{body/chapter45-listing}
+%\include{body/chapter45-listing}
 
 %%----------------------------------------
 %% Final materials

@@ -9,7 +9,7 @@
 	"features": {
 		"ghcr.io/prulloac/devcontainer-features/latex:1": {
 			"scheme": "small",
-			"packages": "texdoc,collection-latexrecommended,collection-fontsrecommended,courier-scaled,nextpage,enumitem,epigraph,cleveref,biblatex,multirow,acronym,bigfoot,xstring,siunitx,csquotes,biblatex-chicago,biber,xltabular,ltablex"
+			"packages": "texdoc,collection-latexrecommended,collection-fontsrecommended,courier-scaled,nextpage,enumitem,epigraph,cleveref,biblatex,xurl,multirow,acronym,bigfoot,xstring,siunitx,csquotes,biblatex-chicago,biber,xltabular,ltablex"
 		}
 	}
 }
