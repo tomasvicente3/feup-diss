@@ -277,10 +277,11 @@ partitioning and deployment strategies. The way we partition the model and
 assign the segments to the devices can have a significant impact on the performance
 of the inference network.
 
-To further minimize the communication load and therefore the latency in the inference
-task, we can choose to partition the \ac{DNN} in such way that the partition points 
-are the layers that produce the smallest intermediate results. This way, directly
-reducing the amount of data that needs to be transmitted between the devices.
+% % TODO inserir descrição de cada estratégia/cenário
+% To further minimize the communication load and therefore the latency in the inference
+% task, we can choose to partition the \ac{DNN} in such way that the partition points 
+% are the layers that produce the smallest intermediate results. This way, directly
+% reducing the amount of data that needs to be transmitted between the devices.
 
 When it comes to the deployment strategy, the most relevant aspect to consider is the
 \ac{DNN} architecture, as some layers are more computationally intensive than others.
@@ -296,9 +297,75 @@ computational capabilities and the memory constraints.
 Nonetheless, the relationship between the layers' computational load and the devices' 
 capabilities is not always straightforward, so for this work, we will create several
 scenarios with different deployment strategies, to evaluate their performance and to
-identify the most effective ones for different use cases and requirements. 
+identify the most effective ones for different use cases and requirements, as presented
+in Table~\ref{tab:deployment-strategies}, while always considering the constraints
+of the devices in the network.
 
-% For instance, convolutional layers in \ac{CNN} models can be more
-% computationally intensive than fully connected layers in \ac{MLP} models, due to the
-% smaller?? 
-
+\begin{table}[H]
+  \centering
+  \small
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|X|X|}
+    \hline
+    \textbf{Strategy} & \textbf{Description} & \textbf{Reasoning}\\
+    \hline
+    Edge Only 
+        & 
+      The full model is executed on just the edge device. 
+        &
+      This can be used as a baseline for comparison with other strategies. 
+      \\
+    \hline
+    Edge First 
+        &
+      The model is partitioned to execute the first segments on the edge device, and
+        the remaining segments on the \ac{MCU} devices. 
+        &
+      For some models, the first layers are more memory intensive, and therefore more
+        suitable for execution on the edge device, while the remaining layers can be
+        executed on the \ac{MCU} devices. 
+      \\
+    \hline
+    Edge Last 
+        & 
+      The model is partitioned to execute the last segments on the edge device, and
+        the first segments on the \ac{MCU} devices. 
+        &
+      For some models, the last layers are more computationally intensive, and
+        therefore more suitable for execution on the edge device, while the first layers
+        can be executed on the \ac{MCU} devices.
+      \\
+    \hline
+    Min-Cut 
+      & 
+      The model is partitioned to minimize the communication cost between devices,
+        by selecting partition points where the Intermediate Tensors are smallest. 
+      &
+      This strategy aims to reduce the transmittion cost between devices, thus 
+      shortening the overhead of collaborative inference.  
+      \\
+    \hline
+    Load-Balanced 
+      & 
+      Segments are distributed across devices to balance the computational load, taking 
+      into account both the layers' computational load and the devices' capabilities. 
+      &
+      For this strategy, we balanced the computational load across devices, to avoid
+      bottlenecks and to maximize the utilization of the available resources.
+      \\
+    \hline
+    Eager
+      & 
+      Partition points are selected to fit as much of the model as possible onto each
+      \ac{MCU} device.
+      &
+      This strategy aims to maximize the utilization of each device's resources,
+      potentially reducing the number of devices needed for inference.
+      \\
+    \hline
+  \end{tabularx}
+  \vspace{2mm}
+  \caption{Deployment strategies for model partitioning and segment assignment.}
+  \label{tab:deployment-strategies}
+\end{table}

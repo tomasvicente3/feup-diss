@@ -77,7 +77,8 @@ a series of $3 \times 3$ convolutions, with specific layers utilizing a stride o
 to reduce spatial dimensions. The network concludes with a global average pooling 
 layer that maps the resulting feature maps into a single vector, which is then 
 passed to a softmax layer for classification, as represented in
-Figure \ref{fig:all-cnn-c-architecture}. 
+Figure \ref{fig:all-cnn-c-architecture}. It should be noted that, to further compact
+the model to fit the devices constraints, we used a width multiplier of $\alpha=0.25$.
 
 This design effectively eliminates the parameter-heavy fully connected layers, 
 significantly reducing the model's memory footprint while maintaining competitive 
@@ -90,11 +91,9 @@ accuracy on benchmarks such as CIFAR-10.
     \label{fig:all-cnn-c-architecture}
 \end{figure}
 
-\subsubsection {Model Partitioning} \label{sec:se5212}
+\subsubsection {Partitioning Strategies} \label{sec:se5212}
 
-\subsubsection {Partition Distributions and Metrics} \label{sec:se5213}
-
-\subsubsection {Result Analysis} \label{sec:se5214}
+\subsubsection {Result Analysis} \label{sec:se5213}
 
 \subsection {DS-CNN} \label{sec:se522}
 
@@ -150,11 +149,10 @@ connected softmax layer to compute the localized classification probabilities.
     \label{fig:ds-cnn-architecture}
 \end{figure}
 
-\subsubsection {Model Partitioning} \label{sec:se5222}
 
-\subsubsection {Partition Distributions and Metrics} \label{sec:se5223}
+\subsubsection {Partitioning Strategies} \label{sec:se5222}
 
-\subsubsection {Result Analysis} \label{sec:se5224}
+\subsubsection {Result Analysis} \label{sec:se5223}
 
 \subsection {MobileNetV1} \label{sec:se523} 
 
@@ -195,11 +193,10 @@ while still providing a realistic scenario for tests.
     \label{fig:mobilenet-architecture}
 \end{figure}
 
-\subsubsection {Model Partitioning} \label{sec:se5232}
 
-\subsubsection {Partition Distributions and Metrics} \label{sec:se5233}
+\subsubsection {Partitioning Strategies} \label{sec:se5232}
 
-\subsubsection {Result Analysis} \label{sec:se5234}
+\subsubsection {Result Analysis} \label{sec:se5233}
 
 \subsection {Autoencoder MLP} \label{sec:se524} % TODO nome concreto?/cite
 
@@ -231,11 +228,10 @@ threshold.
     \label{fig:autoencoder-architecture}
 \end{figure}
 
-\subsubsection {Model Partitioning} \label{sec:se5242}
+\subsubsection {Partitioning Strategies} \label{sec:se5242}
 
-\subsubsection {Partition Distributions and Metrics} \label{sec:se5243}
 
-\subsubsection {Result Analysis} \label{sec:se5244}
+\subsubsection {Result Analysis} \label{sec:se5243}
 
 % partition - ilustrar cortes com netron.app
 
