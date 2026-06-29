@@ -8,7 +8,7 @@
 \vspace{\fill}
 \begin{flushleft}
 {\Large \textbf{Palavras-chave}:} 
-Ambiente Far-Edge \(\bullet\) 
+Ambiente de Borda \(\bullet\) 
 Inferência Distribuída \(\bullet\)
 Internet das Coisas \(\bullet\)
 TinyML 
@@ -29,16 +29,20 @@ increased latency, higher energy consumption, and potential privacy concerns.
 To address these issues, edge computing has emerged as a promising solution, bringing
 computational resources closer to where they are needed, in particular, the TinyML
 paradigm, which provides a possibility to run \ac{AI} models on everyday devices.
-Nonetheless, the limited computational and memory resources of these devices pose a 
-challenge for running complex \ac{DNN} models in the edge environment. This work 
-explores the potential of distributed inference, %TODO "allied to TinyML"?  
+Nonetheless, far-edge devices, such as microcontrollers, although
+highly memory and computationally constrained, are widely used in the \ac{IoT} ecosystem,
+equipped with sensors and actuators, and are capable of running small tasks while
+consuming very low power. Faced with such devices, the possibility of running
+\ac{DNN} seems questionable, but with the right strategies, it is possible to leverage
+the capabilities of these devices and orchestrate them to achieve this task.
+This work explores the potential of distributed inference,
 where a \ac{DNN} model is partitioned and distributed across multiple
 resource-constrained devices to achieve high performant inference in the edge 
-environment. We present \ac{DisRUPT}, a distributed inference testbed, that allows to
-evaluate different partitioning strategies and deployment scenarios for \ac{DNN} models
-incorporating far-edge and edge devices together. Additionally, we present a set of
-strategies applied on different \ac{DNN} architectures, and evaluate their effects on
-inference latency and the network's energy consumption. %TODO adicionar resultados
+environment. We present \ac{DisRUPT}, a distributed inference testbed, that enables the
+evaluation of different partitioning strategies and deployment scenarios for \ac{DNN} 
+models incorporating far-edge and edge devices together. Additionally, we present a set 
+of strategies applied on different \ac{DNN} architectures, and evaluate their effects 
+on inference latency and the network's energy consumption. %TODO adicionar resultados
 
 \vspace{\fill}
 \begin{flushleft}

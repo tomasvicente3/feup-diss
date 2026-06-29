@@ -5,7 +5,9 @@ we developed the \ac{DisRUPT}
 that can evaluate the performance of distributed resource management algorithms. 
 In this chapter, we will discuss the design and implementation of \ac{DisRUPT} using 
 Raspberry Pi\footnote{https://www.raspberrypi.com/} devices along with a set of 
-\acp{MCU}.
+\acp{MCU}. The Raspberry Pi devices serve as our reference for edge devices, as
+they are more computationally capable than the \acp{MCU}, while keeping a low power
+consumption, opposed to laptop computers, that could also be used as edge devices. 
 
 This testbed will allow us to easily partition a model, deploy it and test various use 
 cases, in such way that we can evaluate the inference latency and the network's energy 
@@ -14,27 +16,36 @@ consumption under different partitioning and deployment strategies.
 \section {System Overview} \label{sec:se41}
 
 The \ac{DisRUPT} framework consists of four main components. Two inference interfaces: 
-the Raspberry Pi Interface and the Microcontroller Interface. In addition, the 
-mentioned components can be automatically managed and the network's performance 
-can be evaluated by the Orchestrator Module. 
-A Partitioning Module is also included, it is responsible for partitioning the models, 
+the Raspberry Pi Interface and the Microcontroller Interface. These
+mentioned components are automatically managed and the network performance 
+is evaluated by the Orchestrator Module. 
+A Partitioning Module is also included, which is responsible for partitioning the models, 
 before the deployment stage, and it is not involved in the inference process itself.
 
 To achieve the collaborative inference, we first use the Partitioning Module to 
 partition the \ac{DNN} models into all possible partitions that might be executed on 
 the constrained devices. Then, the
-segments and the devices that will execute them are selected according to the devices'
-capabilities and the model's requirements, and finally, the segments are deployed to the
+segments and devices that will execute them are selected according to the devices
+capabilities and the model requirements. Finally, the segments are deployed to the
 respective devices, that are also configured to communicate with each other effectively.
 
 Each device in the network runs its corresponding interface, which is responsible for
-the execution of the assigned inference subtasks, as well as the communication with
-other devices in the network to receive input data and transmit intermediate results.
+the execution of the assigned inference subtasks. Furthermore, it allows 
+communication with other devices in the network, providing mechanisms to receive input 
+data and transmit the results of the subtask.
 
-In order to evaluate the performance of the proposed framework, we automated the testing
-process through a set of scripts, resulting in the Orchestrator Module, that can manage
-the network to execute a given inference task, following the configuration defined by
-the user, and then collect the performance metrics for analysis.
+% In order to evaluate the performance of the proposed framework, we automated the testing
+% process through a set of scripts, resulting in the Orchestrator Module, that can manage
+% the network to execute a given inference task, following the configuration defined by
+% the user, and then collect the performance metrics for analysis.
+
+In order to automate the deployment of the task to the network, we developed a set of
+scripts that not only create routes that chain together the inference pipeline, but also
+upload the partitioned submodels to the devices and feed the network with the input data.
+This results in the Orchestrator Module, that is given the network configuration and
+input data by the developer, through a configuration file. The Orchestrator Module
+is also capable of collecting the performance metrics during the inference process,
+for later analysis and comparison.  
 
 The interaction between the \ac{DisRUPT} components can be visualized in 
 Figure~\ref{fig:DisRUPT-arch}. Note that the inference interfaces can be scaled to 
@@ -51,41 +62,40 @@ accommodate more devices in the network.
 
 Before the network configuration phase, we need to partition the \ac{DNN} models into
 segments that are fit for the constrained devices in our network. To achieve this, we
-will use the \ac{NAMP}'s model surgery module, that allows us to easily partition
-\acp{MLP} and \acp{CNN} into said segments.~\cite{rego::namp}
+will use the \ac{NAMP}'s model surgery module, that allows us to easily partition and
+optimize \acp{MLP} and \acp{CNN} into said segments.~\cite{rego::namp}
 
-\ac{NAMP}'s Partitioning Module takes a \ac{DNN} as input and generates a set with all
-the possible partitions of the model, breaking it layer by layer. Some \ac{FC}
-layers can also be partitioned, this allows for wide \ac{FC} layers to be executed in 
-a collaborative way between multiple devices.
+\ac{NAMP}'s Partitioning Module takes a \ac{DNN} as input and generates a set of all 
+possible model partitions by breaking it down layer by layer. Additionally, certain 
+\ac{FC} layers can be partitioned to allow wide layers to be executed collaboratively 
+across multiple devices. This module also enables model quantization to optimize the 
+resulting segments, reducing their memory footprint for deployment on 
+resource-constrained devices.
 
-To further minimize the memory requirements of the submodels, they are quantized to 8
-bits, meaning that the weights and activations are represented using 8 bits instead of 
-32 bits, which significantly reduces the memory footprint of the submodels, making them
-further suitable for deployment on constrained devices. 
-This is achieved by using TensorFlow's available tools, firstly the set of all possible
-submodels is generated in the standard TensorFlow format, creating a submodel for each
-beginning and ending layer combination, and then each submodel is quantized to 8 bits,
-if flagged to do so, using post-training quantization techniques, and, finally, take 
-the $.tflite$ format.
+To achieve this, the weights and activations of the submodels are quantized from 
+32-bit to 8-bit representations using TensorFlow's post-training quantization tools. 
+First, the module generates all possible submodels in the standard TensorFlow format 
+for every combination of beginning and ending layers. If flagged for optimization, 
+each submodel is then quantized to 8 bits and ultimately converted into the $.tflite$ 
+format.
 
 
 \section {MCU Interface} \label{sec:se43}
 
-To enable the execution of inference tasks on the \acp{MCU}, we made use of
+To enable the execution of inference tasks on \acp{MCU}, we utilized 
 embServe\cite{embserve_oliveira_2023},
-a runtime application built on top of Zephyr\footnote{https://www.zephyrproject.org/}, 
-that allows us to deploy and execute services on constrained devices. This choice was 
-motivated by our State of the Art analysis, where the NAMP framework adopts embServe 
-for MCU deployment. %todo justificar melhor a origem do embServe?
+a runtime application built on top of the Zephyr RTOS~\footnote{https://www.zephyrproject.org/}, 
+which enables the deployment and execute services on constrained devices. 
+This choice was motivated by our State of the Art analysis, as it fills the gap by 
+supporting model deployment on far-edge devices with minimal overhead.
 
 This framework provides an agnostic interface to the underlying hardware, allowing us to
-easily deploy the inference submodels to the \acp{MCU} as services, and also to manage
+easily deploy the partitioned submodels to the \acp{MCU} as services, and also to manage
 the communication routes between the devices in the network.
 
-To deploy the inference submodels, we need to compile an embServe service: a C
+To deploy the partitioned submodels, we need to compile an embServe service: a C
 application that dictates the behavior of the device when that service is active,
-specially the inference execution upon receiving input data. The service is then
+in this case, the inference execution upon receiving input data. The service is then
 uploaded to the device, and after defining the incoming and outgoing communication 
 routes, the device is ready to partake in the inference network.
 
@@ -112,9 +122,9 @@ be noted that the Python language does not hinder the performance of the inferen
 as the used TFLite runtime is implemented in C, limiting the Python overhead to the
 communication parsing and the server management.
 
-The server creates a set of objects that interact with each other to allow for the 
-integration of the device into the inference network, like we can see in 
-Figure~\ref{fig:RPi-arch}.
+The server creates a set of objects, as described in Table~\ref{tab:RPi-components}, 
+that interact with each other to allow for the integration of the device into the 
+inference network, like we can see in Figure~\ref{fig:RPi-arch}.
 
 \begin{figure}[H]
   \centering
@@ -168,7 +178,7 @@ Figure~\ref{fig:RPi-arch}.
 \section{Deployment Planning}\label{sec:se45}
 
 To reduce the impact of constrained devices' limitations on the performance of the
-inference network, we need to carefully plan the deployment and the communication
+distributed inference, we need to carefully plan the deployment and the communication
 between the devices during the inference process. This involves selecting the most
 suitable partitioning and deployment strategies, as well as optimizing the 
 communication protocols to minimize latency and energy consumption. 
@@ -185,7 +195,7 @@ to achieve the aforementioned goals, and how they can be implemented in the
 
 Besides each device being responsible for its assigned inference subtask, they also
 need to communicate with each other to bring meaning to the inference process, which 
-takes a toll on the network's performance.
+takes a toll on the network performance.
 In order to ease the communication overhead between the devices, we have taken several
 measures such as the messaging protocol selection, the minimization of the data
 transmitted, and the reduction of the communication stages during the inference process.
@@ -222,9 +232,11 @@ via confirmable messages while preserving REST semantics (GET, POST, PUT, DELETE
 To further minimize the communication overhead during inference, we have separated the
 communication into two main stages: the setup stage and the inference stage. During the
 setup stage, we transmit all the necessary information to allow the device to perform
-the inference task and to communicate with the other devices in the network. On the
-other hand, during the inference stage, we restrain the communication to only the
-necessary information for the inference process, which is the intermediate results
+the inference task and to communicate with the other devices in the network, such as
+the routes used to manifest the inference pipeline, as well as the services containing
+the inference model logic. 
+On the other hand, during the inference stage, we restrain the communication to only 
+the necessary information for the inference process, which is the intermediate results
 between the segments. For inter-device communication, we encode payloads in
 \ac{CBOR}~\cite{cbor-rfc8949}, a compact binary serialization format.
 Compared with text-based \ac{JSON}, \ac{CBOR} reduces message size and
@@ -242,22 +254,22 @@ inspected by tools or developers), but avoid it during production inference.
 % How to measure them in the testbed
 % Future Estimate - allow for heuristics
 
-One of the goals of this work is also to evaluate the performance of the inference
+One of the goals of this work is to evaluate the performance of the inference
 network under different partitioning and deployment strategies. With \ac{DisRUPT} 
-performance can be measured through the inference latency and the network's energy
-consumption, which are crucial indicators of the efficiency and effectiveness of the
-inference process.
+performance can be measured through the inference latency and the network energy
+consumption, which are crucial indicators of the inference process efficiency and 
+effectiveness.
 
 The Orchestrator Module is responsible for collecting these performance metrics during
 the inference process. In particular, the inference latency is measured by recording
 the timestamp of a given inference task and matching it with the timestamp of the final
-result using a unique identifier assigned to each task. 
+result using a unique identifier assigned to each distributed inference task. 
 
-The energy consumption of the network is measured using external power meters connected
-to the devices, allowing us to monitor the energy usage during the inference process and
-reporting it to another component responsible for collecting and analyzing the data, as
-to not interfere with the devices' performance. This data is then sent to the 
-Orchestrator Module for further analysis and comparison between different strategies.
+The energy consumption of the network is measured using an external power profiler 
+connected to the devices, allowing us to monitor the energy usage during the inference 
+process and reporting it to the Orchestrator Module, as
+to not interfere with the devices' performance. This data is stored for further 
+analysis and comparison between different strategies.
 
 All this data allows us to estimate the performance of the inference network under
 different configurations, and to identify the most effective strategies for deploying
@@ -277,7 +289,6 @@ partitioning and deployment strategies. The way we partition the model and
 assign the segments to the devices can have a significant impact on the performance
 of the inference network.
 
-% % TODO inserir descrição de cada estratégia/cenário
 % To further minimize the communication load and therefore the latency in the inference
 % task, we can choose to partition the \ac{DNN} in such way that the partition points 
 % are the layers that produce the smallest intermediate results. This way, directly
@@ -347,12 +358,12 @@ of the devices in the network.
       \\
     \hline
     Load-Balanced 
-      & 
+      & %TODO - rever explicação
       Segments are distributed across devices to balance the computational load, taking 
       into account both the layers' computational load and the devices' capabilities. 
       &
-      For this strategy, we balanced the computational load across devices, to avoid
-      bottlenecks and to maximize the utilization of the available resources.
+      For this strategy, we balanced the memory footprint of each segment across devices, 
+      to avoid bottlenecks and to maximize the utilization of the available resources.
       \\
     \hline
     Eager
