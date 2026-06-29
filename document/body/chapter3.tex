@@ -38,7 +38,7 @@ large \ac{DL} model is deployed to perform a more accurate inference.
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
     \item [\textcite{al-atat_case_2023}]
-    presents an implementation of the idealized hierarchical inference system, such
+    present an implementation of the idealized hierarchical inference system, such
     that it works as an image classification system in a real-world scenario. The
     smaller model is made of five layers and built using TensorFlow and later 
     quantized to TFLite. On the other hand, for the larger model, EfficientNet was
@@ -52,7 +52,7 @@ large \ac{DL} model is deployed to perform a more accurate inference.
 
     
     \item [\textcite{behera_improved_2023}]
-    reinforces all the ground knowledge for Hierarchical Inference, by providing
+    reinforce all the ground knowledge for Hierarchical Inference, by providing
     a comprehensive review of the intended purpose of the strategy, such as an initial
     layer that is more efficient in the inference task than plainly offloading it to
     an Edge Server, in terms of energy consumption, latency, and memory constraints.
@@ -68,7 +68,7 @@ large \ac{DL} model is deployed to perform a more accurate inference.
 
     
     \item[\textcite{e_m_k_adaptive_2025}] 
-    is a work that proposes a more complex hierarchical inference system, including
+    propose a more complex hierarchical inference system, including
     three layers of models, deployed on the end device, edge server and cloud. The
     framework consists of an end layer composed of single-board computers (e.g.:
     ESP32, STM32), an edge layer composed of more powerful devices (e.g.: Raspberry Pi,
@@ -121,7 +121,7 @@ that is further away from the end-user device has more computational capabilitie
     
 
     \item [\textcite{chen_deep_2024}]
-    is a framework that maximizes the user \ac{QoS}, compared to traditional 
+    present a framework that maximizes the user \ac{QoS}, compared to traditional 
     frameworks, as it allows for the user to specify their 
     priorities, such as inference latency and energy consumption. This is achieved 
     by modelling the collaborative inference problem as a \ac{MDP} and applying a
@@ -132,7 +132,7 @@ that is further away from the end-user device has more computational capabilitie
     account to optimize the inference process.
 
     \item [\textcite{ma_joint_2025}]
-    proposes a framework that focuses on minimizing energy consumption, making use
+    propose a framework that focuses on minimizing energy consumption, making use
     of multiple early-exits along the inference process, when confidence thresholds 
     are met. The framework partitions each model instance into two segments, depending
     on the end device's capabilities. The initial segment is deployed on the end 
@@ -144,7 +144,7 @@ that is further away from the end-user device has more computational capabilitie
     latency, given the model is confident enough.
 
     \item [\textcite{r_g_pacheco_calibration-aided_2021}]
-    develops a framework that exploits the early-exit mechanism to reduce
+    develop a framework that exploits the early-exit mechanism to reduce
     the inference delay in the inference process. This is achieved by adding
     a classifier branch at an intermediate layer of the \ac{DNN} model, allowing
     the model to make a prediction with a given confidence at that point. 
@@ -189,7 +189,7 @@ to the cloud.
     flexibility, as it only supports chain-like \ac{DNN} models. 
 
     \item[\textcite{p_dai_joint_2025}] 
-    presents a solution to the collaborative inference problem that optimizes
+    present a solution to the collaborative inference problem that optimizes
     device placement and model partitioning, accounting for particularities of 
     heterogeneous edge resources and \ac{CNN} models, with the objective to
     maximize throughput.
@@ -205,7 +205,7 @@ to the cloud.
     or parallel relationships, that affect the assigned model segment.
 
     \item[\textcite{w_miao_adaptive_2020}]
-    explores an approach based on splitting and deploying a given \ac{DNN} model 
+    explore an approach based on splitting and deploying a given \ac{DNN} model 
     with a \ac{DAG} topology to several devices, exploiting parallelizable 
     segments (branches), based on model data and computation time estimations 
     for each layer and branch processing.
@@ -231,7 +231,7 @@ which can be done in different ways: either by bi-partitioning the model between
 far-edge and edge devices, or by locally partitioning the model among a collection
 of devices closer to the far-edge layer. On the other hand, some frameworks employ
 partitioning on a per-layer basis, while others rely on graph-based partitioning
-techniques to better adapt to the model's topology.
+techniques to better adapt to the model topology.
 
 Another important architecture used to achieve a more efficient inference process
 is Hierarchical Inference, which is accomplished by deploying 
@@ -348,18 +348,16 @@ chosen and how the network is managed.
 
 
     \item[\textcite{p_dai_joint_2025}]
-    relies on device placement to assign the model partitions to the devices.
+    use device placement to assign the model partitions to the devices.
     The feature extractor segment of the \ac{CNN} models is distributed along the
     network, while the classifier, as it requires less computation, is assigned to
     a singular device, given it has sufficient available memory for the corresponding
     weights. Intermediate inference results are exchanged between devices
-    through a wireless link, using a "OFDMA\footnote{Orthogonal Frequency-Division 
-    Multiple Access}-based wireless transmission model",
-    allowing for a higher throughput.
+    through a wireless link, allowing for a higher throughput.
     This solution assumes that the pipeline supports asynchronous communication.
 
     \item[\textcite{w_miao_adaptive_2020}]
-    minimizes the inference time relying on estimations of the computing time
+    minimize the inference time relying on estimations of the computing time
     needed at each step. Since the inference time is determined by the
     edge device that gets results last, they approach scheduling by reducing 
     it to a load balancing problem. The data offloading between devices is 
@@ -377,7 +375,7 @@ to a greater extent.
 \begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
 
     \item[\textcite{chen_deep_2024}]
-    employs a \ac{DRL}-based algorithm to determine the optimal partitioning point,
+    employ a \ac{DRL}-based algorithm to determine the optimal partitioning point,
     between end (our "Far-Edge") and edge devices. The work elaborates a special 
     algorithm that
     branches from the traditional Deep Q-Network (DQN), to improve decision-making
@@ -390,7 +388,7 @@ to a greater extent.
     for communication between devices, using a PUSH-PULL pattern for data transfer.  
 
     \item[\textcite{ma_joint_2025}]
-    makes use of a \ac{DRL}-based algorithm, employing an actor-critic model to
+    make use of a \ac{DRL}-based algorithm, employing an actor-critic model to
     determine the optimal resource assignment and the layer of the inference task 
     to mark the bi-partitioning point. The \ac{PPO} algorithm is used to train the 
     model, optimizing cost evolution, balancing energy consumption and inference 
@@ -467,7 +465,7 @@ DINA \cite{t_mohammed_distributed_2020} & Heuristical & Inference Time, Resource
 \hline
 NAMP \cite{rego::namp} & Heuristical & Configurable Heuristic & CoAP protocol & \ding{51} \\
 \hline
-\textcite{p_dai_joint_2025} & Heuristical & Device Placement & OFDMA-based links & \ding{55} \\
+\textcite{p_dai_joint_2025} & Heuristical & Device Placement & Wireless link & \ding{55} \\
 \hline
 \textcite{w_miao_adaptive_2020} & Heuristical & Inference Time & \ac{RPC} & \ding{51}\\
 \hline
@@ -478,7 +476,7 @@ NAMP \cite{rego::namp} & Heuristical & Configurable Heuristic & CoAP protocol & 
 
 \section{Final Remarks}
 
-%TODO rever conclusões gerais do SOTA 
+%TODO rever conclusões gerais do SOTA - referir o que vou usar?
 In this chapter, we have analyzed the current state of the art in collaborative
 inference frameworks for edge and far-edge devices. We have reviewed various
 approaches and techniques employed to optimize the inference process, focusing
