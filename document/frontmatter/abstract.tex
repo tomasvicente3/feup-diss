@@ -3,7 +3,36 @@
 \chapter*{Resumo}
 %
 
-
+Num mundo onde a \ac{IA} está cada vez mais presente em aplicações do dia a dia, 
+a estratégia para desenvolver e implementar modelos de \ac{IA} no estado da arte tem 
+dependido fortemente de servidores potentes hospedados na nuvem. No entanto, esta 
+abordagem apresenta várias desvantagens, incluindo a distância entre a fonte de dados, 
+o servidor e o utilizador final, o que pode levar ao aumento da latência, a um maior 
+consumo de energia e a potenciais vulnerabilidades de segurança. Para abordar estas 
+questões, a computação de borda (edge computing) surgiu como uma solução promissora, 
+aproximando os recursos computacionais de onde são necessários, em particular, através 
+do paradigma TinyML, que oferece a possibilidade de executar modelos de \ac{IA} em 
+dispositivos de borda. No entanto, os dispositivos na borda extrema (far-edge), 
+como os microcontroladores, embora altamente limitados em termos de memória e 
+computação, são amplamente utilizados no ecossistema \ac{IdC}, estando equipados com 
+sensores e atuadores, e sendo capazes de executar pequenas tarefas com um consumo de 
+energia muito reduzido. Diante de tais dispositivos, a possibilidade de executar uma 
+\ac{RNP} parece inviável, mas, com as estratégias certas, é possível potenciar as 
+capacidades destes dispositivos e orquestrá-los de modo a realizar esta tarefa. Este 
+trabalho explora o potencial da inferência distribuída, onde um modelo de \ac{RNP} é 
+particionado e distribuído por múltiplos dispositivos com recursos limitados para 
+alcançar uma inferência de alto desempenho no ambiente de edge. Apresentamos o 
+\ac{DisRUPT}, um ambiente de testes de inferência distribuída que permite a 
+avaliação de diferentes estratégias de partição e cenários de implantação 
+para modelos de \ac{RNP}, incorporando conjuntamente dispositivos far-edge e edge, 
+medindo latência de inferência e ao consumo de energia da rede. 
+Adicionalmente, apresentamos um conjunto de estratégias aplicadas a diferentes 
+arquiteturas de \ac{RNP} e avaliamos os seus efeitos na latência de inferência e no 
+consumo de energia da rede. A partir dos resultados recolhidos neste trabalho, 
+identificamos um conjunto de boas práticas para a inferência distribuída em 
+dispositivos far-edge e edge e, principalmente, apontamos a existência de um limiar 
+de taxa de transferência de entrada onde a inclusão de 
+dispositivos edge no processo de inferência se torna contraproducente.
 
 \vspace{\fill}
 \begin{flushleft}
@@ -40,9 +69,10 @@ where a \ac{DNN} model is partitioned and distributed across multiple
 resource-constrained devices to achieve high performant inference in the edge 
 environment. We present \ac{DisRUPT}, a distributed inference testbed, that enables the
 evaluation of different partitioning strategies and deployment scenarios for \ac{DNN} 
-models incorporating far-edge and edge devices together. Additionally, we present a set 
+models incorporating far-edge and edge devices together, in regards of inference 
+latency and network energy consumption. Additionally, we present a set 
 of strategies applied on different \ac{DNN} architectures, and evaluate their effects 
-on inference latency and the network's energy consumption. From the collected results
+on inference latency and the network energy consumption. From the collected results
 in this work, we identify a set of best practices for distributed inference in far-edge
 and edge devices, and, mainly, point out the existance of a input throughtput threshold 
 where the inclusion of edge devices in the inference process becomes counterproductive.
