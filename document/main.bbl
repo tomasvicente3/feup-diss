@@ -221,6 +221,34 @@
       \verb https://www.rfc-editor.org/info/rfc8949
       \endverb
     \endentry
+    \entry{all-cnn-c-scheme}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=c3235424a1cc1f90f50da6aa21d3a314}{%
+           family={Buda},
+           familyi={B\bibinitperiod},
+           given={Mateusz},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {GitHub}%
+      }
+      \strng{namehash}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{fullhash}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{fullhashraw}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{bibnamehash}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{authorbibnamehash}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{authornamehash}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{authorfullhash}{c3235424a1cc1f90f50da6aa21d3a314}
+      \strng{authorfullhashraw}{c3235424a1cc1f90f50da6aa21d3a314}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/mateuszbuda/ALL-CNN}}
+      \field{journaltitle}{GitHub repository}
+      \field{title}{ALL-CNN}
+      \field{year}{2017}
+    \endentry
     \entry{chen_deep_2024}{inproceedings}{}{}
       \name{author}{4}{}{%
         {{hash=80489b75bcde120c9f335f4995d789c2}{%
@@ -441,6 +469,52 @@
       \endverb
       \keyw{diss-finished,diss-include,diss-sota,diss-revisit}
     \endentry
+    \entry{mlp-autoencoder-scheme}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a91aa5d37d9fa6c9afe3446778e076c2}{%
+           family={Halder},
+           familyi={H\bibinitperiod},
+           given={Rakesh},
+           giveni={R\bibinitperiod}}}%
+        {{hash=aad56249529efea307a5275a2e7a7fbc}{%
+           family={Fidkowski},
+           familyi={F\bibinitperiod},
+           given={Krzysztof\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=3a6bc7eded3969503e30ab3919010fcb}{%
+           family={Maki},
+           familyi={M\bibinitperiod},
+           given={Kevin\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley Online Library}%
+      }
+      \strng{namehash}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{fullhash}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{fullhashraw}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{bibnamehash}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{authorbibnamehash}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{authornamehash}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{authorfullhash}{59da2201ae703fdf396d7aeb0f409241}
+      \strng{authorfullhashraw}{59da2201ae703fdf396d7aeb0f409241}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal for Numerical Methods in Engineering}
+      \field{title}{Non-intrusive reduced-order modeling using convolutional autoencoders}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1002/nme.7072
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1002/nme.7072
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1002/nme.7072
+      \endverb
+    \endentry
     \entry{doyu::tinymlaas}{article}{}{}
       \name{author}{3}{}{%
         {{hash=a48dad15d6ea91cbffaa3554b62ada8c}{%
@@ -655,6 +729,34 @@
       \verb{url}
       \verb https://www.scopus.com/inward/record.uri?eid=2-s2.0-105003660775&doi=10.3390%2Felectronics14081647&partnerID=40&md5=ed4bff9eb6c599eafb4de99fdce789c6
       \endverb
+    \endentry
+    \entry{mobilenet-scheme}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=3800956958658db021715aef67699542}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Dat\bibnamedelima Tien},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {GitHub}%
+      }
+      \strng{namehash}{3800956958658db021715aef67699542}
+      \strng{fullhash}{3800956958658db021715aef67699542}
+      \strng{fullhashraw}{3800956958658db021715aef67699542}
+      \strng{bibnamehash}{3800956958658db021715aef67699542}
+      \strng{authorbibnamehash}{3800956958658db021715aef67699542}
+      \strng{authornamehash}{3800956958658db021715aef67699542}
+      \strng{authorfullhash}{3800956958658db021715aef67699542}
+      \strng{authorfullhashraw}{3800956958658db021715aef67699542}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/Nguyendat-bit/MobilenetV1}}
+      \field{journaltitle}{GitHub repository}
+      \field{title}{MobilenetV1}
+      \field{year}{2021}
     \endentry
     \entry{embserve_oliveira_2023}{inproceedings}{}{}
       \name{author}{3}{}{%
@@ -876,6 +978,45 @@
       \endverb
       \verb{url}
       \verb https://www.rfc-editor.org/info/rfc7252
+      \endverb
+    \endentry
+    \entry{ds-cnn-scheme}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=c8c4521839b61dd999d9c95d4a46ea1f}{%
+           family={Sørensen},
+           familyi={S\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=236a7f5547b0748ecbc87ac045aa0d66}{%
+           family={Epp},
+           familyi={E\bibinitperiod},
+           given={Bastian},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2a5132ceaf8d99a9f7e5a2646bd2a24d}{%
+           family={May},
+           familyi={M\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{fullhash}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{fullhashraw}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{bibnamehash}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{authorbibnamehash}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{authornamehash}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{authorfullhash}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \strng{authorfullhashraw}{a2af0ff63c9a2e2f5a8085ecbd824980}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{EURASIP Journal on Audio, Speech, and Music Processing}
+      \field{month}{06}
+      \field{title}{A depthwise separable convolutional neural network for keyword spotting on an embedded system}
+      \field{volume}{2020}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1186/s13636-020-00176-2
       \endverb
     \endentry
     \entry{all-cnn-c-springenberg2015}{inproceedings}{}{}
