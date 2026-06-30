@@ -61,15 +61,18 @@ columns represent the ending layer of the submodel. Each cell in the table repre
 the corresponding submodel, and is color-coded based on its memory footprint.
 Yellow cells represent a memory footprint
 above 55~kB, but below 80~kB, which is the maximum available memory for the Particle
-Argon microcontrollers, after accounting for the memory used by the operating system
+Argon \ac{MCU}, after accounting for the memory used by the operating system
 and embServe. Similarly, red cells represent a memory footprint above the 80~kB limit.
 
 
 \subsection {Energy Measurement} \label{sec:se512}
 
-In addition, we connected an Argon microcontroller to a Joy-IT USB-Multimeter 120~\footnote{https://joy-it.net/en/products/JT-UM120},
+In addition, we connected an Argon \ac{MCU} to a Joy-IT USB-Multimeter 120~\footnote{https://joy-it.net/en/products/JT-UM120},
 a device that reports a variety of electrical parameters, including voltage, current,
-and power consumption in real time. We ran each submodel that participated in the
+and power consumption in real time. Sampling the circuit at a 10~ms interval, with
+an accuracy of five decimal places.
+
+We ran each submodel that participated in the
 inferences included in the experiments, and collected the data from the multimeter, 
 which allowed us to profile the energy consumption of each submodel, and, by extension, 
 the energy consumption of the entire inference process. This process was repeated
@@ -79,7 +82,9 @@ were deployed on it.
 To isolate the energy consumption of the inference process, we also measured the idle
 consumption of the devices, that is, the energy consumed by the devices when they are
 not performing any user task, and subtracted the corresponding energy value from the
-total energy consumption. %TODO - 5m idle base 0.01 time intervals
+total energy consumption. For the Argon \ac{MCU}, the idle consumption was measured to
+be $0.135026~W$, while for the Raspberry Pi, the idle consumption was measured to be 
+$1.271197~W$. 
 
 %TODO Esqueci-me de tirar foto :(
 
@@ -604,3 +609,34 @@ lighter computational load.
 
 \section {Overall Results Analysis} \label{sec:se53}
 
+Considering the results from all the models, we can take note of a few patterns that
+emerge from using the different partitioning and distribution strategies.
+
+Regarding latency, the Edge Only strategy consistently outperforms the other strategies,
+followed by the Edge First, Edge Last, and Min-Cut strategies, which have similar
+results between them. This pattern likely stems from the fact that these strategies
+rely on fewer devices, and therefore, fewer communication steps, which is a significant
+factor, as noticed in the active inference latency and overhead latency breakdown
+graphs.
+
+Another pattern that emerges, specially in the \ac{DS-CNN} model, as both the
+Edge Only and Greedy strategies rely on a single device, is that even with only one
+device, the Greedy strategy takes longer to complete the inference process, as the
+Argon \ac{MCU} takes close to 100 times more time to communicate with the Orchestrator 
+Model.
+
+In terms of energy consumption, the results are shown to scale, firstly, with the
+number of devices that partake in the inference process, and secondly, with the
+type of devices that are used. The edge device only networks, that is, the Edge Only
+strategies, are the most energy efficient, followed by the mixed device networks, and
+finally, the far-edge device only networks. %TODO with exception of DS-CNN Greedy?
+
+Even if not represented in the graphs, the idle energy consumption of the devices is a
+significant factor in the trade-off evaluation between the different strategies. The 10 
+times idle energy consumption difference between the Argon \ac{MCU} and the Raspberry 
+Pi can be a determining factor, as the overall network idle time increases or decreases.  
+
+In the end, the results indicate that the inclusion of edge devices in the inference
+process is only beneficial if the required throughput is above a certain threshold.
+In other words, if the inference process is not time sensitive and time sparse, the 
+inclusion of edge devices in the inference process is not beneficial.
