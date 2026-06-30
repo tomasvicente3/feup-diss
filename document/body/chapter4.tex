@@ -2,7 +2,7 @@
 
 To answer the research questions outlined in Chapter \ref{chap:intro}, 
 we developed the \ac{DisRUPT}
-that can evaluate the performance of distributed resource management algorithms. 
+that can evaluate the performance of distributed resource management strategies. 
 In this chapter, we will discuss the design and implementation of \ac{DisRUPT} using 
 Raspberry Pi\footnote{https://www.raspberrypi.com/} devices along with a set of 
 \acp{MCU}. The Raspberry Pi devices serve as our reference for edge devices, as
@@ -264,7 +264,14 @@ effectiveness.
 The Orchestrator Module is responsible for collecting these performance metrics during
 the inference process. In particular, the inference latency is measured by recording
 the timestamp of a given inference task and matching it with the timestamp of the final
-result using a unique identifier assigned to each distributed inference task. 
+result using a unique identifier assigned to each distributed inference task. The
+inference task unique identifier is only 1-byte long, allowing for a maximum of 256
+concurrent inference tasks.
+
+To separate the inference latency from the communication overhead, we also measure the
+latency of each segment execution on each device, in a similar method. This is achieved
+by transmitting the sum of the previous segments execution time along with the
+in-device latency measurement.
 
 The energy consumption of the network is measured using an external power profiler 
 connected to the devices, allowing us to monitor the energy usage during the inference 
@@ -311,7 +318,9 @@ capabilities is not always straightforward, so for this work, we will create sev
 scenarios with different deployment strategies, to evaluate their performance and to
 identify the most effective ones for different use cases and requirements, as presented
 in Table~\ref{tab:deployment-strategies}, while always considering the constraints
-of the devices in the network.
+of the devices in the network. Faced with several possibilites for a given deployment
+strategy, we will select the one that keeps the model architecture intact, as to keep
+together layers that belong to the same block.
 
 \begin{table}[H]
   \centering
@@ -367,7 +376,7 @@ of the devices in the network.
       to avoid bottlenecks and to maximize the utilization of the available resources.
       \\
     \hline
-    Eager
+    Greedy
       & 
       Partition points are selected to fit as much of the model as possible onto each
       \ac{MCU} device.

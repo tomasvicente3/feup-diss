@@ -32,38 +32,77 @@ The choice of using a single Raspberry Pi was motivated by the need to have a mo
 powerful device to handle the inference tasks of more complex models, expanding the
 range of models our framework can support and evaluate. At the same time, we wanted
 to maintain a balance and mitigate the bias toward a Raspberry Pi-centric execution
-for all experiments. This network structure allows us to better understand the 
+for all experiments. 
+
+This network structure allows us to better understand the 
 trade-offs and possible benefits of having \acp{MCU} in the network, 
-and take advantage of their potential in other real-life heterogeneous networks.
+and take advantage of their potential in other real-life heterogeneous networks, as
+it keeps a balance between higher performant and power consuming devices, and lower
+performant and power efficient devices.
+
+For the \ac{MCU} devices, we
+emulated the execution of each possible partition to determine the $Arena\ Size$,
+the memory needed to allocate for all the intermediate tensors, from the input to the 
+output, to execute the segment. Looking further into the used embServe service's 
+template and \ac{MCU} image, we could establish a lower bound for the memory footprint
+of each segment, as presented in Equation~\ref{eq:memory-footprint}. Not only, the
+size of the buffers used to store the input and output tensors, but also the submodel 
+as a whole.
+
+\begin{equation}
+  Memory\ Footprint = 2 \times Input\ Size + Output\ Size + Arena\ Size + Model\ Size
+  \label{eq:memory-footprint} 
+\end{equation}
+
+To aid on the analysis of the memory footprint of each submodel, we created a table
+for each model, like the one presented in Figure~\ref{fig:all-cnn-c-partitioning}.
+In these tables, rows represent the starting layer of the submodel and
+columns represent the ending layer of the submodel. Each cell in the table represents
+the corresponding submodel, and is color-coded based on its memory footprint.
+Yellow cells represent a memory footprint
+above 55~kB, but below 80~kB, which is the maximum available memory for the Particle
+Argon microcontrollers, after accounting for the memory used by the operating system
+and embServe. Similarly, red cells represent a memory footprint above the 80~kB limit.
+
 
 \subsection {Energy Measurement} \label{sec:se512}
 
-In addition, we connected each device to % TODO ?
-that reports the energy consumption of the device in real time. This setup allows us
-to profile the consumption during the inference process. By averaging out the idle
-consumption, we can isolate the energy consumed by the inference process itself,
-composed by the energy consumed by the computation and the communication processes.
+In addition, we connected an Argon microcontroller to a Joy-IT USB-Multimeter 120~\footnote{https://joy-it.net/en/products/JT-UM120},
+a device that reports a variety of electrical parameters, including voltage, current,
+and power consumption in real time. We ran each submodel that participated in the
+inferences included in the experiments, and collected the data from the multimeter, 
+which allowed us to profile the energy consumption of each submodel, and, by extension, 
+the energy consumption of the entire inference process. This process was repeated
+for the Raspberry Pi, to collect data on the energy consumption of the submodels that
+were deployed on it.  
+
+To isolate the energy consumption of the inference process, we also measured the idle
+consumption of the devices, that is, the energy consumed by the devices when they are
+not performing any user task, and subtracted the corresponding energy value from the
+total energy consumption. %TODO - 5m idle base 0.01 time intervals
+
+%TODO Esqueci-me de tirar foto :(
 
 \section {Models} \label{sec:se52}
 
 To validate our framework, we selected a set of models that are representative of the
 edge computing domain, with varying levels of complexity and architecture. These models
 try to cover a wide range of applications and use cases, from simple image classification
-tasks to wake-word detection and autoencoding. All this while keeping a focus on
+tasks to wake word and anomaly detection. All this while keeping a focus on
 model size for the constraints of the devices on the edge and far-edge. The models we
 selected, partitioned, distributed across the network, and had the performance evaluated
-will be described in the following sections. 
+will be described in the following subsections. 
 
 \subsection {All-CNN-C} \label{sec:se521}
 
-The first model we present is the All-CNN-C\cite{all-cnn-c-springenberg2015} model,
+The first model we present is the All-CNN-C model~\cite{all-cnn-c-springenberg2015},
 an image classification model selected for its architectural simplicity and efficiency.
 This decision was primarly motivated by the fact that it is a simple \ac{CNN} with
 the peculiarity of being composed entirely of convolutional layers, replacing the
 traditionally used pooling and fully connected layers with strided convolutions. 
-This makes it a good candidate, as the layer types are similar, making the computational
-load uniform along the network, and, therefore, allowing for
-a simple operation to distribute the different partitions. %TODO "simple operation"?
+This makes it a good candidate, as the layer types are similar to eachother, making 
+the computational load uniform along the network, and, therefore, allowing for
+a large amount of possible balanced partitions to distribute.
 
 \subsubsection {Model Architecture} \label{sec:se5211}
 
@@ -71,20 +110,22 @@ The All-CNN-C architecture is characterized by its uniform application of
 convolutional layers. Unlike standard architectures that reduce spatial resolution 
 via max-pooling, All-CNN-C utilizes strided convolutions to downsample the input. 
 
-The network comprises [insert number] convolutional layers, %TODO
-followed by a global average pooling layer. Specifically, the architecture applies
+The network comprises nine convolutional layers, followed by a global average pooling 
+layer. Specifically, the architecture applies
 a series of $3 \times 3$ convolutions, with specific layers utilizing a stride of 2
 to reduce spatial dimensions. The network concludes with a global average pooling 
 layer that maps the resulting feature maps into a single vector, which is then 
 passed to a softmax layer for classification, as represented in
 Figure \ref{fig:all-cnn-c-architecture}. It should be noted that, to further compact
-the model to fit the devices constraints, we used a width multiplier of $\alpha=0.25$.
+the model to fit the devices constraints, we used a width multiplier of $\alpha=0.125$,
+that limit the number of filters in each convolution, and, therefore, the size of 
+intermediate feature maps.
 
 This design effectively eliminates the parameter-heavy fully connected layers, 
 significantly reducing the model's memory footprint while maintaining competitive 
 accuracy on benchmarks such as CIFAR-10.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     % \includegraphics[width=0.7\textwidth]{images/all-cnn-c-architecture.png}
     \caption{All-CNN-C architecture.}
@@ -93,12 +134,89 @@ accuracy on benchmarks such as CIFAR-10.
 
 \subsubsection {Partitioning Strategies} \label{sec:se5212}
 
+After partitioning the model into a set of all possible partitions, from any beginning
+layer to any ending layer, we arived at a total of 66 submodels, which were then
+emulated and had the lower bound for their memory footprint calculated, as described
+in Figure~\ref{fig:all-cnn-c-partitioning}. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chap5/all-cnn-c-table.png}
+    \caption{All-CNN-C submodel memory footprints.}
+    \label{fig:all-cnn-c-partitioning}
+\end{figure}
+
+According to the deployment strategies established in Chapter~\ref{chap:ch4}, we 
+defined the following distribution strategies for the All-CNN-C model, as per 
+represented in Table~\ref{tab:all-cnn-c-distributions}.
+
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|X|X|}
+        \hline
+        \textbf{Strategy} & \textbf{Selected Submodels} & \textbf{RPi Assignment}\\
+        \hline
+        Edge Only & 0-11 & 0-11 \\
+        \hline
+        Edge First & 0-8 + 8-11 & 0-8 \\
+        \hline
+        Edge Last & 0-3 + 3-11 & 3-11 \\
+        \hline
+        Min-Cut & 0-3 + 3-7 + 7-11 & 3-7 \\
+        \hline
+        Load-Balanced & 0-3 + 3-6 + 6-9 + 9-11 & N/A \\
+        \hline
+        Greedy & 0-3 + 3-6 + 6-11 & N/A \\
+        \hline
+    \end{tabularx}
+    \vspace{2mm}
+    \caption{All-CNN-C distribution configuration.}
+    \label{tab:all-cnn-c-distributions}
+\end{table}
+
 \subsubsection {Result Analysis} \label{sec:se5213}
+
+After executing a batch of 255 inference tasks for each distribution strategy, we
+collected the following results, as represented in Figure~\ref{fig:all-cnn-c-latency}
+and Figure~\ref{fig:all-cnn-c-energy}.
+We can take note that the Edge Only strategy dominates in terms of latency, as its
+average latency is almost 25\% of the second fastest strategy, Edge First, and
+almost 2.5\% of the slowest strategy, Load-Balanced.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_boxplots-total.png}
+    \vspace{1mm}
+    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_stacked_bars.png}
+    \vspace{2mm}
+    \caption{All-CNN-C inference latency measurements.}
+    \label{fig:all-cnn-c-latency}
+\end{figure}
+
+In terms of energy consumption, as represented in Figure~\ref{fig:all-cnn-c-energy}, 
+we can observe that the Edge Only strategy is the most energy efficient, with an
+average energy consumption of 56.6~mJ, which is almost 2 times less than the second
+most energy efficient strategy, Edge First.
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_energy-bars.png}
+    \vspace{2mm}
+    \caption{All-CNN-C energy consumption measurements.}
+    \label{fig:all-cnn-c-energy}
+\end{figure}
+
+Overall, the results indicate that the Edge Only strategy is the most efficient in 
+both the analysed metrics. 
 
 \subsection {DS-CNN} \label{sec:se522}
 
 The second architecture used to evaluate the performance of different heuristics is the 
-\ac{DS-CNN}\cite{ds-cnn-zhang2018helloedge} model, which is a highly optimized, 
+\ac{DS-CNN} model~\cite{ds-cnn-zhang2018helloedge}, which is a highly optimized, 
 lightweight convolutional neural network designed for efficient keyword spotting and
 localized inference on resource-constrained devices, such as edge devices. 
 This model shifts away from traditional computationally heavy 3D convolutions by 
@@ -111,10 +229,10 @@ having its evaluation performance compromised.
 
 \subsubsection {Model Architecture} \label{sec:se5221}
 
-The model configuration utilized in our evaluation corresponds to the \ac{DS-CNN} (Large) 
-variant delineated in the core \textit{Hello Edge}\cite{ds-cnn-zhang2018helloedge} 
-framework, with a width multiplier of $\alpha=0.75$, to further help us fit the model to the
-constraints of far-edge devices.  
+The model configuration utilized in our evaluation corresponds to the \ac{DS-CNN} 
+delineated in the core \textit{Hello Edge}~\cite{ds-cnn-zhang2018helloedge} 
+framework, with a width multiplier of $\alpha=0.25$, to further help us fit the model 
+to the constraints of far-edge devices.  
 
 The network architecture, represented in Figure \ref{fig:ds-cnn-architecture}, 
 initiates with a standard 2D convolutional layer, 
@@ -124,7 +242,7 @@ layer prepares the multi-channel feature representation
 by mapping local correlations across a predefined set of feature channels.
 
 Following the initial standard convolution, the core feature extraction pipeline is 
-composed of five sequential depthwise separable convolutional blocks. Each block 
+composed of four sequential depthwise separable convolutional blocks. Each block 
 factorizes the standard convolution mechanism into two isolated operations:
 \begin{itemize}
     \item \textbf{Depthwise Convolution:} Applies a dedicated 2D spatial filter per 
@@ -152,7 +270,93 @@ connected softmax layer to compute the localized classification probabilities.
 
 \subsubsection {Partitioning Strategies} \label{sec:se5222}
 
+We obtained a total of 435 submodels from the partitioning of the \ac{DS-CNN} model, 
+which were then emulated and had their memory footprint profiled, as represented in
+Figure~\ref{fig:ds-cnn-partitioning}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chap5/ds-cnn-table.png}
+    \caption{DS-CNN submodel memory footprints.}
+    \label{fig:ds-cnn-partitioning}
+\end{figure}
+
+From this set of submodels, we defined the distribution strategies for the \ac{DS-CNN} 
+model to be as represented in Table~\ref{tab:ds-cnn-distributions}.
+
+This model has the particularity that every layer, with exception of the last one,
+have the same output shape. This fact renders the Min-Cut strategy ineffective, as
+following it will not result in a new partition.
+
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|X|X|}
+        \hline
+        \textbf{Strategy} & \textbf{Selected Submodels} & \textbf{RPi Assignment}\\
+        \hline
+        Edge Only & 0-29 & 0-29 \\
+        \hline
+        Edge First & 0-15 + 15-21 + 21-29 & 0-15 \\
+        \hline
+        Edge Last & 0-9 + 9-15 + 15-29 & 15-29 \\
+        \hline
+        Load-Balanced & 0-9 + 9-15 + 15-21 + 21-29 & N/A \\
+        \hline
+        Greedy & 0-29 & N/A \\
+        \hline
+    \end{tabularx}
+    \vspace{2mm}
+    \caption{DS-CNN distribution configuration.}
+    \label{tab:ds-cnn-distributions}
+\end{table}
+
 \subsubsection {Result Analysis} \label{sec:se5223}
+
+The 255 inference batch executed for each distribution strategy yielded the results
+presented in Figure~\ref{fig:ds-cnn-latency} and Figure~\ref{fig:ds-cnn-energy}.
+Regarding latency, the Edge Only strategy once again demonstrates superior performance,
+by a large factor.
+
+We should highlight the delay that the overhead latency introduces in the overall
+latency of the distributed inference process. In this model, since the submodels
+output a large intermediate tensor, the communication overhead is evident. The
+strategies that rely on fewer submodels, and therefore, fewer communication steps,
+are the ones that perform better in terms of latency. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chap5/ds-cnn_boxplots-total.png}
+    \vspace{1mm}
+    \includegraphics[width=0.8\textwidth]{chap5/ds-cnn_stacked_bars.png}
+    \vspace{2mm}
+    \caption{DS-CNN inference latency measurements.}
+    \label{fig:ds-cnn-latency}
+\end{figure}
+
+Without the communication overhead that the other strategies inherit, the Greedy 
+strategy outperforms the Edge Only strategy in energy consumption, regardless of the
+higher latency. 
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.8\textwidth]{chap5/ds-cnn_energy_bars.png}
+    \vspace{2mm}
+    \caption{DS-CNN energy consumption measurements.}
+    \label{fig:ds-cnn-energy}
+\end{figure}
+
+For this model, we can conclude that the Edge Only strategy is the most appropriate
+if the priority is to minimize latency, while the Greedy strategy is the most fit to
+minimize energy consumption, at the cost of a higher latency. No strategy is able
+to achieve a balance between the two metrics with distinction.
+
+The model constant intermediate tensor sizes throughout the network also impact the
+results, as we can notice on the similarity of the metric on the Edge First and Edge
+Last strategies, which have the same number of submodels, communication steps, and
+number of layers per device.
 
 \subsection {MobileNetV1} \label{sec:se523} 
 
@@ -168,7 +372,7 @@ integrated in a variety of applications and frameworks.
 
 MobileNetV1 is built upon the concept of depthwise separable convolutions, as 
 previously described in section \ref{sec:se5221}. However, it introduces a more complex,
-modular structure, utilizing <number> layers. %TODO
+modular structure, utilizing 82 total layers.
 Unlike the static blocks in \ac{DS-CNN}, MobileNetV1 employs a highly efficient 
 architecture that facilitates hyperparameter tuning through width and resolution 
 multipliers, allowing the model to be scaled according to specific latency or accuracy 
@@ -181,7 +385,11 @@ making it an ideal candidate for evaluating how our partitioning framework handl
 complex computational chains across heterogeneous edge devices.
 
 In our evaluation, we utilize the MobileNetV1 with an width multiplier of $\alpha=0.25$, an
-input resolution of $128 \times 128 \times 3$, and a final output layer of 100 classes.
+input resolution of $32 \times 32 \times 3$, and a final output layer of 256 classes.
+Additionally, we also cropped the model to remove the last two blocks, as they
+represented a challenge to the memory constraints of the far-edge devices, and would
+have further limited the number of possible partitions to distribute across the network.
+
 This approach, illustrated in Figure \ref{fig:mobilenet-architecture}, was chosen to 
 maintain a balance between model complexity and the constraints of our far-edge devices, 
 while still providing a realistic scenario for tests.
@@ -196,9 +404,87 @@ while still providing a realistic scenario for tests.
 
 \subsubsection {Partitioning Strategies} \label{sec:se5232}
 
+The pruned MobileNetV1 model was partitioned into a total of 2568 submodels. However,
+the classifier head raised a challenge to the memory constraints of the far-edge
+devices, even if reduced to a minimum size, as indicated through the emulator results,
+presented in Figure~\ref{fig:mobilenet-partitioning}.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{chap5/mobilenet-table.png}
+    \caption{MobileNetV1 submodel memory footprints.}
+    \label{fig:mobilenet-partitioning}
+\end{figure}
+
+The model computational demand led to a limitation in the number of strategies that 
+we could evaluate, as the final layer had always to be executed on the Raspberry Pi.
+This condition also made so most of the strategies resulted in the same distribution,
+therefore, we only present the strategies that resulted in different distributions, as
+represented in Table~\ref{tab:mobilenet-distributions}.
+%TODO Load-Balanced seria possível, extendendo para incluir mais um Argon
+
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|X|X|}
+        \hline
+        \textbf{Strategy} & \textbf{Selected Submodels} & \textbf{RPi Assignment}\\
+        \hline
+        Edge Only & 0-71 & 0-71 \\
+        \hline
+        Edge Last & 0-15 + 15-27 + 27-39 + 39-71 & 39-71 \\
+        \hline
+        Min-Cut & 0-24 + 24-36 + 36-71 & 36-71 \\
+        \hline
+    \end{tabularx}
+    \vspace{2mm}
+    \caption{MobileNetV1 distribution configuration.}
+    \label{tab:mobilenet-distributions}
+\end{table}
+
 \subsubsection {Result Analysis} \label{sec:se5233}
 
-\subsection {Autoencoder MLP} \label{sec:se524} % TODO nome concreto?/cite
+Executing the same batch of 255 inference tasks for each distribution strategy, we
+collected the results presented in Figure~\ref{fig:mobilenet-latency} and
+Figure~\ref{fig:mobilenet-energy}. 
+
+In terms of latency, the presented strategies repeat the pattern observed in the
+previous models, where the Edge Only strategy is the fastest, followed by the Min-Cut
+strategy, and the Edge Last strategy falling behind.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chap5/mobilenet_boxplots-total.png}
+    \vspace{1mm}
+    \includegraphics[width=0.8\textwidth]{chap5/mobilenet_stacked_bars.png}
+    \vspace{2mm}
+    \caption{MobileNetV1 inference latency measurements.}
+    \label{fig:mobilenet-latency}
+\end{figure}
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.6\textwidth]{chap5/mobilenet_energy_bars.png}
+    \vspace{2mm}
+    \caption{MobileNetV1 energy consumption measurements.}
+    \label{fig:mobilenet-energy}
+\end{figure}
+
+Moreover, this model also corroborates the findings from the previous models, in terms
+of energy consumption, where the Edge Only presents itself as the most energy efficient,
+but not significantly more than the other strategies. This is specially noticeable in
+this model, as the strategies rely on a similar number of devices. 
+
+In particular, it is remarkable that the Edge Last strategy, although it has the same
+number of submodels and communication steps as the Min-Cut strategy, it is less energy
+efficient than the latter. This indicates that selecting partition points based on the
+size of the intermediate tensors, as the Min-Cut strategy does, can lead to a more
+energy efficient process than simply relying on the higher computational capabilities
+of the Raspberry Pi, unlike the Edge Only strategy indicates.  
+
+\subsection {MLP Autoencoder} \label{sec:se524} 
 
 The last model we present is a simple \ac{MLP} autoencoder, fit for anomaly detection.
 This model was selected for its almost archetypal architecture, which allows us to 
@@ -211,8 +497,8 @@ The autoencoder model is a \ac{MLP} composed of a simple feedforward architectur
 an input layer, a set of hidden layers, and an output layer. 
 
 The initial layers are designed to
-process the data and extract relevant features, encoding them into a lower-dimensional
-representation. The subsequent layers then decode this representation back into the
+process the data and extract relevant features, encoding them into a lower-dimensional,
+latent space. The subsequent layers then decode this representation back into the
 original input space, aiming to reconstruct the input data as accurately as possible,
 as represented in Figure \ref{fig:autoencoder-architecture}. 
 
@@ -220,6 +506,12 @@ The model is trained to minimize the reconstruction error, and by training the m
 normal data, as it learns to reconstruct the normal patterns, it can be used to detect 
 anomalies by identifying instances where the reconstruction error exceeds a certain
 threshold.
+
+In particular, this model is composed an encoder of four blocks, with 96 neurons each, 
+a middle block composed of 8 neurons, a decoder of four blocks, similar to the encoder,
+with 96 neurons each, and an output layer with 96 neurons. Each mentioned block is
+composed of a dense layer, followed by a batch normalization layer and an activation
+layer, with the exception of the output layer, which does not have an activation layer. 
 
 \begin{figure}[h]
     \centering
@@ -230,8 +522,85 @@ threshold.
 
 \subsubsection {Partitioning Strategies} \label{sec:se5242}
 
+The partitioning the MLP Autoencoder model resulted in a total of 406 submodels, 
+which can be seen in Figure~\ref{fig:mlp-autoencoder-partitioning}. The model features
+a highly symmetric architecture, with the encoder and decoder being mirror images of
+each other, which results in a similar memory footprint for the submodels that are
+symmetric around the middle block.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{chap5/mlp-autoencoder-table.png}
+    \caption{MLP Autoencoder submodel memory footprints.}
+    \label{fig:mlp-autoencoder-partitioning}
+\end{figure}
+
+The distribution strategies for the MLP Autoencoder model are represented in
+Table~\ref{tab:mlp-autoencoder-distributions}. The Greedy strategy was not included
+in the evaluation, as it would result in the same distribution as the Min-Cut strategy,
+as no feasible partition distribution could result in a lower number of \acp{MCU}
+devices used.
+
+\begin{table}[H]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|X|X|}
+        \hline
+        \textbf{Strategy} & \textbf{Selected Submodels} & \textbf{RPi Assignment}\\
+        \hline
+        Edge Only & 0-28 & 0-28 \\
+        \hline
+        Edge First & 0-18 + 18-24 + 24-28 & 0-18 \\
+        \hline
+        Edge Last & 0-3 + 3-9 + 9-28 & 9-28 \\
+        \hline
+        Min-Cut & 0-6 + 6-24 + 24-28 & 6-24 \\
+        \hline
+        Load-Balanced & 0-6 + 6-18 + 18-24 + 24-28 & N/A \\
+        \hline
+    \end{tabularx}
+    \vspace{2mm}
+    \caption{MLP Autoencoder distribution configuration.}
+    \label{tab:mlp-autoencoder-distributions}
+\end{table}
 
 \subsubsection {Result Analysis} \label{sec:se5243}
 
-% partition - ilustrar cortes com netron.app
+Running the 255 inference batch for each distribution strategy, the results presented
+in Figure~\ref{fig:mlp-autoencoder-latency} and Figure~\ref{fig:mlp-autoencoder-energy}
+were collected.
+
+The model symmetry is reflected in the results, as the Edge First and Edge Last
+strategies have close results in both latency and energy consumption.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{chap5/mlp-autoencoder_boxplots-total.png}
+    \vspace{1mm}
+    \includegraphics[width=0.8\textwidth]{chap5/mlp-autoencoder_stacked_bars.png}
+    \vspace{2mm}
+    \caption{MLP Autoencoder inference latency measurements.}
+    \label{fig:mlp-autoencoder-latency}
+\end{figure}
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.6\textwidth]{chap5/mlp-autoencoder_energy_bars.png}
+    \vspace{2mm}
+    \caption{MLP Autoencoder energy consumption measurements.}
+    \label{fig:mlp-autoencoder-energy}
+\end{figure}
+
+Nonetheless, the single device inference originated from the Edge Only strategy is
+the most efficient in both metrics. For this model, the number of devices used in the 
+strategies produces a direct proportional increase in latency. However, the energy
+consumption also increases, but not as significantly. The latter is due to the fact
+that the strategies shift from a mixed device approach, with the Edge First, Edge
+Last, and Min-Cut strategies, to a only \ac{MCU} approach, with the Load-Balanced
+strategy, which is more energy efficient than the mixed device approach for a
+lighter computational load.
+
+\section {Overall Results Analysis} \label{sec:se53}
 
