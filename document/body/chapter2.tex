@@ -70,7 +70,6 @@ exclude the documents found:
         & IC2 & Date of publication since 2018 (inclusive). \\
         & IC3 & The publication addresses constrained devices. \\
         & IC4 & The publication discusses network deployment or topics pertinent to it. \\
-        % TODO refinar os critérios de inclusão
         \midrule
         \multirow{5.5}{*}{\rotatebox{90}{Exclusion}} 
         & EC1 & It is a duplicate result. \\
@@ -126,11 +125,29 @@ and exclusion criteria.
 After applying the inclusion and exclusion criteria, a total of 12 documents 
 were included for further analysis and serve as basis for this work.
 Figure \ref{fig:lr_screening} illustrates the flow that documents went through
-during the screening process.
+during the screening process, as listed below.
 
 \begin{figure}
 \centering
-    %TODO replace with 12 as output
     \includegraphics[width=0.9\textwidth]{chap2/Literature_review_screening.png} 
 \caption{Screening process of the systematic literature review.}\label{fig:lr_screening}
 \end{figure}
+
+\newcommand{\midcite}[1]{%
+  \citeauthor{#1}, \emph{\citetitle{#1}} (\citeyear{#1})%
+}
+
+\begin{itemize}
+    \item \midcite{al-atat_case_2023}
+    \item \midcite{behera_improved_2023} 
+    \item \midcite{chen_deep_2024}
+    \item \midcite{e_m_k_adaptive_2025}
+    \item \midcite{rego::namp}
+    \item \midcite{ma_joint_2025}
+    \item \midcite{p_dai_joint_2025}
+    \item \midcite{r_g_pacheco_calibration-aided_2021}
+    \item \midcite{t_mohammed_distributed_2020}
+    \item \midcite{tran-van_cofann_2025}
+    \item \midcite{w_miao_adaptive_2020}
+    \item \midcite{wang_context-aware_2021}
+\end{itemize}
