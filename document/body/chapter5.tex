@@ -636,6 +636,14 @@ significant factor in the trade-off evaluation between the different strategies.
 times idle energy consumption difference between the Argon \ac{MCU} and the Raspberry 
 Pi can be a determining factor, as the overall network idle time increases or decreases.  
 
+Nonetheless, each distribution strategy has its own merits and can be more suitable for
+a specific use case, depending on the model architecture and network topology. The
+Edge First or Edge Last strategies can be more suitable for networks with the
+\acp{MCU} devices closer to sensors or actuators, correspondingly. While the Min-Cut
+strategy reveals the significance of the intermediate tensor size and the Greedy and
+Load-Balanced strategies enphasize the importance of decreasing the number of devices
+used for the inference process, and therefore, the number of communication steps.
+
 In the end, the results indicate that the inclusion of edge devices in the inference
 process is only beneficial if the required throughput is above a certain threshold.
 In other words, if the inference process is not time sensitive and time sparse, the 
