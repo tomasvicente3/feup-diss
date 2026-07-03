@@ -28,10 +28,16 @@ para modelos de \ac{RNP}, incorporando conjuntamente dispositivos far-edge e edg
 medindo latência de inferência e ao consumo de energia da rede. 
 Adicionalmente, apresentamos um conjunto de estratégias aplicadas a diferentes 
 arquiteturas de \ac{RNP} e avaliamos os seus efeitos na latência de inferência e no 
-consumo de energia da rede. A partir dos resultados recolhidos neste trabalho, 
-identificamos um conjunto de boas práticas para a inferência distribuída em 
-dispositivos far-edge e edge e, principalmente, apontamos a existência de um limiar 
-de taxa de transferência de entrada onde a inclusão de 
+consumo de energia da rede. Em concreto, conseguimos executar uma adaptação do modelo
+MobileNetV1 numa rede composta por 2 microcontroladores e 1 Raspberry Pi 3B,
+executando uma inferência em 760,32~ms (33,78~ms de inferência ativa e 726,54~ms de
+latência residual), utilizando apenas 145,7~mJ de energia. A partir das nossas
+configurações com o modelo \ac{DS-CNN} obtivemos resultados que variaram entre uma
+inferencia de baixa latência, demorando 27,99~ms, e uma inferência de baixo consumo
+energético, utilizando 26,5~mJ de energia por inferência. A partir dos resultados 
+recolhidos neste trabalho, identificamos um conjunto de boas práticas para a 
+inferência distribuída em dispositivos far-edge e edge e, principalmente, apontamos 
+a existência de um limiar de taxa de transferência de entrada onde a inclusão de 
 dispositivos edge no processo de inferência se torna contraproducente.
 
 \vspace{\fill}
@@ -72,7 +78,12 @@ evaluation of different partitioning strategies and deployment scenarios for \ac
 models incorporating far-edge and edge devices together, in regards of inference 
 latency and network energy consumption. Additionally, we present a set 
 of strategies applied on different \ac{DNN} architectures, and evaluate their effects 
-on inference latency and the network energy consumption. From the collected results
+on inference latency and the network energy consumption. In particular, we managed
+to run an adapted MobileNetV1 model on a network of 2 microcontrollers and 1 Raspberry 
+Pi 3B, executing an inference in 760,32~ms (33,78~ms of active inference and 726,54~ms 
+of overhead latency), using only 145,7~mJ of energy. From our setups with the \ac{DS-CNN}
+model we results that ranged from low latency, taking 27,99~ms to low energy consumption
+inference, using 26,5~mJ of energy per inference. From the collected results
 in this work, we identify a set of best practices for distributed inference in far-edge
 and edge devices, and, mainly, point out the existance of a input throughtput threshold 
 where the inclusion of edge devices in the inference process becomes counterproductive.

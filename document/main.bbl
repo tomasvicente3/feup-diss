@@ -623,6 +623,34 @@
       \verb https://arxiv.org/abs/1704.04861
       \endverb
     \endentry
+    \entry{mlp-autoencoder-github}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=4844a02822f4b27772bc4f938e5f3733}{%
+           family={Kiraly},
+           familyi={K\bibinitperiod},
+           given={Csaba},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {GitHub}%
+      }
+      \strng{namehash}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{fullhash}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{fullhashraw}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{bibnamehash}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{authorbibnamehash}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{authornamehash}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{authorfullhash}{4844a02822f4b27772bc4f938e5f3733}
+      \strng{authorfullhashraw}{4844a02822f4b27772bc4f938e5f3733}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://github.com/mlcommons/tiny/tree/master/benchmark/training/anomaly_detection}}
+      \field{journaltitle}{GitHub repository}
+      \field{title}{Anomaly Detection}
+      \field{year}{2021}
+    \endentry
     \entry{Kitchenham2009}{article}{}{}
       \name{author}{6}{}{%
         {{hash=a6a5d6592277cbb0df47f0006e20abf5}{%

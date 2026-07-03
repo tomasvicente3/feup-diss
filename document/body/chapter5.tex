@@ -3,10 +3,10 @@
 In this chapter, we present the core segment of this work. Firstly, the experimental
 setup is described, detailing the network topology, the energy measurement process, 
 and the models used for validation of our framework as well as to gather the data for
-the analysis of the results. Then, the performance metrics of the different partitioning
+the results analysis. Then, the performance metrics of the different partitioning
 strategies and distribution configurations are presented and analyzed, with a focus on
 the trade-offs between latency and energy consumption, aiming to profile the
-impacts of these strategies on the collected metrics and understand the potential
+impacts of these strategies on the model inference and understand the potential
 benefits of collaborative inference in edge and far-edge devices.
 
 \section {Experimental Setup} \label{sec:se51}
@@ -42,12 +42,13 @@ performant and power efficient devices.
 
 For the \ac{MCU} devices, we
 emulated the execution of each possible partition to determine the $Arena\ Size$,
-the memory needed to allocate for all the intermediate tensors, from the input to the 
+the memory required for all the intermediate tensors, from the input to the 
 output, to execute the segment. Looking further into the used embServe service's 
 template and \ac{MCU} image, we could establish a lower bound for the memory footprint
 of each segment, as presented in Equation~\ref{eq:memory-footprint}. Not only, the
 size of the buffers used to store the input and output tensors, but also the submodel 
-as a whole.
+as a whole. The $Input Size$ is accounted for twice, as the input data needs to
+be stored in the communication buffer, and then copied to the service input buffer.
 
 \begin{equation}
   Memory\ Footprint = 2 \times Input\ Size + Output\ Size + Arena\ Size + Model\ Size
@@ -93,7 +94,7 @@ $1.271197~W$.
 To validate our framework, we selected a set of models that are representative of the
 edge computing domain, with varying levels of complexity and architecture. These models
 try to cover a wide range of applications and use cases, from simple image classification
-tasks to wake word and anomaly detection. All this while keeping a focus on
+tasks to keyword and anomaly detection. All this while keeping a focus on
 model size for the constraints of the devices on the edge and far-edge. The models we
 selected, partitioned, distributed across the network, and had the performance evaluated
 will be described in the following subsections. 
@@ -216,19 +217,22 @@ most energy efficient strategy, Edge First.
 \end{figure}
 
 Overall, the results indicate that the Edge Only strategy is the most efficient in 
-both the analysed metrics. 
+both the analysed metrics. However, it is important to note these metrics are only
+accounting for the inference process, and not the idle periods of the devices, which
+can be significant in a real-world scenario, and turn the Edge Only strategy into a
+less efficient strategy, as the Raspberry Pi has a higher idle power consumption. 
 
 \subsection {DS-CNN} \label{sec:se522}
 
 The second architecture used to evaluate the performance of different heuristics is the 
 \ac{DS-CNN} model~\cite{ds-cnn-zhang2018helloedge}, which is a highly optimized, 
 lightweight convolutional neural network designed for efficient keyword spotting and
-localized inference on resource-constrained devices, such as edge devices. 
+localized inference on resource-constrained devices, such as far-edge devices. 
 This model shifts away from traditional computationally heavy 3D convolutions by 
 uncoupling spatial and channel-wise feature extraction, 
 which significantly reduce the number of parameters and computational cost in each
 convolutional layer. This makes \ac{DS-CNN} an exemplary model for TinyML, as it can be 
-flexibly partitioned and distributed across a given network of devices, without
+flexibly partitioned and distributed across a given network of devices without
 having its evaluation performance compromised.
 
 
@@ -325,8 +329,8 @@ presented in Figure~\ref{fig:ds-cnn-latency} and Figure~\ref{fig:ds-cnn-energy}.
 Regarding latency, the Edge Only strategy once again demonstrates superior performance,
 by a large factor.
 
-We should highlight the delay that the overhead latency introduces in the overall
-latency of the distributed inference process. In this model, since the submodels
+We highlight the delay that the overhead latency introduces in the overall
+latency of the distributed inference process. Since the submodels
 output a large intermediate tensor, the communication overhead is evident. The
 strategies that rely on fewer submodels, and therefore, fewer communication steps,
 are the ones that perform better in terms of latency. 
@@ -366,11 +370,11 @@ number of layers per device.
 \subsection {MobileNetV1} \label{sec:se523} 
 
 The third and most complex model we present is the MobileNetV1\cite{mobilenet-howard2017},
-a highly popular architecture in the mobile and edge computing domain, designed for
+a highly popular architecture in the mobile and edge computing domain designed for
 image classification and object detection, among other computer vision tasks, while
 maintaining a low computational footprint. This model poses a significant challenge, by
 its sheer size and complexity, but also presents itself as an opportunity to collect 
-data closer to a real-life scenario, as it is a model that is widely used and 
+data closer to a real-life scenario, since this model is widely used and 
 integrated in a variety of applications and frameworks.
 
 \subsubsection {Model Architecture} \label{sec:se5231}
@@ -492,10 +496,10 @@ of the Raspberry Pi, unlike the Edge Only strategy indicates.
 
 \subsection {MLP Autoencoder} \label{sec:se524} 
 
-The last model we present is a simple \ac{MLP} autoencoder, fit for anomaly detection.
+The last model we present is a simple \ac{MLP} autoencoder~\cite{mlp-autoencoder-github}, fit for anomaly detection.
 This model was selected for its almost archetypal architecture, which allows us to 
 evaluate the performance of the partitioning and distribution strategies in the most
-simple scenario, that is often used in more complex models as a building block.
+simple scenario, which is often used in more complex models as a building block.
 
 \subsubsection {Model Architecture} \label{sec:se5241}
 
@@ -504,7 +508,7 @@ an input layer, a set of hidden layers, and an output layer.
 
 The initial layers are designed to
 process the data and extract relevant features, encoding them into a lower-dimensional,
-latent space. The subsequent layers then decode this representation back into the
+latent space. The subsequent layers decode this representation back into the
 original input space, aiming to reconstruct the input data as accurately as possible,
 as represented in Figure \ref{fig:autoencoder-architecture}. 
 
@@ -515,20 +519,21 @@ as represented in Figure \ref{fig:autoencoder-architecture}.
     \label{fig:autoencoder-architecture}
 \end{figure}
 
-The model is trained to minimize the reconstruction error, and by training the model on
-normal data, as it learns to reconstruct the normal patterns, it can be used to detect 
-anomalies by identifying instances where the reconstruction error exceeds a certain
-threshold.
+The model is trained to minimize the reconstruction error, learning to reconstruct the 
+normal patterns by training the model using normal data. Therefore, it can be used to 
+detect anomalies by identifying instances where the reconstruction error exceeds a 
+certain threshold.
 
-In particular, this model is composed an encoder of four blocks, with 96 neurons each, 
-a middle block composed of 8 neurons, a decoder of four blocks, similar to the encoder,
-with 96 neurons each, and an output layer with 96 neurons. Each mentioned block is
-composed of a dense layer, followed by a batch normalization layer and an activation
-layer, with the exception of the output layer, which does not have an activation layer. 
+In particular, this model adaptation is composed of an encoder of four blocks, with 96 
+neurons each, a middle block composed of 8 neurons, a decoder of four blocks, similar 
+to the encoder, with 96 neurons each, and an output layer with 96 neurons. Each 
+mentioned block is composed of a dense layer, followed by a batch normalization layer 
+and an activation layer, with the exception of the output layer, which does not have 
+an activation layer. 
 
 \subsubsection {Partitioning Strategies} \label{sec:se5242}
 
-The partitioning the MLP Autoencoder model resulted in a total of 406 submodels, 
+The partitioning of the MLP Autoencoder model resulted in a total of 406 submodels, 
 which can be seen in Figure~\ref{fig:mlp-autoencoder-partitioning}. The model features
 a highly symmetric architecture, with the encoder and decoder being mirror images of
 each other, which results in a similar memory footprint for the submodels that are
@@ -544,7 +549,7 @@ symmetric around the middle block.
 The distribution strategies for the MLP Autoencoder model are represented in
 Table~\ref{tab:mlp-autoencoder-distributions}. The Greedy strategy was not included
 in the evaluation, as it would result in the same distribution as the Min-Cut strategy,
-as no feasible partition distribution could result in a lower number of \acp{MCU}
+since no feasible partition distribution could result in a lower number of \acp{MCU}
 devices used.
 
 \begin{table}[H]
@@ -620,30 +625,29 @@ rely on fewer devices, and therefore, fewer communication steps, which is a sign
 factor, as noticed in the active inference latency and overhead latency breakdown
 graphs.
 
-Another pattern that emerges, specially in the \ac{DS-CNN} model, as both the
-Edge Only and Greedy strategies rely on a single device, is that even with only one
-device, the Greedy strategy takes longer to complete the inference process, as the
-Argon \ac{MCU} takes close to 100 times more time to communicate with the Orchestrator 
-Model.
+Another pattern that emerges, especially in the \ac{DS-CNN} model, is that both
+the Edge Only and Greedy strategies rely on a single device. Even so, the Greedy
+strategy takes longer to complete the inference process. The Argon \ac{MCU} takes
+close to 100 times more time to communicate with the Orchestrator Model.
 
 In terms of energy consumption, the results are shown to scale, firstly, with the
 number of devices that partake in the inference process, and secondly, with the
-type of devices that are used. The edge device only networks, that is, the Edge Only
-strategies, are the most energy efficient, followed by the mixed device networks, and
-finally, the far-edge device only networks. %TODO "with exception of DS-CNN Greedy"?
+type of devices that are used. The Edge Only strategies where only the edge device is 
+used, are the most energy efficient approach, followed by the mixed device networks, 
+and finally, the far-edge device only networks. %TODO "with exception of DS-CNN Greedy"?
 
 Even if not represented in the graphs, the idle energy consumption of the devices is a
 significant factor in the trade-off evaluation between the different strategies. The 10 
 times idle energy consumption difference between the Argon \ac{MCU} and the Raspberry 
 Pi can be a determining factor, as the overall network idle time increases or decreases.  
 
-Nonetheless, each distribution strategy has its own merits and can be more suitable for
-a specific use case, depending on the model architecture and network topology. The
-Edge First or Edge Last strategies can be more suitable for networks with the
-\acp{MCU} devices closer to sensors or actuators, correspondingly. While the Min-Cut
-strategy reveals the significance of the intermediate tensor size and the Greedy and
-Load-Balanced strategies enphasize the importance of decreasing the number of devices
-used for the inference process, and therefore, the number of communication steps.
+Nonetheless, each distribution strategy has its own merits and can be better suited to
+specific use cases, depending on the model architecture and network topology. The Edge
+First and Edge Last strategies are more suitable for networks where the \acp{MCU}
+devices are closer to sensors or actuators. The Min-Cut strategy highlights the
+importance of the intermediate tensor size, while the contrasting Greedy and 
+Load-Balanced strategies emphasize the benefits of reducing the number of devices 
+used for the inference process and, consequently, the number of communication steps.
 
 In the end, the results indicate that the inclusion of edge devices in the inference
 process is only beneficial if the required throughput is above a certain threshold.
