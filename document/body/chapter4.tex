@@ -371,9 +371,10 @@ together layers that belong to the same block.
       \\
     \hline
     Load-Balanced 
-      & %TODO - rever explicação
-      Segments are distributed across devices to balance the computational load, taking 
-      into account both the layers' computational load and the devices' capabilities. 
+      & 
+      Segments are distributed across the maximum number of devices to minimize the 
+      computational load on each, taking into account both the layers' computational 
+      load and the devices' capabilities. 
       &
       For this strategy, we balanced the memory footprint of each segment across devices, 
       to avoid bottlenecks and to maximize the utilization of the available resources.
