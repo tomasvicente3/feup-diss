@@ -78,7 +78,8 @@ inferences included in the experiments, and collected the data from the multimet
 which allowed us to profile the energy consumption of each submodel, and, by extension, 
 the energy consumption of the entire inference process. This process was repeated
 for the Raspberry Pi, to collect data on the energy consumption of the submodels that
-were deployed on it.  
+were deployed on it. The results of this process are presented in Appendix~\ref{ap2:modelEnergy}, 
+where we present the full energy measurements of each submodel.
 
 To isolate the energy consumption of the inference process, we also measured the idle
 consumption of the devices, that is, the energy consumed by the devices when they are
@@ -97,7 +98,8 @@ try to cover a wide range of applications and use cases, from simple image class
 tasks to keyword and anomaly detection. All this while keeping a focus on
 model size for the constraints of the devices on the edge and far-edge. The models we
 selected, partitioned, distributed across the network, and had the performance evaluated
-will be described in the following subsections. 
+will be described in the following subsections. A global overview of the layer-by-layer
+information for each model is provided in Appendix~\ref{ap1:modelSpecs}.
 
 \subsection {All-CNN-C} \label{sec:se521}
 
