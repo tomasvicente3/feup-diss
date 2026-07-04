@@ -10,16 +10,19 @@ they are more computationally capable than the \acp{MCU}, while keeping a low po
 consumption, opposed to laptop computers, that could also be used as edge devices. 
 
 This testbed will allow us to easily partition a model, deploy it and test various use 
-cases, in such way that we can evaluate the inference latency and the network's energy 
+cases, in such way that we can evaluate the inference latency and the network energy 
 consumption under different partitioning and deployment strategies.
 
 \section {System Overview} \label{sec:se41}
 
-The \ac{DisRUPT} framework consists of four main components. Two inference interfaces: 
-the Raspberry Pi Interface and the Microcontroller Interface. These
-mentioned components are automatically managed and the network performance 
-is evaluated by the Orchestrator Module. 
-A Partitioning Module is also included, which is responsible for partitioning the models, 
+The \ac{DisRUPT} framework consists of four main components. The \ac{MCU} Interface,
+the Raspberry Pi Interface, the Orchestrator Module, and the Partitioning Module.
+
+The mentioned device interfaces components are responsible for the execution of the
+inference on the devices, as well as for the communication between them. They are
+automatically managed and the network 
+performance is evaluated by the Orchestrator Module. 
+While the Partitioning Module is responsible for partitioning the models, 
 before the deployment stage, and it is not involved in the inference process itself.
 
 To achieve the collaborative inference, we first use the Partitioning Module to 
@@ -44,8 +47,8 @@ scripts that not only create routes that chain together the inference pipeline, 
 upload the partitioned submodels to the devices and feed the network with the input data.
 This results in the Orchestrator Module, that is given the network configuration and
 input data by the developer, through a configuration file. The Orchestrator Module
-is also capable of collecting the performance metrics during the inference process,
-for later analysis and comparison.  
+is also capable of collecting timing and energy performance metrics during the inference 
+process, for later analysis and comparison.  
 
 The interaction between the \ac{DisRUPT} components can be visualized in 
 Figure~\ref{fig:DisRUPT-arch}. Note that the inference interfaces can be scaled to 
@@ -282,7 +285,7 @@ analysis and comparison between different strategies.
 All this data allows us to estimate the performance of the inference network under
 different configurations, and to identify the most effective strategies for deploying
 \ac{DNN} models on constrained devices. This data can also be used to develop several 
-heuristics for future deployments, allowing us to match the user's needs with the most
+heuristics for future deployments, allowing us to match the user needs with the most
 suitable partitioning and deployment strategies, to achieve minimal latency, energy
 consumption, or a balance between the two. 
 

@@ -107,13 +107,13 @@ that is further away from the end-user device has more computational capabilitie
 
     \item[DINA \cite{t_mohammed_distributed_2020}]
     is a framework that relies on fog nodes to partition inference tasks into
-    sub-tasks and deploys them according to each node's characteristics, using
+    sub-tasks and deploys them according to each node characteristics, using
     matching theory for joint partitioning and task offloading. This framework 
-    allows for a more efficient use of the network's resources, while also 
+    allows for a more efficient use of the network resources, while also 
     reducing the total computation time.
     This work can process \ac{DNN} models with a \ac{DAG} topology, composed of 
     fully connected and convolutional layers. The framework determines how to 
-    partition the inference task and then divides it according to the network's 
+    partition the inference task and then divides it according to the network 
     condition. It should be stated that the network is expected to be homogeneous
     by design, as it does not take the device characteristics into account.
     Furthermore, the performance evaluation was conducted through simulations, 
@@ -127,7 +127,7 @@ that is further away from the end-user device has more computational capabilitie
     by modelling the collaborative inference problem as a \ac{MDP} and applying a
     \ac{DRL}-based algorithm to determine the optimal partitioning point (i.e., the
     last subtask in a given \ac{DNN} model), between end and edge devices. 
-    This way the user's requirements and the network's
+    This way the user requirements and the network
     conditions, such as device capabilities and network bandwidth, are taken into 
     account to optimize the inference process.
 
@@ -135,10 +135,10 @@ that is further away from the end-user device has more computational capabilitie
     propose a framework that focuses on minimizing energy consumption, making use
     of multiple early-exits along the inference process, when confidence thresholds 
     are met. The framework partitions each model instance into two segments, depending
-    on the end device's capabilities. The initial segment is deployed on the end 
+    on the end device capabilities. The initial segment is deployed on the end 
     device, while the remaining segment is deployed on an edge server. The framework 
     deploys the same model architecture across a range of devices participating in
-    the inference task, adapting each instance to the device's capabilities.
+    the inference task, adapting each instance to the device capabilities.
     The early-exit mechanism allows for task termination prematurely in 
     early stages of the inference task, reducing energy consumption and
     latency, given the model is confident enough.
@@ -180,12 +180,12 @@ to the cloud.
     \item[NAMP \cite{rego::namp}]
     is a framework that emphasizes resource utilization, by partitioning the
     model into several segments and deploying them to multiple severely
-    constrained devices. The framework analyzes the network's devices and their
+    constrained devices. The framework analyzes the network devices and their
     capabilities, partitioning the model into appropriate sized segments and
     deploying them to the devices, according to their capabilities. 
     The framework allows for inference tasks to be
     executed in a highly scalable manner, even in an environment of highly
-    constrained devices, although it is limited in the model's topology
+    constrained devices, although it is limited in the model topology
     flexibility, as it only supports chain-like \ac{DNN} models. 
 
     \item[\textcite{p_dai_joint_2025}] 
@@ -381,9 +381,9 @@ to a greater extent.
     branches from the traditional Deep Q-Network (DQN), to improve decision-making
     efficiency, by storing and reusing past experiences, as well as by having a dual 
     estimation stream, one for state-value function and one for action-value function. 
-    Nevertheless, the framework also regards the user's priorities, integrated in
+    Nevertheless, the framework also regards the user priorities, integrated in
     experience memory sampling. This allows the framework to minimize the inference
-    latency or the energy consumption, according to the user's needs. 
+    latency or the energy consumption, according to the user needs. 
     The network also makes use of ZeroMQ\footnote{\url{https://zeromq.org/}} 
     for communication between devices, using a PUSH-PULL pattern for data transfer.  
 
@@ -394,8 +394,8 @@ to a greater extent.
     model, optimizing cost evolution, balancing energy consumption and inference 
     latency. This approach takes into account all relevant system information, 
     including task characteristics, device capabilities, and network conditions.
-    These conditions include the layer's required \acp{FLOP}, computational 
-    capabilities, power consumption at each device, network's channel bandwidth, 
+    These conditions include the layer required \acp{FLOP}, computational 
+    capabilities, power consumption at each device, network channel bandwidth, 
     among other relevant factors. 
     This information is used to make informed decisions on resource allocation
     and task partitioning.
@@ -634,7 +634,7 @@ NAMP \cite{rego::namp}
 &
     Framework that emphasizes resource utilization, partitioning the model into
     several segments, fit for multiple severely constrained devices. The framework 
-    is flexible and makes the most use of the network's heterogenous resources,
+    is flexible and makes the most use of the network heterogenous resources,
     as well as allows for the user to choose the heuristics to optimize.
 &
     \begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
