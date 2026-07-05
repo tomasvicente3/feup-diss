@@ -8,7 +8,7 @@ a estratégia para desenvolver e implementar modelos de \ac{IA} no estado da art
 dependido fortemente de servidores potentes hospedados na nuvem. No entanto, esta 
 abordagem apresenta várias desvantagens, incluindo a distância entre a fonte de dados, 
 o servidor e o utilizador final, o que pode levar ao aumento da latência, a um maior 
-consumo de energia e a potenciais vulnerabilidades de segurança. Para abordar estas 
+consumo de energia e a potenciais vulnerabilidades de privacidade. Para abordar estas 
 questões, a computação de borda (edge computing) surgiu como uma solução promissora, 
 aproximando os recursos computacionais de onde são necessários, em particular, através 
 do paradigma TinyML, que oferece a possibilidade de executar modelos de \ac{IA} em 
@@ -38,7 +38,7 @@ energético, utilizando 26,5~mJ de energia por inferência. A partir dos resulta
 recolhidos neste trabalho, identificamos um conjunto de boas práticas para a 
 inferência distribuída em dispositivos far-edge e edge e, principalmente, apontamos 
 a existência de um limiar de taxa de transferência de entrada onde a inclusão de 
-dispositivos edge no processo de inferência se torna contraproducente.
+dispositivos edge no processo de inferência só se torna vantajosa acima deste limiar.
 
 \vspace{\fill}
 \begin{flushleft}
@@ -72,7 +72,7 @@ consuming very low power. Faced with such devices, the possibility of running a
 the capabilities of these devices and orchestrate them to achieve this task.
 This work explores the potential of distributed inference,
 where a \ac{DNN} model is partitioned and distributed across multiple
-resource-constrained devices to achieve high performant inference in the edge 
+resource-constrained devices to achieve highly performant inference in the edge 
 environment. We present \ac{DisRUPT}, a distributed inference testbed, that enables the
 evaluation of different partitioning strategies and deployment scenarios for \ac{DNN} 
 models incorporating far-edge and edge devices together, in regards of inference 
@@ -82,11 +82,12 @@ on inference latency and the network energy consumption. In particular, we manag
 to run an adapted MobileNetV1 model on a network of 2 microcontrollers and 1 Raspberry 
 Pi 3B, executing an inference in 760,32~ms (33,78~ms of active inference and 726,54~ms 
 of overhead latency), using only 145,7~mJ of energy. From our setups with the \ac{DS-CNN}
-model we results that ranged from low latency, taking 27,99~ms to low energy consumption
+model we obtained results that ranged from low latency, taking 27,99~ms to low energy consumption
 inference, using 26,5~mJ of energy per inference. From the collected results
 in this work, we identify a set of best practices for distributed inference in far-edge
-and edge devices, and, mainly, point out the existance of a input throughtput threshold 
-where the inclusion of edge devices in the inference process becomes counterproductive.
+and edge devices, and, mainly, point out the existence of an input throughput threshold 
+where the inclusion of edge devices in the inference process only becomes advantageous
+above the threshold.
 
 \vspace{\fill}
 \begin{flushleft}

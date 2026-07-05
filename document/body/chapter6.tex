@@ -8,12 +8,12 @@ and discuss the Research Questions that were addressed.
 Throughout this dissertation, we have presented \ac{DisRUPT}, an agnostic testbed 
 that enables the evaluation of distributed inference for \acp{MLP} and \acp{CNN} 
 models given a set of devices and a configuration file containing the model 
-distribuition, estabilished routes and input data.
+distribution, established routes and input data.
 
 We have also highlighted a set of strategies and good practices for the deployment
 of \ac{DNN} models in the edge environment, that lead to a lower inference latency 
 and network energy consumption. Namely, the impact that communication steps have on
-the distributed inference process, and the importance of minimizing their occurence,
+the distributed inference process, and the importance of minimizing their occurrence,
 whether by reducing the number of partitions or by selecting certain partition
 points that minimize the amount of data that needs to be transmitted.
 
@@ -66,7 +66,7 @@ more \ac{DNN} architectures, such as recurrent and attention layers, to
 enable the partitioning of more complex and capable models. Likewise, the
 support of intra-layer partitioning can be added to the testbed, removing the
 current limitation of only supporting inter-layer partitioning, and model width
-contraints.
+constraints.
 
 Additionally, the testbed can be extended to support devices with accelerators, such 
 as \acp{TPU}, \acp{NPU}, and \acp{GPU}, allowing the evaluation of a more diverse 

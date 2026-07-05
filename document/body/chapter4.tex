@@ -162,7 +162,7 @@ inference network, like we can see in Figure~\ref{fig:RPi-arch}.
     \hline
     \texttt{GET /status} & Endpoint & Returns the currently active model and the configured destination address. \\
     \hline
-    \texttt{PUT /model} & Endpoint & Accepts new \texttt{.tflite} files encoded in base64 to store or activates existing models.\\
+    \texttt{PUT /model} & Endpoint & Accepts new \texttt{.tflite} files encoded in base64 to store or activate existing models.\\
     \hline
     \texttt{PUT /infer} & Endpoint & Accepts an input tensor and an inference identifier, runs inference, and forwards the result to the destination. \\
     \hline
@@ -321,7 +321,7 @@ capabilities is not always straightforward, so for this work, we will create sev
 scenarios with different deployment strategies, to evaluate their performance and to
 identify the most effective ones for different use cases and requirements, as presented
 in Table~\ref{tab:deployment-strategies}, while always considering the constraints
-of the devices in the network. Faced with several possibilites for a given deployment
+of the devices in the network. Faced with several possibilities for a given deployment
 strategy, we will select the one that keeps the model architecture intact, as to keep
 together layers that belong to the same block.
 
@@ -366,7 +366,7 @@ together layers that belong to the same block.
       The model is partitioned to minimize the communication cost between devices,
         by selecting partition points where the Intermediate Tensors are smallest. 
       &
-      This strategy aims to reduce the transmittion cost between devices, thus 
+      This strategy aims to reduce the transmission cost between devices, thus 
       shortening the overhead of collaborative inference.  
       \\
     \hline

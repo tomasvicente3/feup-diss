@@ -11,7 +11,7 @@ benefits of collaborative inference in edge and far-edge devices.
 
 \section {Experimental Setup} \label{sec:se51}
 
-In a effort to validate our framework and also to understand the impact of
+In an effort to validate our framework and also to understand the impact of
 partitioning and distributing the inference process across multiple devices, we
 conducted a series of experiments. The experiments were designed to evaluate the
 performance, in terms of latency and energy consumption, of different partitioning
@@ -105,10 +105,10 @@ information for each model is provided in Appendix~\ref{ap1:modelSpecs}.
 
 The first model we present is the All-CNN-C model~\cite{all-cnn-c-springenberg2015},
 an image classification model selected for its architectural simplicity and efficiency.
-This decision was primarly motivated by the fact that it is a simple \ac{CNN} with
+This decision was primarily motivated by the fact that it is a simple \ac{CNN} with
 the peculiarity of being composed entirely of convolutional layers, replacing the
 traditionally used pooling and fully connected layers with strided convolutions. 
-This makes it a good candidate, as the layer types are similar to eachother, making 
+This makes it a good candidate, as the layer types are similar to each other, making 
 the computational load uniform along the network, and, therefore, allowing for
 a large amount of possible balanced partitions to distribute.
 
@@ -143,7 +143,7 @@ accuracy on benchmarks such as CIFAR-10.
 \subsubsection {Partitioning Strategies} \label{sec:se5212}
 
 After partitioning the model into a set of all possible partitions, from any beginning
-layer to any ending layer, we arived at a total of 66 submodels, which were then
+layer to any ending layer, we arrived at a total of 66 submodels, which were then
 emulated and had the lower bound for their memory footprint calculated, as described
 in Figure~\ref{fig:all-cnn-c-partitioning}. 
 
@@ -396,7 +396,7 @@ activations. This structure provides a significantly deeper feature extraction p
 making it an ideal candidate for evaluating how our partitioning framework handles long, 
 complex computational chains across heterogeneous edge devices.
 
-In our evaluation, we utilize the MobileNetV1 with an width multiplier of $\alpha=0.25$, an
+In our evaluation, we utilize the MobileNetV1 with a width multiplier of $\alpha=0.25$, an
 input resolution of $32 \times 32 \times 3$, and a final output layer of 256 classes.
 Additionally, we also cropped the model to remove the last two blocks, as they
 represented a challenge to the memory constraints of the far-edge devices, and would
@@ -486,7 +486,7 @@ strategy, and the Edge Last strategy falling behind.
 
 Moreover, this model also corroborates the findings from the previous models, in terms
 of energy consumption, where the Edge Only presents itself as the most energy efficient,
-but not significantly more than the other strategies. This is specially noticeable in
+but not significantly more than the other strategies. This is especially noticeable in
 this model, as the strategies rely on a similar number of devices. 
 
 In particular, it is remarkable that the Edge Last strategy, although it has the same
