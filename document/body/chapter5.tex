@@ -188,7 +188,8 @@ represented in Table~\ref{tab:all-cnn-c-distributions}.
 
 \subsubsection {Result Analysis} \label{sec:se5213}
 
-After executing a batch of 255 inference tasks for each distribution strategy, we
+After executing a batch of 255 inference tasks for each distribution strategy, as the 
+unique identifier is only 1-byte long, we
 collected the following results, as represented in Figure~\ref{fig:all-cnn-c-latency}
 and Figure~\ref{fig:all-cnn-c-energy}.
 We can take note that the Edge Only strategy dominates in terms of latency, as its
@@ -197,9 +198,9 @@ almost 2.5\% of the slowest strategy, Load-Balanced.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_boxplots-total.png}
+    \includegraphics[width=0.9\textwidth]{chap5/all-cnn-c_boxplots-total.png}
     \vspace{1mm}
-    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_stacked_bars.png}
+    \includegraphics[width=0.9\textwidth]{chap5/all-cnn-c_stacked_bars.png}
     \vspace{2mm}
     \caption{All-CNN-C inference latency measurements.}
     \label{fig:all-cnn-c-latency}
@@ -212,7 +213,7 @@ most energy efficient strategy, Edge First.
 
 \begin{figure}[H]
     \centering 
-    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_energy-bars.png}
+    \includegraphics[width=0.8\textwidth]{chap5/all-cnn-c_energy_bars.png}
     \vspace{2mm}
     \caption{All-CNN-C energy consumption measurements.}
     \label{fig:all-cnn-c-energy}
@@ -339,9 +340,9 @@ are the ones that perform better in terms of latency.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chap5/ds-cnn_boxplots-total.png}
+    \includegraphics[width=0.9\textwidth]{chap5/ds-cnn_boxplots-total.png}
     \vspace{1mm}
-    \includegraphics[width=0.8\textwidth]{chap5/ds-cnn_stacked_bars.png}
+    \includegraphics[width=0.9\textwidth]{chap5/ds-cnn_stacked_bars.png}
     \vspace{2mm}
     \caption{DS-CNN inference latency measurements.}
     \label{fig:ds-cnn-latency}
@@ -468,9 +469,9 @@ strategy, and the Edge Last strategy falling behind.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chap5/mobilenet_boxplots-total.png}
+    \includegraphics[width=0.9\textwidth]{chap5/mobilenet_boxplots-total.png}
     \vspace{1mm}
-    \includegraphics[width=0.8\textwidth]{chap5/mobilenet_stacked_bars.png}
+    \includegraphics[width=0.9\textwidth]{chap5/mobilenet_stacked_bars.png}
     \vspace{2mm}
     \caption{MobileNetV1 inference latency measurements.}
     \label{fig:mobilenet-latency}
@@ -590,9 +591,9 @@ strategies have close results in both latency and energy consumption.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{chap5/mlp-autoencoder_boxplots-total.png}
+    \includegraphics[width=0.9\textwidth]{chap5/mlp-autoencoder_boxplots-total.png}
     \vspace{1mm}
-    \includegraphics[width=0.8\textwidth]{chap5/mlp-autoencoder_stacked_bars.png}
+    \includegraphics[width=0.9\textwidth]{chap5/mlp-autoencoder_stacked_bars.png}
     \vspace{2mm}
     \caption{MLP Autoencoder inference latency measurements.}
     \label{fig:mlp-autoencoder-latency}
@@ -636,7 +637,7 @@ In terms of energy consumption, the results are shown to scale, firstly, with th
 number of devices that partake in the inference process, and secondly, with the
 type of devices that are used. The Edge Only strategies where only the edge device is 
 used, are the most energy efficient approach, followed by the mixed device networks, 
-and finally, the far-edge device only networks. 
+and finally, the far-edge device only networks.
 %TODO "with exception of DS-CNN Greedy"?
 
 Even if not represented in the graphs, the idle energy consumption of the devices is a
@@ -654,5 +655,12 @@ used for the inference process and, consequently, the number of communication st
 
 In the end, the results indicate that the inclusion of edge devices in the inference
 process is only beneficial if the required throughput is above a certain threshold.
+This threshold depends on the context of the inference process, since the inclusion of
+edge devices only becomes beneficial when the inference load exceeds a given number of
+inference tasks per second. This is because edge devices have a higher power
+consumption, which is only justified when low latency is a
+requirement. The threshold can only be estimated for each specific use case, as it
+depends on the model architecture, the network topology, and the device
+characteristics, so no generalized threshold can be established. 
 In other words, if the inference process is not time sensitive and time sparse, the 
 inclusion of edge devices in the inference process is not beneficial.
