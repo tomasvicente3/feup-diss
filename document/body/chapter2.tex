@@ -15,7 +15,7 @@ This literature review followed \textcite{Kitchenham2009}'s
 Systematic Literature Review workflow.
 % as outlined by Kitchenham and Charters (2007)~\cite{kitchenham2007guidelines}.
 The review aimed to identify and analyze existing research relevant to the
-subject matter of this thesis. Likewise, it was designed to provide
+subject of this thesis. Likewise, it was designed to provide
 a strong foundation for the following topics:
 
 \begin{enumerate}
@@ -24,8 +24,8 @@ a strong foundation for the following topics:
     \item Computational Offloading for \ac{ML} inference
 \end{enumerate}
 
-In addition, the proposal's bibliography was also
-included and examined in this context of this work.
+In addition, the proposal bibliography was also
+included and examined in the context of this work.
 
 
 \section{Review Methodology}\label{sec:se22}
@@ -46,11 +46,11 @@ to cover any gaps that could arise.
 
 To accomplish this search, the following search strings were built,
 respectively for each topic:\footnote{It should be noted that the
-proximity and wildcard operators were adapted to each digital library's syntax.}
+proximity and wildcard operators were adapted to each digital library syntax.}
 \begin{enumerate}
     \item ("dynamic partitioning" OR "dynamic splitting" OR "model partitioning" OR "model splitting" OR "adaptive partitioning" OR "adaptive splitting") AND "inference" AND ("ML model*" OR "DNN") AND ("Edge" OR "Far-Edge")	
-    \item (("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "allocation") ) AND ( "inference" OR "ML model*" OR "DNN" OR "AI workload*") AND ("Edge" OR "IoT" OR "Far-Edge")
-    \item (("inference" AND ("offload*" OR "decision*")) OR "inference offloading") AND ("resource-aware" OR "latency-aware" OR "adaptive" OR "resource-constrained") AND ("TinyML" OR "MCU" OR "microcontroller*")
+    \item (("resource-aware" OR "network-aware" OR "adaptive") NEAR/5 ("schedul*" OR "orchestrat*" OR "allocation")) AND ("inference" OR "ML model*" OR "DNN" OR "AI workload*") AND ("Edge" OR "IoT" OR "Far-Edge")
+    \item ("inference offload*" OR "model offload*" OR "task offload*") AND ("resource-aware" OR "latency-aware" OR "adaptive" OR "resource-constrained") AND ("TinyML" OR "MCU" OR "microcontroller*")
 \end{enumerate}
 
 \subsection{Inclusion and Exclusion Criteria} \label{sec:se222}
@@ -75,8 +75,8 @@ exclude the documents found:
         & EC1 & It is a duplicate result. \\
         & EC2 & Full-text is not available. \\
         & EC3 & The publication is not English. \\
-        & EC4 & The publication does not focus on cloud computing. \\
-        & EC5 & The publication does not focus on high-performance device usage. \\
+        & EC4 & The publication focuses on cloud computing. \\
+        & EC5 & The publication focuses on high-performance device usage. \\
         \bottomrule
     \end{tabular}
     \caption{Inclusion and exclusion criteria for the systematic literature review.}
@@ -96,7 +96,7 @@ documents.
 
 \section{Search Results} \label{sec:se23}
 
-The literature search was fruitful, returning a total of 441
+The literature search was fruitful, returning a total of 357
 documents across the three topics and the three digital libraries used.
 
 Table \ref{tab:lr_lib} summarizes the number of documents found on the initial
@@ -113,22 +113,41 @@ and exclusion criteria.
 \hline
 2 & 93 & 8 & 95 & 196 \\
 \hline
-3 & 43 & 14 & 39 & 96 \\
+3 & 6 & 0 & 6 & 12 \\
 \hline
-\textbf{Total} & 190 & 46 & 205 & \textbf{441} \\
+\textbf{Total} & 153 & 32 & 172 & \textbf{357} \\
 \hline
 \end{tabular}
 \vspace{2mm}
 \caption{Number of documents found per topic and digital library.}\label{tab:lr_lib}
 \end{table}
 
-After applying the inclusion and exclusion criteria, a total of 16 documents %TODO corrigir
+After applying the inclusion and exclusion criteria, a total of 12 documents 
 were included for further analysis and serve as basis for this work.
 Figure \ref{fig:lr_screening} illustrates the flow that documents went through
-during the screening process.
+during the screening process, as listed below.
 
 \begin{figure}
 \centering
-    \includegraphics[width=0.9\textwidth]{Literature_review_screening.png} %TODO replace
+    \includegraphics[width=0.9\textwidth]{chap2/Literature_review_screening.png} 
 \caption{Screening process of the systematic literature review.}\label{fig:lr_screening}
 \end{figure}
+
+\newcommand{\midcite}[1]{%
+  \citeauthor{#1}, \emph{\citetitle{#1}} (\citeyear{#1})%
+}
+
+\begin{itemize}
+    \item \midcite{al-atat_case_2023}
+    \item \midcite{behera_improved_2023} 
+    \item \midcite{chen_deep_2024}
+    \item \midcite{e_m_k_adaptive_2025}
+    \item \midcite{rego::namp}
+    \item \midcite{ma_joint_2025}
+    \item \midcite{p_dai_joint_2025}
+    \item \midcite{r_g_pacheco_calibration-aided_2021}
+    \item \midcite{t_mohammed_distributed_2020}
+    \item \midcite{tran-van_cofann_2025}
+    \item \midcite{w_miao_adaptive_2020}
+    \item \midcite{wang_context-aware_2021}
+\end{itemize}

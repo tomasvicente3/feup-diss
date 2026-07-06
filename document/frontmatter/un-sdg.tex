@@ -1,34 +1,59 @@
 %% un-sdg.tex: UN Sustainable Development Goals (FEUP regulations)
 %% -------------------------------------------------------
 
-\chapter*{UN Sustainable Development Goals} \label{chap:UnitedNations}
+\chapter*{The United Nations Sustainable Development Goals} \label{chap:UnitedNations}
 
-The United Nations Sustainable Development Goals (SDGs) provide a global framework for achieving a better and more sustainable future for all. 
-It includes 17 goals\footnote{\url{https://sdgs.un.org/goals}} to address the world's most pressing challenges, including poverty, inequality, climate change, environmental degradation, peace, and justice. 
-
-Quisque ullamcorper placerat ipsum. Cras nibh. Morbi vel justo vitae lacus tincidunt ultrices.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-In hac habitasse platea dictumst. Integer tempus convallis augue. Etiam facilisis. 
+The United Nations \acp{SDG} provide a global framework for achieving a better and more 
+sustainable future for all. It includes 17 goals (\url{https://sdgs.un.org/goals}) to 
+address the world's most pressing challenges, including poverty, inequality, climate 
+change, environmental degradation, peace, and justice. 
 
 The specific Sustainable Development Goals mentioned have the following names:
 
 \begin{description}
 \item [SDG 7]
 Ensure access to affordable, reliable, sustainable and modern energy for all
-\item [SDG 8]
-Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all
+\item [SDG 9]
+Build resilient infrastructure, promote inclusive and sustainable industrialization 
+and foster innovation
+\item [SDG 12]
+Ensure sustainable consumption and production patterns
 \end{description}
 
+
 \begin{center}
-\begin{tabular}{|l|l|p{58mm}|p{52mm}|}
-\hline
-\textbf{SGD} & \textbf{Target} & \textbf{Contribution} & \textbf{Performance Indicators and Metrics} \\ 
-\hline
-\hline
-    \multirow{3}{*}{7} & 7.1 & Enhancing the efficiency of SCADA systems can help increase the reliability of solar energy production, facilitating universal access to clean energy. & Percentage of solar plants with improved \ldots \\
-    \cline{2-4} & 7.2 & Improving the management of solar plants helps enhance the efficiency and reliability of renewable energy. & Increase in renewable energy share \ldots \\
-\hline
-    \multirow{2}{*}{8} & 8.1 & Enhancing renewable energy infrastructure promotes resilience against climate-related hazards and supports sustainable energy sources. & Increase in resilience metrics \ldots \\
-\hline
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c c p{5.5cm} p{6cm}}
+\toprule
+\textbf{SDG} & \textbf{Target} & \textbf{Contribution} & \textbf{Performance Indicators and Metrics} \\
+\midrule
+7 & 7.3 &
+This work helps identify which approaches use less energy per inference, contributing 
+to more energy-efficient AI deployments.
+&
+Energy consumed (in Joules) per inference, compared across partitioning strategies \\
+\midrule
+9 & 9.5 &
+A general way to split a neural network across several small, 
+memory-constrained devices. This can be reused and extended in future work on 
+distributed inference.
+&
+Number of partitioning heuristics proposed and validated; reduction in per-device 
+memory footprint required to run a given model \\
+\cline{2-4}
+ & 9.c &
+Lowering of the hardware barrier to 
+deploying AI, making it more accessible to settings with limited budgets.
+&
+Total hardware cost of the deployed setup compared to the cost of equivalent 
+cloud-based inference \\
+\midrule
+12 & 12.2 &
+Reduces dependency on centralized compute resources by distributing AI inference 
+workloads to edge devices for non-essential tasks.
+&
+Total energy consumption of the distributed pipeline compared to an estimated 
+equivalent cloud-based inference round trip \\
+\bottomrule
 \end{tabular}
 \end{center}

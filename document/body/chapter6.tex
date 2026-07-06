@@ -1,0 +1,80 @@
+\chapter{Conclusion} \label{chap:ch6}
+
+In the following sections, we will summarize the contributions of this dissertation
+and discuss the Research Questions that were addressed. 
+
+\section{Contributions} \label{sec:se61}
+
+Throughout this dissertation, we have presented \ac{DisRUPT}, a model agnostic testbed 
+that enables the evaluation of distributed inference for \acp{MLP} and \acp{CNN} 
+models given a set of devices and a configuration file containing the model 
+distribution, established routes and input data.
+
+We have also highlighted a set of strategies and good practices for the deployment
+of \ac{DNN} models in the edge environment, that lead to a lower inference latency 
+and network energy consumption. Namely, the impact that communication steps have on
+the distributed inference process, and the importance of minimizing their occurrence,
+whether by reducing the number of partitions or by selecting certain partition
+points that minimize the amount of data that needs to be transmitted.
+
+Taking into account the initial goal and research questions, as stated in Chapter~\ref{chap:intro},
+we can conclude that this work addressed all the research questions, as follows:
+
+\begin{itemize}
+    \item \textbf{Hypothesis: } \textit{"Is it possible to create a reliable tool to 
+        support the deployment of complex \ac{DNN} models on far-edge and edge devices?"}
+        
+        \subitem This hypothesis was confirmed, as the \ac{DisRUPT} supports exactly that,
+        even if limited in supported model architectures and width, by the underlying 
+        NAMP compatibility and the available resources of the devices.  
+    
+    \item \textbf{RQ1: } \textit{"Is it feasible to have collaborative ML inferences 
+        using edge and far-edge devices without compromising performance?"}
+
+        \subitem This research question was denied, although our work
+        shows that the mentioned process is feasible, the performance is compromised
+        in the sense that the inference latency is increased, even if not significantly. 
+
+    \item \textbf{RQ2: } \textit{"What is the most efficient method to enable reliable 
+        cooperation between edge and far-edge devices partaking in an inference 
+        network?"}
+
+        \subitem During the experiments, we found out that, from the cooperative
+        distribution strategies, there was no method that was generally more efficient
+        than the others. And that efficiency is highly dependent on the model 
+        architecture, network conditions, and the available resources. 
+
+    \item \textbf{RQ3: } \textit{"How efficiently can the resources of edge and 
+        far-edge devices be utilized towards collaborative inference tasks?"}
+
+        \subitem The experiments showed that the resources of edge and far-edge
+        devices can be efficiently utilized, although the intermediate software layer
+        that is required to enable inference on \acp{MCU} highly limits the available
+        resources, and therefore, the efficiency of the process.
+        
+\end{itemize}
+
+
+\section{Future Work} \label{sec:se62}
+
+Even though the contributions of this dissertation reached the expected goals, the work
+can be further extended in several ways that further evaluate the feasibility of
+having \ac{DNN} execution in the edge environment and in which forms. 
+
+Firstly, the compatibility of the \ac{DisRUPT} testbed can be expanded to support
+more \ac{DNN} architectures, such as recurrent and attention layers, to
+enable the partitioning of more complex and capable models. Likewise, the
+support of intra-layer partitioning can be added to the testbed, removing the
+current limitation of only supporting inter-layer partitioning, and model width
+constraints.
+
+Additionally, the testbed can be extended to support devices with accelerators, such 
+as \acp{TPU}, \acp{NPU}, and \acp{GPU}, allowing the evaluation of a more diverse 
+range of strategies and deployment scenarios, to further explore the potential of
+distributed inference in the edge environment. 
+
+Finally, the orchestration and scheduling strategies can be further improved by
+implementing a real time computing scheduler that can dynamically adapt to the
+network conditions and the available resources. This results in quality improvements
+on the collected data, which will be closer to a real-world scenario, and therefore, 
+more reliable and useful for future research in this field.

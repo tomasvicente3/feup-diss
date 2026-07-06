@@ -2,79 +2,101 @@
 %% -------------------------------------------------------
 \chapter*{Resumo}
 %
-Este documento ilustra o formato a usar em dissertações na \ac{FEUP}.
-São dados exemplos de margens, cabeçalhos, títulos, paginação, estilos
-de índices, etc. 
-São ainda dados exemplos de formatação de citações, figuras e tabelas,
-equações, referências cruzadas, lista de referências e índices.
-Este documento não pretende exemplificar conteúdos a usar. 
-É usado o \emph{Loren Ipsum} para preencher a dissertação.
-%
-Lorem ipsum dolor sit amet, \ac{FEUP} consectetuer adipiscing elit. Etiam vitae
-quam sed mauris auctor porttitor. Mauris porta sem vitae arcu sagittis
-facilisis. Proin sodales risus sit amet arcu. Quisque eu pede eu elit
-pulvinar porttitor. Maecenas dignissim tincidunt dui. Pellentesque
-habitant morbi tristique senectus et netus et malesuada fames ac
-turpis egestas. Donec non augue sit amet nulla gravida
-rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et
-ultrices posuere cubilia Curae; Nunc at nunc. Etiam egestas. 
-%
-Donec malesuada pede eget nunc. Fusce porttitor felis eget mi mattis
-vestibulum \ac{FEUP}. Pellentesque faucibus. Cras adipiscing dolor quis
-mi. Quisque sagittis, justo sed dapibus pharetra, lectus velit
-tincidunt eros, ac fermentum nulla velit vel sapien. Vestibulum sem
-mauris, hendrerit non, feugiat ac, varius ornare, lectus. Praesent
-urna tellus, euismod in, hendrerit sit amet, pretium vitae,
-nisi. Proin nisl sem, ultrices eget, faucibus a, feugiat non,
-purus. Etiam mi tortor, convallis quis, pharetra ut, consectetuer eu,
-orci. Vivamus aliquet. Aenean mollis fringilla erat. Vivamus mollis,
-purus at pellentesque faucibus, sapien lorem eleifend quam, mollis
-luctus mi purus in dui. Maecenas volutpat mauris eu lectus. Morbi vel
-risus et dolor bibendum malesuada. Donec feugiat tristique erat. Nam
-porta auctor mi. Nulla purus. Nam aliquam. 
+
+Num mundo onde a \ac{IA} está cada vez mais presente em aplicações do dia a dia, 
+a estratégia para desenvolver e implementar modelos de \ac{IA} no estado da arte tem 
+dependido fortemente de servidores potentes hospedados na nuvem. No entanto, esta 
+abordagem apresenta várias desvantagens, incluindo a distância entre a fonte de dados, 
+o servidor e o utilizador final, o que pode levar ao aumento da latência, a um maior 
+consumo de energia e a potenciais vulnerabilidades de privacidade. Para abordar estas 
+questões, a computação de borda (edge computing) surgiu como uma solução promissora, 
+aproximando os recursos computacionais de onde são necessários, em particular, através 
+do paradigma TinyML, que oferece a possibilidade de executar modelos de \ac{IA} em 
+dispositivos de borda. No entanto, os dispositivos na borda extrema (far-edge), 
+como os microcontroladores, embora altamente limitados em termos de memória e 
+computação, são amplamente utilizados no ecossistema \ac{IdC}, estando equipados com 
+sensores e atuadores, e sendo capazes de executar pequenas tarefas com um consumo de 
+energia muito reduzido. Diante de tais dispositivos, a possibilidade de executar uma 
+\ac{RNP} parece inviável, mas, com as estratégias certas, é possível potenciar as 
+capacidades destes dispositivos e orquestrá-los de modo a realizar esta tarefa. Este 
+trabalho explora o potencial da inferência distribuída, onde um modelo de \ac{RNP} é 
+particionado e distribuído por múltiplos dispositivos com recursos limitados para 
+alcançar uma inferência de alto desempenho no ambiente de edge. Apresentamos o 
+\ac{DisRUPT}, um ambiente de testes de inferência distribuída que permite a 
+avaliação de diferentes estratégias de partição e cenários de implantação 
+para modelos de \ac{RNP}, incorporando conjuntamente dispositivos far-edge e edge, 
+medindo latência de inferência e ao consumo de energia da rede. 
+Adicionalmente, apresentamos um conjunto de estratégias aplicadas a diferentes 
+arquiteturas de \ac{RNP} e avaliamos os seus efeitos na latência de inferência e no 
+consumo de energia da rede. Em concreto, conseguimos executar uma adaptação do modelo
+MobileNetV1 numa rede composta por 2 microcontroladores e 1 Raspberry Pi 3B,
+executando uma inferência em 760,32~ms (33,78~ms de inferência ativa e 726,54~ms de
+latência residual), utilizando apenas 145,7~mJ de energia. A partir das nossas
+configurações com o modelo \ac{DS-CNN} obtivemos resultados que variaram entre uma
+inferencia de baixa latência, demorando 27,99~ms, e uma inferência de baixo consumo
+energético, utilizando 26,5~mJ de energia por inferência. A partir dos resultados 
+recolhidos neste trabalho, identificamos um conjunto de boas práticas para a 
+inferência distribuída em dispositivos far-edge e edge e, principalmente, apontamos 
+a existência de um limiar de taxa de transferência de entrada onde a inclusão de 
+dispositivos edge no processo de inferência só se torna vantajosa acima deste limiar.
+
+\vspace{\fill}
+\begin{flushleft}
+{\Large \textbf{Palavras-chave}:} 
+Ambiente de Borda \(\bullet\) 
+Inferência Distribuída \(\bullet\)
+Internet das Coisas \(\bullet\)
+TinyML 
+\end{flushleft}
+\vspace*{24mm}
 
 \acresetall %% to reset the acronym usage
 
 \chapter*{Abstract}
-%
-Here goes the abstract written in English. It should say the same.
+% Here goes the abstract written in English. It should say the same.
 
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed vehicula
-lorem commodo dui \ac{FEUP}. Fusce mollis feugiat elit. Cum sociis natoque
-penatibus et magnis dis parturient montes, nascetur ridiculus
-mus. Donec eu quam. Aenean consectetuer odio quis nisi. Fusce molestie
-metus sed neque. Praesent nulla. Donec quis urna. Pellentesque
-hendrerit vulputate nunc. Donec id eros et leo ullamcorper
-placerat. Curabitur aliquam tellus et diam. 
-%
-Ut tortor. Morbi eget elit. Maecenas nec risus. Sed ultricies. Sed
-scelerisque libero faucibus sem \ac{FEUP}. Nullam molestie leo quis
-tellus. Donec ipsum. Nulla lobortis purus pharetra turpis. Nulla
-laoreet, arcu nec hendrerit vulputate, tortor elit eleifend turpis, et
-aliquam leo metus in dolor. Praesent sed nulla. Mauris ac augue. Cras
-ac orci. Etiam sed urna eget nulla sodales venenatis. Donec faucibus
-ante eget dui. Nam magna. Suspendisse sollicitudin est et mi. 
-%
-Fusce sed ipsum vel velit imperdiet dictum. Sed nisi purus, dapibus
-ut, iaculis ac, placerat id, purus. Integer aliquet elementum
-libero. Phasellus facilisis leo eget elit. Nullam nisi magna, ornare
-at, aliquet et, porta id, odio. Sed volutpat tellus consectetuer
-ligula. Phasellus turpis augue, malesuada et, placerat fringilla,
-ornare nec, eros. Class aptent taciti sociosqu ad litora torquent per
-conubia nostra, per inceptos himenaeos. Vivamus ornare quam nec sem
-mattis vulputate. Nullam porta, diam nec porta mollis, orci leo
-condimentum sapien, quis venenatis mi dolor a metus. Nullam
-mollis. Aenean metus massa, pellentesque sit amet, sagittis eget,
-tincidunt in, arcu. Vestibulum porta laoreet tortor. Nullam mollis
-elit nec justo. In nulla ligula, pellentesque sit amet, consequat sed,
-faucibus id, velit. Fusce purus. Quisque sagittis urna at quam. Ut eu
-lacus. Maecenas tortor nibh, ultricies nec, vestibulum varius, egestas
-id, sapien. 
-%
-Donec hendrerit. Vivamus suscipit egestas nibh. In ornare leo ut
-massa. Donec nisi nisl, dignissim quis, faucibus a, bibendum ac,
-diam. Nam adipiscing hendrerit mi. Morbi ac nulla. Nullam id est ac
-nisi consectetuer commodo. Pellentesque aliquam massa sit amet
-tellus. Vivamus sodales aliquam leo. 
+In a world where \ac{AI} is increasingly integrated into everyday applications, the 
+strategy for developing
+and deploying state of the art \ac{AI} models has been relying heavily on powerful 
+cloud-based servers. However, this approach has several drawbacks, including the
+distance between the data source, the server and the end-user, which can lead to
+increased latency, higher energy consumption, and potential privacy concerns.
+To address these issues, edge computing has emerged as a promising solution, bringing
+computational resources closer to where they are needed, in particular, the TinyML
+paradigm, which provides a possibility to run \ac{AI} models on everyday devices.
+Nonetheless, far-edge devices, such as microcontrollers, although
+highly memory and computationally constrained, are widely used in the \ac{IoT} ecosystem,
+equipped with sensors and actuators, and are capable of running small tasks while
+consuming very low power. Faced with such devices, the possibility of running a
+\ac{DNN} seems infeasible, but with the right strategies, it is possible to leverage
+the capabilities of these devices and orchestrate them to achieve this task.
+This work explores the potential of distributed inference,
+where a \ac{DNN} model is partitioned and distributed across multiple
+resource-constrained devices to achieve highly performant inference in the edge 
+environment. We present \ac{DisRUPT}, a distributed inference testbed, that enables the
+evaluation of different partitioning strategies and deployment scenarios for \ac{DNN} 
+models incorporating far-edge and edge devices together, in regards of inference 
+latency and network energy consumption. Additionally, we present a set 
+of strategies applied on different \ac{DNN} architectures, and evaluate their effects 
+on inference latency and the network energy consumption. In particular, we managed
+to run an adapted MobileNetV1 model on a network of 2 microcontrollers and 1 Raspberry 
+Pi 3B, executing an inference in 760,32~ms (33,78~ms of active inference and 726,54~ms 
+of overhead latency), using only 145,7~mJ of energy. From our setups with the \ac{DS-CNN}
+model we obtained results that ranged from low latency, taking 27,99~ms to low energy consumption
+inference, using 26,5~mJ of energy per inference. From the collected results
+in this work, we identify a set of best practices for distributed inference in far-edge
+and edge devices, and, mainly, point out the existence of an input throughput threshold 
+where the inclusion of edge devices in the inference process only becomes advantageous
+above the threshold.
+
+\vspace{\fill}
+\begin{flushleft}
+{\Large \textbf{Keywords}:} 
+Distributed Inference \(\bullet\)
+Far-Edge Environment \(\bullet\) 
+Internet of Things \(\bullet\)
+TinyML 
+\end{flushleft}
+\vspace*{24mm}
 
 \acresetall %% to reset the acronym usage

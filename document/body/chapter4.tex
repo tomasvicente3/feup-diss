@@ -1,119 +1,396 @@
-\chapter{Range-Extended Network-Aware Model Partitioning Framework} \label{chap:ch4}
+\chapter{Distributed Resource Utility \&{} Performance Testbed} \label{chap:ch4}
 
-\section{Approach} \label{sec:se41}
+To answer the research questions outlined in Chapter \ref{chap:intro}, 
+we developed the \ac{DisRUPT}
+that can evaluate the performance of distributed resource management strategies. 
+In this chapter, we will discuss the design and implementation of \ac{DisRUPT} using 
+Raspberry Pi\footnote{https://www.raspberrypi.com/} devices along with a set of 
+\acp{MCU}. The Raspberry Pi devices serve as our reference for edge devices, as
+they are more computationally capable than the \acp{MCU}, while keeping a low power
+consumption, opposed to laptop computers, that could also be used as edge devices. 
 
-After analyzing the state of the art on model partitioning and \ac{ML} 
-orchestration in edge computing, we found that current frameworks tend to 
-make use of less constrained devices and use more powerful and even less 
-constrained devices only in the later stages of the inference tasks, which may 
-not be the most optimal approach in a network where the devices lay closer 
-together. Additionally, there is a lack of available partitioning methods 
-tackling models with cyclic topology (e.g., \acp{RNN}, MobileNets, etc.) to 
-the edge environment.
+This testbed will allow us to easily partition a model, deploy it and test various use 
+cases, in such way that we can evaluate the inference latency and the network energy 
+consumption under different partitioning and deployment strategies.
 
-To address these issues, we propose a novel model partitioning framework for 
-efficient integration of edge devices within far-edge device networks, enabling 
-collaborative inference in highly constrained environments. The framework primarily 
-leverages the densely interconnected deployed far-edge devices, with minimal 
-reliance on more capable edge devices. Unlike typical edge deployments that 
-distribute work across heterogeneous nodes separated by non-negligible 
-communication delays, this approach targets networks where devices experience 
-negligible communication delays, creating a more challenging but realistic 
-scenario for far-edge computing.
-Additionally, the framework can exploit the cyclic topology of certain \ac{ML} 
-models (e.g., \acp{RNN}), enabling device reuse across multiple inference stages. 
-By leveraging the recurrent nature of these models, individual devices can process 
-different layers or iterations, effectively acting as shared computational resources 
-throughout the inference pipeline.
+\section {System Overview} \label{sec:se41}
 
-\section{Methods} \label{sec:se42}
+The \ac{DisRUPT} framework consists of four main components. The \ac{MCU} Interface,
+the Raspberry Pi Interface, the Orchestrator Module, and the Partitioning Module.
 
-For the testing and validation stages of the proposed framework, we will use a set 
-of 15 \ac{MCU}-based devices with available memory on the order of kilobytes and 
-one \ac{MPU}-based device with available memory on the order of megabytes. 
+The mentioned device interfaces components are responsible for the execution of the
+inference on the devices, as well as for the communication between them. They are
+automatically managed and the network 
+performance is evaluated by the Orchestrator Module. 
+While the Partitioning Module is responsible for partitioning the models, 
+before the deployment stage, and it is not involved in the inference process itself.
 
-The devices will be connected via Wi-Fi and deployed in an 
-indoor environment. The topology represents a typical smart building 
-scenario, forming a fully-connected graph of 16 nodes.
+To achieve the collaborative inference, we first use the Partitioning Module to 
+partition the \ac{DNN} models into all possible partitions that might be executed on 
+the constrained devices. Then, the
+segments and devices that will execute them are selected according to the devices
+capabilities and the model requirements. Finally, the segments are deployed to the
+respective devices, that are also configured to communicate with each other effectively.
 
-The metrics for evaluation will include inference latency, energy consumption, and
-memory usage per device. We will then compare the performance of our proposed
-framework against the state of the art model partitioning frameworks that we
-analysed in Chapter~\ref{chap:ch3}.
+Each device in the network runs its corresponding interface, which is responsible for
+the execution of the assigned inference subtasks. Furthermore, it allows 
+communication with other devices in the network, providing mechanisms to receive input 
+data and transmit the results of the subtask.
 
-\section{Expected Results} \label{sec:se43}
+% In order to evaluate the performance of the proposed framework, we automated the testing
+% process through a set of scripts, resulting in the Orchestrator Module, that can manage
+% the network to execute a given inference task, following the configuration defined by
+% the user, and then collect the performance metrics for analysis.
 
-We expect to achieve a successful deployment of partitioned models with cyclic 
-components, extending the range of \ac{DNN} models that can be deployed in edge
-environments. 
+In order to automate the deployment of the task to the network, we developed a set of
+scripts that not only create routes that chain together the inference pipeline, but also
+upload the partitioned submodels to the devices and feed the network with the input data.
+This results in the Orchestrator Module, that is given the network configuration and
+input data by the developer, through a configuration file. The Orchestrator Module
+is also capable of collecting timing and energy performance metrics during the inference 
+process, for later analysis and comparison.  
 
-Additionally, we anticipate improved performance in terms of
-latency and energy efficiency compared to existing model partitioning frameworks,
-especially in scenarios with a high density of constrained devices. This is
-partially due to improved communication methods between devices and more efficient
-utilization of the available computational resources across the network, in
-particular, the use of the edge device among the far-edge devices.
-
-\section{Project plan} \label{sec:se44}
-
-The project is planned to be executed over a period of 5 months, resulting in 
-18 available weeks, divided into the following tasks:
-
-\begin{description}[style=unboxed, leftmargin=1cm, font=\bfseries]
-
-    \item[Testbed Setup (Weeks 1-8):]
-    This task involves setting up the hardware and software environment for testing,
-    including the configuration of the devices and network. Furthermore, we will
-    implement the necessary tools for monitoring and evaluating performance metrics.
-    
-    \item[Deployment of the Model Partition Segments (Weeks 4-7):]
-    This task involves deploying the partitioned model segments onto the
-    selected devices, ensuring correct functionality and efficient communication
-    between them.
-    
-    \item[Partitioning Subprocedure Integration (Weeks 7-12):]
-    This task focuses on integrating a core partitioning algorithm, chosen from 
-    an existing framework reviewed in chapter~\ref{chap:ch3}, that will divide
-    the \ac{DNN} models into lightweight segments suitable for the constrained 
-    devices in the network. Ideally, this subprocedure will be extended to take 
-    into account the cyclic topology of certain models to optimize the partitioning 
-    process.
-    
-    \item[Testing and Evaluation (Weeks 12-14):]
-    During these weeks, we will conduct extensive testing of the deployed framework,
-    measuring the defined performance metrics and comparing them against baseline
-    results from existing frameworks.
-
-    \item[Dissertation Elaboration (Weeks 15-18):]
-    After completing the implementation work and testing, we will focus on writing
-    the dissertation, documenting the methodology, results, and conclusions of the
-    project.
-
-    
-\end{description}
-
-The first three tasks represent the milestone corresponding to the MVP of the
-project, expected to be completed by the end of week 12. The testing and evaluation
-task will provide the necessary data to analyze the performance of the proposed
-framework, while the dissertation elaboration task will ensure that the findings
-are well-documented and presented. The workflow can be better visualized in the Gantt
-chart shown in Figure~\ref{fig:gantt}. It should be noted that the weeks corresponding
-to the Easter break and Academic Week are not taken into account in this timeline.
+The interaction between the \ac{DisRUPT} components can be visualized in 
+Figure~\ref{fig:DisRUPT-arch}. Note that the inference interfaces can be scaled to 
+accommodate more devices in the network. 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{approach-gantt.png}
-  \caption{Gantt chart representing the project plan and timeline.}
-  \label{fig:gantt}
+  \includegraphics[width=0.8\textwidth]{chap4/DisRUPT-arch.png}
+  \caption{\ac{DisRUPT} architecture.}
+  \label{fig:DisRUPT-arch}
 \end{figure}
 
-\section{Conclusions} \label{sec:se45}
+\section {Model Partitioning} \label{sec:se42}
 
-This chapter proposes a novel framework to efficiently execute collaborative 
-inference tasks,
-excelling in the integration of edge devices within a far-edge device network and 
-managing to make use of highly constrained devices. Additionally, the framework 
-extends support to \ac{DNN} models with cyclic topology through device reuse across 
-inference stages. This marks a significant advancement in the field of edge computing
-and \ac{IoT}, opening new possibilities for applications that require real-time 
-processing and low latency.
+Before the network configuration phase, we need to partition the \ac{DNN} models into
+segments that are fit for the constrained devices in our network. To achieve this, we
+will use the \ac{NAMP}'s model surgery module, that allows us to easily partition and
+optimize \acp{MLP} and \acp{CNN} into said segments.~\cite{rego::namp}
+
+\ac{NAMP}'s Partitioning Module takes a \ac{DNN} as input and generates a set of all 
+possible model partitions by breaking it down layer by layer. Additionally, certain 
+\ac{FC} layers can be partitioned to allow wide layers to be executed collaboratively 
+across multiple devices. This module also enables model quantization to optimize the 
+resulting segments, reducing their memory footprint for deployment on 
+resource-constrained devices.
+
+To achieve this, the weights and activations of the submodels are quantized from 
+32-bit to 8-bit representations using TensorFlow's post-training quantization tools. 
+First, the module generates all possible submodels in the standard TensorFlow format 
+for every combination of beginning and ending layers. If flagged for optimization, 
+each submodel is then quantized to 8 bits and ultimately converted into the $.tflite$ 
+format.
+
+
+\section {MCU Interface} \label{sec:se43}
+
+To enable the execution of inference tasks on \acp{MCU}, we utilized 
+embServe\cite{embserve_oliveira_2023},
+a runtime application built on top of the Zephyr RTOS~\footnote{https://www.zephyrproject.org/}, 
+which enables the deployment and execute services on constrained devices. 
+This choice was motivated by our State of the Art analysis, as it fills the gap by 
+supporting model deployment on far-edge devices with minimal overhead.
+
+This framework provides a model agnostic interface to the underlying hardware, allowing 
+us to easily deploy the partitioned submodels to the \acp{MCU} as services, and also to 
+manage the communication routes between the devices in the network.
+
+To deploy the partitioned submodels, we need to compile an embServe service: a C
+application that dictates the behavior of the device when that service is active,
+in this case, the inference execution upon receiving input data. The service is then
+uploaded to the device, and after defining the incoming and outgoing communication 
+routes, the device is ready to partake in the inference network.
+
+
+\section{Raspberry Pi Interface} \label{sec:se44}
+
+% The Raspberry Pi brand offers a range of small, affordable, and versatile
+% single-board computers that are widely used in various applications, including 
+% education, hobby projects, and even industrial use, on a \ac{IoT} context.
+
+% \subsection{Raspberry Pi API} \label{sec:se411}
+
+To facilitate the interaction with the Raspberry Pi and to enable the deployment
+of inference tasks, we have developed a custom API that allows us to manage the
+Raspberry Pi's resources and execute inference tasks remotely, while also transmitting
+the intermediate results to the next device in the pipeline, monitoring the system
+along the way.
+
+This was achieved by creating a Python runtime application on the Raspberry Pi. The
+application creates a server that listens for incoming requests to allow the Raspberry
+Pi to partake in the inference network, from reporting its status, having configurable
+outgoing communication routes, and executing the assigned inference tasks. It should
+be noted that the Python language does not hinder the performance of the inference tasks,
+as the used TFLite runtime is implemented in C, limiting the Python overhead to the
+communication parsing and the server management.
+
+The server creates a set of objects, as described in Table~\ref{tab:RPi-components}, 
+that interact with each other to allow for the integration of the device into the 
+inference network, like we can see in Figure~\ref{fig:RPi-arch}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{chap4/RPi-API-arch.png}
+  %todo - rever tamanho da figura - aumentar texto no draw.io?
+  \caption{Raspberry Pi Interface architecture.}
+  \label{fig:RPi-arch}
+\end{figure}
+
+\begin{table}
+  \centering
+  \small
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|>{\centering\arraybackslash}m{1.8cm}|X|}
+    \hline
+    \textbf{Component} & \textbf{Type} & \textbf{Description} \\
+    \hline
+    \texttt{main.py} & Entrypoint & Initializes all components, and runs the asyncio event loop. \\
+    \hline
+    Config & File & Stores runtime parameters including the network address, CoAP port, active model name, and destination routing. \\
+    \hline
+    CoAP Server & Object & Listens for incoming CoAP requests over UDP and dispatches them to the appropriate endpoint handler. \\
+    \hline
+    Model Manager & Object & Validates, stores, and activates \texttt{.tflite} model files, persisting the active model selection across restarts. \\
+    \hline
+    Inference Engine & Object & Manages the TFLite Interpreter lifecycle, pre-processes input tensors, invokes the model, and returns the output. \\
+    \hline
+    Result Sender & Object & Forwards inference results to the configured destination node via CoAP. \\
+    \hline
+    TFLite Interpreter & Object & Singleton instance of the TFLite runtime that allocates the tensor arena and executes the loaded model. \\
+    \hline
+    \texttt{GET /status} & Endpoint & Returns the currently active model and the configured destination address. \\
+    \hline
+    \texttt{PUT /model} & Endpoint & Accepts new \texttt{.tflite} files encoded in base64 to store or activate existing models.\\
+    \hline
+    \texttt{PUT /infer} & Endpoint & Accepts an input tensor and an inference identifier, runs inference, and forwards the result to the destination. \\
+    \hline
+    \texttt{PUT /destination} & Endpoint & Sets the IP address, port, and path of the next node in the inference pipeline. \\
+    \hline
+    \texttt{models/} & File directory & Contains all deployed \texttt{.tflite} model files and the state file tracking the active model. \\
+    \hline
+    systemd service & System service & Manages the runtime process, ensuring automatic startup on boot and restart on failure. \\
+    \hline
+  \end{tabularx}
+  \vspace{2mm}
+  \caption{Raspberry Pi Interface components.}
+  \label{tab:RPi-components}
+\end{table}
+
+\section{Deployment Planning}\label{sec:se45}
+
+To reduce the impact of the limitations of the far-edge constrained devices on the 
+performance of the distributed inference, we need to carefully plan the deployment 
+and the communication between the devices during the inference process. 
+This involves selecting the most suitable partitioning and deployment strategies, 
+as well as optimizing the communication protocols to minimize latency and 
+energy consumption. 
+
+In this section, we will discuss the strategies and techniques that can be employed
+to achieve the aforementioned goals, and how they can be implemented in the 
+\ac{DisRUPT} framework.
+
+\subsection{Device Communication}\label{sec:se451}
+
+% CoAP protocol usage
+% Minimized data per transmission
+% Communication only in setup stages and between segments 
+
+Besides each device being responsible for its assigned inference subtask, they also
+need to communicate with each other to bring meaning to the inference process, which 
+takes a toll on the network performance.
+In order to ease the communication overhead between the devices, we have taken several
+measures such as the messaging protocol selection, the minimization of the data
+transmitted, and the reduction of the communication stages during the inference process.
+
+The CoAP web transfer protocol~\cite{coap-rfc7252} was selected for the communication
+between the devices, as it is a lightweight protocol, as presented in the 
+Figure~\ref{fig:coap-arch}, designed for constrained devices
+and networks, making it well-suited for our use case. Specifically, CoAP operates over
+UDP rather than TCP, drastically reducing connection handshake overhead, transmission
+delays, and power consumption. To fit low-power payload limits, it uses a compact
+4-byte binary header that reduces fragmentation. Its dual-layer design adds reliability
+via confirmable messages while preserving REST semantics (GET, POST, PUT, DELETE).
+
+% Specifically, CoAP operates over 
+% UDP rather than TCP, drastically reducing connection handshake overhead, transmission 
+% delays, and power consumption. To adapt to the strict payload limitations of low-power 
+% wireless networks and minimize packet fragmentation, it replaces verbose, text-based 
+% HTTP headers with a highly compact 4-byte fixed binary header. Furthermore, CoAP 
+% introduces a dual-layer architecture that separates the messaging layer (handling 
+% reliability through confirmable messages) from the request/response layer. This allows 
+% it to preserve standard RESTful semantics (GET, POST, PUT, DELETE) for easy 
+% interoperability with existing web infrastructure, while augmenting communication with 
+% native IoT optimizations. These include built-in resource discovery via 
+% /.well-known/core, IP multicast support, and an asynchronous Observe mechanism that 
+% enables push-based data streaming without the energy waste of continuous client polling.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{chap4/Communication-Protocol-Landscape-for-IoT.png}
+  \caption{Communication protocol landscape for \ac{IoT} (from \textcite{gulati_tdmil_2024}).}
+  \label{fig:coap-arch}
+\end{figure}
+
+To further minimize the communication overhead during inference, we have separated the
+communication into two main stages: the setup stage and the inference stage. During the
+setup stage, we transmit all the necessary information to allow the device to perform
+the inference task and to communicate with the other devices in the network, such as
+the routes used to manifest the inference pipeline, as well as the services containing
+the inference model logic. 
+On the other hand, during the inference stage, we restrain the communication to only 
+the necessary information for the inference process, which is the intermediate results
+between the segments. For inter-device communication, we encode payloads in
+\ac{CBOR}~\cite{cbor-rfc8949}, a compact binary serialization format.
+Compared with text-based \ac{JSON}, \ac{CBOR} reduces message size and
+parsing cost. We use \ac{JSON} for setup and debugging (when messages are
+inspected by tools or developers), but avoid it during production inference.
+
+
+\subsection{Performance Metrics}\label{sec:se452}
+
+% Inference latency
+% Network Energy consumption - measurement methods
+% Resource utilization (memory and CPU usage)?
+
+% Why these metrics indicators
+% How to measure them in the testbed
+% Future Estimate - allow for heuristics
+
+One of the goals of this work is to evaluate the performance of the inference
+network under different partitioning and deployment strategies. With \ac{DisRUPT}, 
+performance can be measured through the inference latency and the network energy
+consumption, which are crucial indicators of the inference process efficiency and 
+effectiveness.
+
+The Orchestrator Module is responsible for collecting these performance metrics during
+the inference process. In particular, the inference latency is measured by recording
+the timestamp of a given inference task and matching it with the timestamp of the final
+result using a unique identifier assigned to each distributed inference task. The
+inference task unique identifier is only 1-byte long, allowing for a maximum of 256
+concurrent inference tasks.
+
+To separate the inference latency from the communication overhead, we also measure the
+latency of each segment execution on each device, in a similar method. This is achieved
+by transmitting the sum of the previous segments execution time along with the
+in-device latency measurement.
+
+The energy consumption of the network is measured using an external power profiler 
+connected to the devices, allowing us to monitor the energy usage during the inference 
+process and reporting it to the Orchestrator Module, as
+to not interfere with the devices' performance. This data is stored for further 
+analysis and comparison between different strategies.
+
+All this data allows us to estimate the performance of the inference network under
+different configurations, and to identify the most effective strategies for deploying
+\ac{DNN} models on constrained devices. This data can also be used to develop several 
+heuristics for future deployments, allowing us to match the user needs with the most
+suitable partitioning and deployment strategies, to achieve minimal latency, energy
+consumption, or a balance between the two. 
+
+
+\subsection{Partition and Deployment Strategies}\label{sec:se453}
+
+% Where to partition the model
+% Which devices to select for the execution of each segment
+
+Another important aspect of the deployment planning is the selection of the
+partitioning and deployment strategies. The way we partition the model and
+assign the segments to the devices can have a significant impact on the performance
+of the inference network.
+
+% To further minimize the communication load and therefore the latency in the inference
+% task, we can choose to partition the \ac{DNN} in such way that the partition points 
+% are the layers that produce the smallest intermediate results. This way, directly
+% reducing the amount of data that needs to be transmitted between the devices.
+
+When it comes to the deployment strategy, the most relevant aspect to consider is the
+\ac{DNN} architecture, as some layers are more computationally intensive than others.
+Even if the layers in \ac{CNN} models and \ac{MLP} models are based on a series of 
+matrix multiplications, the variations in the dimensions of the matrices and the
+number of parameters can lead to significant differences in the computational load of
+each layer.
+
+In order to achieve the best performance, we need to carefully select the devices
+that are more appropriate for the execution of each segment, considering their
+computational capabilities and the memory constraints. 
+
+Nonetheless, the relationship between the layers' computational load and the devices' 
+capabilities is not always straightforward, so for this work, we will create several
+scenarios with different deployment strategies, to evaluate their performance and to
+identify the most effective ones for different use cases and requirements, as presented
+in Table~\ref{tab:deployment-strategies}, while always considering the constraints
+of the devices in the network. Faced with several possibilities for a given deployment
+strategy, we will select the one that keeps the model architecture intact, as to keep
+together layers that belong to the same block.
+
+\begin{table}[H]
+  \centering
+  \small
+  \setlength{\tabcolsep}{6pt}
+  \renewcommand{\arraystretch}{1.2}
+  \begin{tabularx}{0.95\textwidth}{|m{3.22cm}|X|X|}
+    \hline
+    \textbf{Strategy} & \textbf{Description} & \textbf{Reasoning}\\
+    \hline
+    Edge Only 
+        & 
+      The full model is executed on just the edge device. 
+        &
+      This can be used as a baseline for comparison with other strategies. 
+      \\
+    \hline
+    Edge First 
+        &
+      The model is partitioned to execute the first segments on the edge device, and
+        the remaining segments on the \ac{MCU} devices. 
+        &
+      For some models, the first layers are more memory intensive, and therefore more
+        suitable for execution on the edge device, while the remaining layers can be
+        executed on the \ac{MCU} devices. 
+      \\
+    \hline
+    Edge Last 
+        & 
+      The model is partitioned to execute the last segments on the edge device, and
+        the first segments on the \ac{MCU} devices. 
+        &
+      For some models, the last layers are more computationally intensive, and
+        therefore more suitable for execution on the edge device, while the first layers
+        can be executed on the \ac{MCU} devices.
+      \\
+    \hline
+    Min-Cut 
+      & 
+      The model is partitioned to minimize the communication cost between devices,
+        by selecting partition points where the Intermediate Tensors are smallest. 
+      &
+      This strategy aims to reduce the transmission cost between devices, thus 
+      shortening the overhead of collaborative inference.  
+      \\
+    \hline
+    Load-Balanced 
+      & 
+      Segments are distributed across the maximum number of devices to minimize the 
+      computational load on each, taking into account both the layers' computational 
+      load and the devices' capabilities. 
+      &
+      For this strategy, we balanced the memory footprint of each segment across devices, 
+      to avoid bottlenecks and to maximize the utilization of the available resources.
+      \\
+    \hline
+    Greedy
+      & 
+      Partition points are selected to fit as much of the model as possible onto each
+      \ac{MCU} device.
+      &
+      This strategy aims to maximize the utilization of each device's resources,
+      potentially reducing the number of devices needed for inference.
+      \\
+    \hline
+  \end{tabularx}
+  \vspace{2mm}
+  \caption{Deployment strategies for model partitioning and segment assignment.}
+  \label{tab:deployment-strategies}
+\end{table}

@@ -1,0 +1,64 @@
+%% an example of appendix
+\chapter{Model Energy} \label{ap2:modelEnergy}
+
+To provide an estimate of the energy consumption of the models throughout the network,
+we have used a multimeter to measure the power consumption of each device during
+inference individually. Then, taking account for each submodel in each used strategy,
+we have estimated the energy consumption of each model by adding the corresponding
+segments. The following sections provide a detailed overview of the energy consumption
+of each model.
+
+\section{Submodel Energy Consumption Overview}
+
+In Table~\ref{tab:submodelEnergy}, we present a comprehensive overview of the energy
+consumption of each submodel across the different models. The submodel identification
+is based on the beginning and ending layers of each submodel.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Model} & \textbf{Partition} & \textbf{Device} & \textbf{Energy Consumption (mJ)} \\
+        \hline
+        All-CNN-C & 0-8 & Raspberry Pi & 70,50 \\
+        All-CNN-C & 0-11 & Raspberry Pi & 56,60 \\
+        All-CNN-C & 3-7 & Raspberry Pi & 71,80 \\
+        All-CNN-C & 3-11 & Raspberry Pi & 67,90 \\
+        All-CNN-C & 0-3 & Argon & 88,90 \\
+        All-CNN-C & 3-6 & Argon & 72,30 \\
+        All-CNN-C & 6-9 & Argon & 40,60 \\
+        All-CNN-C & 6-11 & Argon & 33,90 \\
+        All-CNN-C & 7-11 & Argon & 27,20 \\
+        All-CNN-C & 8-11 & Argon & 24,00 \\
+        All-CNN-C & 9-11 & Argon & 31,50 \\
+        DS-CNN & 0-15 & Raspberry Pi & 70,70 \\
+        DS-CNN & 0-29 & Raspberry Pi & 54,10 \\
+        DS-CNN & 15-29 & Raspberry Pi & 68,30 \\
+        DS-CNN & 0-9 & Argon & 127,00 \\
+        DS-CNN & 0-29 & Argon & 26,50 \\
+        DS-CNN & 9-15 & Argon & 194,50 \\
+        DS-CNN & 15-21 & Argon & 194,60 \\
+        DS-CNN & 21-29 & Argon & 300,70 \\
+        MobileNetV1 & 0-71 & Raspberry Pi & 71,00 \\
+        MobileNetV1 & 36-71 & Raspberry Pi & 51,00 \\
+        MobileNetV1 & 39-71 & Raspberry Pi & 54,10 \\
+        MobileNetV1 & 0-15 & Argon & 91,40 \\
+        MobileNetV1 & 0-24 & Argon & 69,60 \\
+        MobileNetV1 & 15-27 & Argon & 58,80 \\
+        MobileNetV1 & 24-36 & Argon & 25,10 \\
+        MobileNetV1 & 27-39 & Argon & 37,40 \\
+        MLP-Autoencoder & 0-18 & Raspberry Pi & 49,60 \\
+        MLP-Autoencoder & 0-28 & Raspberry Pi & 50,10 \\
+        MLP-Autoencoder & 6-24 & Raspberry Pi & 49,60 \\
+        MLP-Autoencoder & 9-28 & Raspberry Pi & 51,20 \\
+        MLP-Autoencoder & 0-3 & Argon & 35,10 \\
+        MLP-Autoencoder & 0-6 & Argon & 30,90 \\
+        MLP-Autoencoder & 3-9 & Argon & 35,60 \\
+        MLP-Autoencoder & 6-18 & Argon & 33,90 \\
+        MLP-Autoencoder & 18-24 & Argon & 37,10 \\
+        MLP-Autoencoder & 24-28 & Argon & 34,70 \\
+        \hline
+    \end{tabular}
+    \caption{Energy consumption overview by model, partition, and device}
+    \label{tab:submodelEnergy}
+\end{table}

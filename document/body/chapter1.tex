@@ -3,30 +3,27 @@
 %TODO separar contexto de motivação: 
 %deixar contexto aqui e motivação na secção abaixo
 
-\section{Context} \label{sec:context}
-
 For the last couple of years, the field of \ac{ML}, and, in 
 particular, its \ac{DL} branch has been a constant presence in the 
 computational research breakthroughs, each time creating new mechanisms to 
 detect more patterns and allowing the extraction of knowledge from seemingly 
-insignificant data, introducing new ways of understanding the world around us.
-\cite{tml-enabled-frugal-smart-objects} 
+insignificant data, introducing new ways of understanding the world around us~\cite{tml-enabled-frugal-smart-objects}. 
 
 In a similar fashion, the \ac{IoT} paradigm has been gaining more and more
-traction, making use of a large number of interconnected devices that gather 
+traction, making use of numerous interconnected devices that gather 
 extensive data from the environment and provide a wide range of 
 services to users. We can find \ac{IoT} devices in our homes, workplaces, 
 and cities, where they continuously monitor and process information to perform 
 their designated tasks.
 
 \ac{DNN} models can be used in a wide range of applications, from
-automotive and healthcare to smart cities and industry 4.0. \cite{doyu::tinymlaas}
+automotive and healthcare to smart cities and industry 4.0~\cite{doyu::tinymlaas}.
 By combining these two paradigms, we can extract even more benefits, as
 \ac{ML} models deployed on \ac{IoT} devices enable faster, more
-secure and more accurate data processing and analysis. \cite{david::tflm}
+secure and more accurate data processing and analysis~\cite{david::tflm}.
 
-These \ac{IoT} devices are often referred to as \textit{edge devices}. Still,
-currently, there isn't a clear and agreed upon definition of what edge and 
+These \ac{IoT} devices are often referred to as \textit{edge} or \textit{far-edge devices}. 
+Still, currently, there isn't a clear and agreed upon definition of what edge and 
 far-edge devices are. Nonetheless, for this work, a far-edge device can be seen
 as a constrained device, characterized by limited computational power and
 memory, such as sensors or other \ac{MCU} based devices. An edge device, similarly,
@@ -49,7 +46,7 @@ To overcome these limitations, the concept of edge computing has been
 introduced, where the data is processed closer to the source, on edge devices,
 such as \acp{MCU}. However, these devices have limited computational
 resources, which can make it challenging to deploy complex \ac{DNN} models on
-them. \cite{teerapittayannon::ddnn}
+them~\cite{teerapittayannon::ddnn}.
 
 Moreover, there is a lack of widely spread and standardized tools and frameworks 
 to facilitate the usage of \ac{ML} in constrained devices, as they are constituted by
@@ -61,21 +58,22 @@ Some other efforts were made to address this problem, such as NAMP \cite{rego::n
 which proposes a method for partitioning \ac{DNN} models between \acp{MCU}. 
 However, these advancements only scratch the surface of the problem and still 
 require improvement in their scalability potential and communication protocols.
+%TODO - dizer explicitamente o que não fazem que vou fazer
 
 %this approach only allows
 %for the deployment of relatively lightweight models, such as \textit{LeNet-5} \cite{lenet-5},
 
-\section{Hypothesis} \label{sec:hypothesis}
+\section{Objective and Research Questions} \label{sec:hypothesis}
 
 Considering the context and the problem presented, this work aims to answer the
 following hypothesis:
 
-\begin{quote}
+\begin{quote} %TODO - rever a formulação da hipótese
   ``Is it possible to create a reliable tool to support the deployment 
   of complex DNN models on far-edge and edge devices?'' 
 \end{quote}
 
-\section{Research Questions} \label{sec:rquestions}
+% \section{Research Questions} \label{sec:rquestions}
 
 As the hypothesis tackles a complex problem, there are several research
 questions that can be derived from it as intermediate steps to answer it,
@@ -83,7 +81,7 @@ further completing the understanding of the problem and guiding the
 research process.
 
 
-\newcounter{rqcounter}
+\newcounter{rqcounter} %TODO rever questões
 \begin{list}{\textbf{RQ\arabic{rqcounter}:}}{\usecounter{rqcounter}}
   \item Is it feasible to have collaborative ML inferences using edge 
   and far-edge devices\footnote{Let it be known that the expression 
@@ -97,16 +95,19 @@ research process.
   \item How efficiently can the resources of edge and far-edge devices 
   be utilized towards collaborative inference tasks?
 
-  \item Is there a feasible method to fragment more complex 
-  \ac{DNN} models (e.g., \acp{RNN}) in the context of edge and far-edge computing?
+  % \item Is there a feasible method to fragment more complex 
+  % \ac{DNN} models (e.g., \acp{RNN}) in the context of edge and far-edge computing?
+  %TODO - perguntar se sempre é para cortar esta
 \end{list}
 
-% \section{Dissertation Structure} \label{sec:structure}
+\section{Dissertation Structure} \label{sec:structure}
 
-% In addition to the introduction, this dissertation contains x more 
-% chapters.
+In addition to the introduction, this dissertation contains five more 
+chapters.
 
-% In Chapter~\ref{chap:ch2}, the state of the art is described and 
-% related work is presented. 
-% Chapter~\ref{chap:ch3}, ipsum dolor sit amet, consectetuer
-% adipiscing elit.
+In Chapter~\ref{chap:ch2}, the literature review procedure is described and the
+outcome analyzed. While in Chapter~\ref{chap:ch3} the state of the art is described, 
+and related work is presented and categorized.
+Chapter~\ref{chap:ch4} presents the developed approach that is tested in 
+Chapter~\ref{chap:ch5}. This work is then concluded with Chapter~\ref{chap:ch6}, 
+where the main contributions are summarized, and future work is proposed.
