@@ -256,18 +256,18 @@ namely the inference latency.
 
 \begin{lstlisting}[
     language=C,
-    caption={Type definition and memory layout of the \texttt{Message} structure.},
+    caption={Inter-device message structure during the inference stage.},
     label={lst:message_structure}
 ]
 struct MessageData {
-    byte    inference_id;           // 1 Byte  : Orchestrator's Inference Task ID
-    int32   inference_latency_ms;   // 4 Bytes : Inference latency in milliseconds
-    byte[]  input_data;             // Variable: Dynamic inference input payload
+    uint8    inference_id;           // 1 Byte  : Orchestrator's Inference Task ID
+    uint32   inference_latency_ms;   // 4 Bytes : Inference latency in milliseconds
+    uint8[]  input_data;             // Variable: Dynamic inference input payload
 };
 
 struct Message {
-    byte        service_id;         // 1 Byte  : EmbServe service identifier
-    string      key_input;          // Variable: EmbServe service endpoint key
+    uint8       service_id;         // 1 Byte  : EmbServe service identifier
+    char[]      key_input;          // Variable: EmbServe service endpoint key
     MessageData message_data;       // Variable: Nested MessageData structure
 };
 \end{lstlisting}
