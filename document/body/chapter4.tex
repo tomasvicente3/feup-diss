@@ -247,6 +247,30 @@ Compared with text-based \ac{JSON}, \ac{CBOR} reduces message size and
 parsing cost. We use \ac{JSON} for setup and debugging (when messages are
 inspected by tools or developers), but avoid it during production inference.
 
+The full structure of the messages exchanged between the devices during the inference
+stage is presented in Listing~\ref{lst:message_structure}. Including the wrapper that
+allows the compatibility with embServe's interface, and the nested structure that
+contains data used to identify the inference task and collect the performance metrics, 
+namely the inference latency. 
+
+
+\begin{lstlisting}[
+    language=C,
+    caption={Inter-device message structure during the inference stage.},
+    label={lst:message_structure}
+]
+struct MessageData {
+    uint8    inference_id;           // 1 Byte  : Orchestrator's Inference Task ID
+    uint32   inference_latency_ms;   // 4 Bytes : Inference latency in milliseconds
+    uint8[]  input_data;             // Variable: Dynamic inference input payload
+};
+
+struct Message {
+    uint8       service_id;         // 1 Byte  : EmbServe service identifier
+    char[]      key_input;          // Variable: EmbServe service endpoint key
+    MessageData message_data;       // Variable: Nested MessageData structure
+};
+\end{lstlisting}
 
 \subsection{Performance Metrics}\label{sec:se452}
 
